@@ -2,13 +2,13 @@
  * Nihon Kendo Kata Studio - Controlador Principal da Aplicação
  */
 
-import { calculateTimeWindow, formatRelativeTime } from './syncEngine.js';
+import { calculateTimeWindow, formatRelativeTime, SECTION_KEYS } from './syncEngine.js';
 import { renderPedagogyPanel } from './pedagogyPanel.js';
 import { VideoGridManager } from './videoGrid.js';
 import { WebCalibrator } from './calibrator.js';
 
 let db = null;
-let currentKataId = "kata_01";
+let currentKataId = "reiho_inicial";
 let currentLayout = "grid-2x2";
 let selectedDemoIds = [];
 let isPlaying = false;
@@ -58,18 +58,45 @@ async function loadDatabase() {
 }
 
 /**
- * Inicializa os seletores de UI com os katas disponíveis.
+ * Inicializa os seletores de UI com todas as seções e katas cronológicos.
  */
 function initKataSelector() {
   kataSelectEl.innerHTML = '';
-  for (let i = 1; i <= 10; i++) {
-    const kId = `kata_${String(i).padStart(2, '0')}`;
-    const kata = db.katas_pedagogical[kId];
-    const opt = document.createElement('option');
-    opt.value = kId;
-    opt.textContent = `Kata #${i} • ${kata.name_romaji} (${kata.name_jp})`;
-    kataSelectEl.appendChild(opt);
+
+  const groups = [
+    { label: "⛩️ Protocolo Inicial", keys: ["reiho_inicial"] },
+    { label: "⚔️ Katas de Tachi (Espada Longa)", keys: ["kata_01", "kata_02", "kata_03", "kata_04", "kata_05", "kata_06", "kata_07"] },
+    { label: "🔄 Transição de Armas", keys: ["troca_kodachi"] },
+    { label: "🗡️ Katas de Kodachi (Espada Curta)", keys: ["kata_08", "kata_09", "kata_10"] },
+    { label: "⛩️ Protocolo Final", keys: ["reiho_final"] }
+  ];
+
+  for (const group of groups) {
+    const optgroup = document.createElement('optgroup');
+    optgroup.label = group.label;
+
+    for (const kId of group.keys) {
+      const kata = db.katas_pedagogical[kId];
+      if (!kata) continue;
+
+      const opt = document.createElement('option');
+      opt.value = kId;
+      if (kId === "reiho_inicial") {
+        opt.textContent = `Reiho Inicial (Zarei) • 礼法（前）`;
+      } else if (kId === "troca_kodachi") {
+        opt.textContent = `Troca para Kodachi • 小太刀への交換`;
+      } else if (kId === "reiho_final") {
+        opt.textContent = `Reiho Final (Zarei e Saída) • 礼法（後）`;
+      } else {
+        const prefix = kata.type === "kodachi" ? "Kodachi" : "Kata";
+        opt.textContent = `${prefix} #${kata.number} • ${kata.name_romaji} (${kata.name_jp})`;
+      }
+      optgroup.appendChild(opt);
+    }
+    kataSelectEl.appendChild(optgroup);
   }
+
+  kataSelectEl.value = currentKataId;
 
   kataSelectEl.addEventListener('change', (e) => {
     switchKata(e.target.value);

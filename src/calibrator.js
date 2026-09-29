@@ -1,9 +1,9 @@
 /**
  * Módulo Calibrador Web de Alta Precisão (Frame a Frame)
- * Permite marcar Start (S), Clímax (C) e End (E) com atalhos de teclado e exportar o JSON atualizado.
+ * Permite marcar Start (S), Clímax (C) e End (E) com atalhos de teclado e encadeamento contínuo de recortes.
  */
 
-import { formatClock } from './syncEngine.js';
+import { formatClock, SECTION_KEYS } from './syncEngine.js';
 
 export class WebCalibrator {
   constructor({ containerEl, db, onDatabaseUpdated }) {
@@ -12,7 +12,7 @@ export class WebCalibrator {
     this.onDatabaseUpdated = onDatabaseUpdated;
 
     this.currentDemoId = db.demonstrations[0].id;
-    this.currentKataId = "kata_01";
+    this.currentKataId = "reiho_inicial";
     this.calibratorPlayer = null;
     this.isPlaying = false;
     this.isTestingLoop = false;
@@ -25,26 +25,107 @@ export class WebCalibrator {
    */
   render() {
     const demo = this.db.demonstrations.find(d => d.id === this.currentDemoId) || this.db.demonstrations[0];
-    const kataTiming = (demo.katas && demo.katas[this.currentKataId]) || { start: 0, climax: 10, end: 20 };
+    
+    // Encontra seção anterior e posterior na cadeia cronológica
+    const curIdx = SECTION_KEYS.indexOf(this.currentKataId);
+    const prevKey = curIdx > 0 ? SECTION_KEYS[curIdx - 1] : null;
+    const nextKey = curIdx < SECTION_KEYS.length - 1 ? SECTION_KEYS[curIdx + 1] : null;
+
+    const prevEnd = (prevKey && demo.katas && demo.katas[prevKey]) ? demo.katas[prevKey].end : null;
+
+    // Obtém timing atual
+    let kataTiming = (demo.katas && demo.katas[this.currentKataId]) ? { ...demo.katas[this.currentKataId] } : null;
+    if (!kataTiming) {
+      const defaultStart = prevEnd !== null ? prevEnd : 0;
+      kataTiming = { start: defaultStart, climax: defaultStart + 10, end: defaultStart + 20 };
+    } else if (kataTiming.start === 0 && prevEnd !== null && this.currentKataId !== "reiho_inicial") {
+      // Auto-encadeamento inteligente: se start for 0 e houver bloco anterior, sugere o término anterior
+      kataTiming.start = prevEnd;
+    }
 
     const demoOptions = this.db.demonstrations.map(d => {
       return `<option value="${d.id}" ${d.id === this.currentDemoId ? 'selected' : ''}>${d.title}</option>`;
     }).join("");
 
-    const kataOptions = Object.keys(this.db.katas_pedagogical).map(kId => {
-      const k = this.db.katas_pedagogical[kId];
-      return `<option value="${kId}" ${kId === this.currentKataId ? 'selected' : ''}>Kata #${k.number} • ${k.name_romaji} (${k.name_jp})</option>`;
-    }).join("");
+    // Agrupamento pedagógico cronológico
+    const groups = [
+      { label: "⛩️ Protocolo Inicial", keys: ["reiho_inicial"] },
+      { label: "⚔️ Katas de Tachi (Espada Longa)", keys: ["kata_01", "kata_02", "kata_03", "kata_04", "kata_05", "kata_06", "kata_07"] },
+      { label: "🔄 Transição de Armas", keys: ["troca_kodachi"] },
+      { label: "🗡️ Katas de Kodachi (Espada Curta)", keys: ["kata_08", "kata_09", "kata_10"] },
+      { label: "⛩️ Protocolo Final", keys: ["reiho_final"] }
+    ];
+
+    let kataOptions = "";
+    for (const g of groups) {
+      kataOptions += `<optgroup label="${g.label}">`;
+      for (const kId of g.keys) {
+        const k = this.db.katas_pedagogical[kId];
+        if (!k) continue;
+        let title = "";
+        if (kId === "reiho_inicial") title = "Reiho Inicial (Zarei) • 礼法（前）";
+        else if (kId === "troca_kodachi") title = "Troca para Kodachi • 小太刀への交換";
+        else if (kId === "reiho_final") title = "Reiho Final (Zarei e Saída) • 礼法（後）";
+        else {
+          const prefix = k.type === "kodachi" ? "Kodachi" : "Kata";
+          title = `${prefix} #${k.number} • ${k.name_romaji} (${k.name_jp})`;
+        }
+        kataOptions += `<option value="${kId}" ${kId === this.currentKataId ? 'selected' : ''}>${title}</option>`;
+      }
+      kataOptions += `</optgroup>`;
+    }
+
+    // Títulos e descrições contextuais de cada marcador
+    let startTitle = "1. Ponto de Início (Start)";
+    let startDesc = "Último frame estável em Chūdan a 9 passos (término do bloco anterior)";
+    let climaxTitle = "2. Ponto de Clímax (Impacto)";
+    let climaxDesc = "Momento exato do contragolpe de Shidachi (t=0)";
+    let endTitle = "3. Ponto de Término (End)";
+    let endDesc = "Final dos 5 passos e estabilização em Chūdan";
+
+    if (this.currentKataId === "reiho_inicial") {
+      startTitle = "1. Início do Protocolo (Start)";
+      startDesc = "Entrada na quadra / Antes do primeiro Rei mútuo ao Shomen";
+      climaxTitle = "2. Zarei Mútuo (Clímax / Âncora)";
+      climaxDesc = "Instante da inclinação cerimonial em Zarei entre Uchidachi e Shidachi";
+      endTitle = "3. Término do Protocolo (End)";
+      endDesc = "Assunção sincronizada de Chūdan a 9 passos (início do Ippon-me)";
+    } else if (this.currentKataId === "troca_kodachi") {
+      startTitle = "1. Início da Troca (Start)";
+      startDesc = "Sonkyo ao término do Nanahon-me / Embainhar da espada longa";
+      climaxTitle = "2. Sonkyo com Kodachi (Clímax / Âncora)";
+      climaxDesc = "Instante exato do Sonkyo com a Kodachi desembainhada";
+      endTitle = "3. Término da Troca (End)";
+      endDesc = "Assunção de Chūdan antes do 8º kata (1º de Kodachi)";
+    } else if (this.currentKataId === "reiho_final") {
+      startTitle = "1. Início do Encerramento (Start)";
+      startDesc = "Sonkyo ao término do 10º kata / Embainhar";
+      climaxTitle = "2. Zarei Mútuo Final (Clímax / Âncora)";
+      climaxDesc = "Zarei mútuo final de agradecimento e reverência mútua";
+      endTitle = "3. Saída da Quadra (End)";
+      endDesc = "Último Rei mútuo ao Shomen na borda ao sair da quadra";
+    }
+
+    const prevKataName = prevKey ? (this.db.katas_pedagogical[prevKey]?.name_romaji || prevKey) : "";
+    const chainPrevBtnHtml = prevKey ? `
+      <button type="button" id="btn-chain-prev" class="btn-chain-link" title="Copiar exatamente o término de ${prevKataName}">
+        🔗 Início = Fim de "${prevKataName}" (${prevEnd !== null && prevEnd !== undefined ? prevEnd.toFixed(2) + 's' : 'não definido'})
+      </button>
+    ` : '';
 
     this.containerEl.innerHTML = `
       <div class="calibrator-header-bar">
         <div class="calibrator-title">
-          <span class="calib-badge">MODO CALIBRADOR</span>
-          <h3>Mesa de Calibração e Ajuste Fino de Timestamps</h3>
+          <span class="calib-badge">MODO CALIBRADOR DE PRECISÃO</span>
+          <h3>Mesa de Calibração e Encadeamento Contínuo</h3>
         </div>
         <div class="calibrator-selectors">
           <select id="calib-demo-select" class="kendo-select">${demoOptions}</select>
-          <select id="calib-kata-select" class="kendo-select">${kataOptions}</select>
+          <div style="display: flex; gap: 0.35rem; align-items: center;">
+            <button id="btn-prev-section" class="calibrator-nav-btn" ${!prevKey ? 'disabled' : ''} title="Ir para o bloco anterior">⏮ Anterior</button>
+            <select id="calib-kata-select" class="kendo-select">${kataOptions}</select>
+            <button id="btn-next-section" class="calibrator-nav-btn" ${!nextKey ? 'disabled' : ''} title="Ir para o próximo bloco">Próximo ⏭</button>
+          </div>
         </div>
       </div>
 
@@ -74,17 +155,18 @@ export class WebCalibrator {
         <!-- Marcações de Início, Clímax e Fim -->
         <div class="markers-grid">
           <div class="marker-card start-card">
-            <div class="marker-title">1. Ponto de Início (Start)</div>
-            <div class="marker-desc">Último frame estável em Chūdan a 9 passos</div>
+            <div class="marker-title">${startTitle}</div>
+            <div class="marker-desc">${startDesc}</div>
             <div class="marker-input-row">
               <input type="number" step="0.05" id="input-start" class="kendo-input-num" value="${kataTiming.start.toFixed(2)}" />
               <button id="btn-mark-start" class="btn-mark btn-start" title="Atalho: tecla S">📍 Marcar [S]</button>
             </div>
+            ${chainPrevBtnHtml}
           </div>
 
           <div class="marker-card climax-card">
-            <div class="marker-title">2. Ponto de Clímax (Impacto)</div>
-            <div class="marker-desc">Momento exato do contragolpe de Shidachi (t=0)</div>
+            <div class="marker-title">${climaxTitle}</div>
+            <div class="marker-desc">${climaxDesc}</div>
             <div class="marker-input-row">
               <input type="number" step="0.05" id="input-climax" class="kendo-input-num" value="${kataTiming.climax.toFixed(2)}" />
               <button id="btn-mark-climax" class="btn-mark btn-climax-mark" title="Atalho: tecla C">⚡ Marcar [C]</button>
@@ -92,12 +174,13 @@ export class WebCalibrator {
           </div>
 
           <div class="marker-card end-card">
-            <div class="marker-title">3. Ponto de Término (End)</div>
-            <div class="marker-desc">Final dos 5 passos e estabilização em Chūdan</div>
+            <div class="marker-title">${endTitle}</div>
+            <div class="marker-desc">${endDesc}</div>
             <div class="marker-input-row">
               <input type="number" step="0.05" id="input-end" class="kendo-input-num" value="${kataTiming.end.toFixed(2)}" />
               <button id="btn-mark-end" class="btn-mark btn-end" title="Atalho: tecla E">🏁 Marcar [E]</button>
             </div>
+            <span class="chain-badge-info">🔗 Ao salvar, o Fim deste bloco será atribuído ao Início do próximo.</span>
           </div>
         </div>
 
@@ -119,11 +202,11 @@ export class WebCalibrator {
       </div>
     `;
 
-    this.bindEvents();
+    this.bindEvents(prevKey, nextKey, prevEnd);
     this.initYouTubePlayer();
   }
 
-  bindEvents() {
+  bindEvents(prevKey, nextKey, prevEnd) {
     const demoSelect = this.containerEl.querySelector('#calib-demo-select');
     demoSelect.addEventListener('change', (e) => {
       this.currentDemoId = e.target.value;
@@ -135,6 +218,34 @@ export class WebCalibrator {
       this.currentKataId = e.target.value;
       this.render();
     });
+
+    const btnPrev = this.containerEl.querySelector('#btn-prev-section');
+    if (btnPrev && prevKey) {
+      btnPrev.addEventListener('click', () => {
+        this.currentKataId = prevKey;
+        this.render();
+      });
+    }
+
+    const btnNext = this.containerEl.querySelector('#btn-next-section');
+    if (btnNext && nextKey) {
+      btnNext.addEventListener('click', () => {
+        this.currentKataId = nextKey;
+        this.render();
+      });
+    }
+
+    const btnChainPrev = this.containerEl.querySelector('#btn-chain-prev');
+    if (btnChainPrev && prevEnd !== null && prevEnd !== undefined) {
+      btnChainPrev.addEventListener('click', () => {
+        const inputStart = this.containerEl.querySelector('#input-start');
+        if (inputStart) {
+          inputStart.value = prevEnd.toFixed(2);
+          inputStart.style.borderColor = "#3B82F6";
+          setTimeout(() => { inputStart.style.borderColor = ""; }, 1000);
+        }
+      });
+    }
 
     // Botões de marcação
     this.containerEl.querySelector('#btn-mark-start').addEventListener('click', () => this.markCurrentTime('start'));
@@ -240,6 +351,22 @@ export class WebCalibrator {
     if (!demo.katas) demo.katas = {};
     demo.katas[this.currentKataId] = { start, climax, end };
 
+    // Auto-encadeamento para o bloco seguinte na cadeia cronológica
+    const curIdx = SECTION_KEYS.indexOf(this.currentKataId);
+    const nextKey = curIdx < SECTION_KEYS.length - 1 ? SECTION_KEYS[curIdx + 1] : null;
+
+    if (nextKey) {
+      if (!demo.katas[nextKey]) {
+        demo.katas[nextKey] = { start: end, climax: end + 10, end: end + 20 };
+      } else {
+        demo.katas[nextKey].start = end;
+        if (demo.katas[nextKey].climax <= end) {
+          demo.katas[nextKey].climax = Number((end + 8).toFixed(2));
+          demo.katas[nextKey].end = Number((end + 18).toFixed(2));
+        }
+      }
+    }
+
     // Salva no localStorage como backup local imediato
     try {
       localStorage.setItem('kendo_kata_db', JSON.stringify(this.db));
@@ -262,7 +389,8 @@ export class WebCalibrator {
           saveBtn.innerHTML = '✅ Salvo no Disco!';
           setTimeout(() => { saveBtn.innerHTML = originalText; }, 2500);
         }
-        alert(`✅ Sucesso! Os timestamps do ${this.currentKataId} foram salvos diretamente no arquivo data/kata_database.json no disco!`);
+        const nextInfo = nextKey ? `\n🔗 O Início do próximo bloco (${nextKey}) foi automaticamente encadeado em ${end.toFixed(2)}s.` : '';
+        alert(`✅ Sucesso! Os timestamps do ${this.currentKataId} foram salvos diretamente no arquivo data/kata_database.json no disco!${nextInfo}`);
       } else {
         throw new Error(`Status ${response.status}`);
       }

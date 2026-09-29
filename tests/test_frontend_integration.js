@@ -10,12 +10,19 @@ const dbPath = path.join(__dirname, '..', 'data', 'kata_database.json');
 const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 
 describe('Frontend Integration - Validação do Acervo e Motor de Sincronia', () => {
-  it('deve sincronizar com sucesso todos os 10 katas para todas as 8 demonstrações reais', () => {
+  it('deve sincronizar com sucesso todos os 13 blocos pedagógicos para todas as 8 demonstrações reais', () => {
     const demoIds = db.demonstrations.map(d => d.id);
     assert.equal(demoIds.length, 8, "Devem existir 8 demonstrações");
 
-    for (let k = 1; k <= 10; k++) {
-      const kataId = `kata_${String(k).padStart(2, '0')}`;
+    const sectionKeys = [
+      "reiho_inicial",
+      "kata_01", "kata_02", "kata_03", "kata_04", "kata_05", "kata_06", "kata_07",
+      "troca_kodachi",
+      "kata_08", "kata_09", "kata_10",
+      "reiho_final"
+    ];
+
+    for (const kataId of sectionKeys) {
       const window = calculateTimeWindow(kataId, demoIds, db);
 
       assert.ok(window.preDuration > 0, `${kataId}: preDuration deve ser maior que 0`);

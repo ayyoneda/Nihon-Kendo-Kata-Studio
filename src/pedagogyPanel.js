@@ -27,12 +27,34 @@ export function renderPedagogyPanel(kataId, db, containerEl) {
     .map(err => `<li>${err}</li>`)
     .join("");
 
-  const typeLabel = kata.type === "kodachi" ? "小太刀 (Kodachi - Espada Curta)" : "太刀 (Tachi - Espada Longa)";
+  let typeLabel = "太刀 (Tachi - Espada Longa)";
+  let numberTag = `Kata #${kata.number} • ${typeLabel}`;
+
+  if (kata.type === "kodachi") {
+    typeLabel = "小太刀 (Kodachi - Espada Curta)";
+    numberTag = `Kata #${kata.number} • ${typeLabel}`;
+  } else if (kata.type === "reiho") {
+    typeLabel = "礼法 (Reiho - Etiqueta e Protocolo)";
+    if (kata.id === "reiho_inicial") {
+      numberTag = `Protocolo Inicial • ${typeLabel}`;
+    } else if (kata.id === "troca_kodachi") {
+      numberTag = `Transição de Armamento • ${typeLabel}`;
+    } else {
+      numberTag = `Protocolo Final • ${typeLabel}`;
+    }
+  }
+
+  const climaxSyncHtml = kata.climax_desc ? `
+    <div class="climax-anchor-badge" style="margin-top: 0.5rem; background: rgba(212, 175, 55, 0.12); border-left: 3px solid var(--gold-primary); padding: 0.45rem 0.65rem; border-radius: 4px; font-size: 0.82rem; color: var(--gold-light);">
+      ⚡ <strong>Ponto de Sincronia (Clímax):</strong> ${kata.climax_desc}
+    </div>
+  ` : '';
 
   containerEl.innerHTML = `
     <div class="pedagogy-header">
-      <span class="kata-number-tag">Kata #${kata.number} • ${typeLabel}</span>
+      <span class="kata-number-tag">${numberTag}</span>
       <h2 class="kata-main-title">${kata.name_romaji} <span class="kanji-sub">${kata.name_jp}</span></h2>
+      ${climaxSyncHtml}
     </div>
 
     <!-- Kamae & Alvos -->

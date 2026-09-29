@@ -40,10 +40,13 @@ def get_video_stream_or_file(youtube_id, demo_id):
 
 def build_grid_plan(kata_num, video_ids, output_path=None, dry_run=False):
     db = load_database()
-    kata_id = f"kata_{int(kata_num):02d}"
+    if str(kata_num).isdigit():
+        kata_id = f"kata_{int(kata_num):02d}"
+    else:
+        kata_id = str(kata_num).strip()
 
     if kata_id not in db["katas_pedagogical"]:
-        raise ValueError(f"Kata {kata_num} não encontrado no banco de dados.")
+        raise ValueError(f"Bloco '{kata_num}' não encontrado no catálogo pedagógico.")
 
     # Valida demonstrações
     demos = []

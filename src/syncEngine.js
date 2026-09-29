@@ -3,6 +3,22 @@
  * para o Nihon Kendo Kata Studio.
  */
 
+export const SECTION_KEYS = [
+  "reiho_inicial",
+  "kata_01",
+  "kata_02",
+  "kata_03",
+  "kata_04",
+  "kata_05",
+  "kata_06",
+  "kata_07",
+  "troca_kodachi",
+  "kata_08",
+  "kata_09",
+  "kata_10",
+  "reiho_final"
+];
+
 /**
  * Encontra a demonstração pelo ID no catálogo do banco de dados.
  */
