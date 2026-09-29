@@ -113,14 +113,12 @@ O arquivo `data/kata_database.json` é a fonte única de verdade do projeto e po
 
 ## 4. Pipeline de Ingestão e Ferramenta de Calibração
 
-### 4.1 Ingestão Automatizada com IA (`pipeline/analyze_enbu.py`)
-1. Recebe a URL do YouTube ou ID do vídeo e metadados da dupla.
-2. Faz download leve de amostra de vídeo com `yt-dlp` (resolução 360p).
-3. Submete o vídeo para a API Gemini Flash com instruções especializadas de Kendo:
-   - Identificar início dos 10 katas (*start* = transição a partir de *kyū-ho no ma-ai*);
-   - Identificar momento exato do impacto/contragolpe de Shidachi (*climax*);
-   - Identificar conclusão do zanshin e retorno aos 9 passos (*end* = estabilização final em *Chūdan*).
-4. Produz candidatos de timestamps no JSON.
+### 4.1 Ingestão e Processamento Inicial pelo Antigravity (Sem Custo de API Externa)
+1. **Processamento Direto pelo Antigravity:** Para as 8 a 10 demonstrações catalogadas no Deep Research, o próprio Antigravity realiza a extração e calibração dos timestamps diretamente durante a construção do projeto, utilizando inspeção multimodal e ferramentas locais (`yt-dlp` para metadados/capítulos e `ffmpeg` para amostragem).
+2. **Custo Zero:** O usuário não precisa configurar nem pagar por chave de API externa (tokens de API). O banco `kata_database.json` já é entregue pronto e 100% populado para todos os 10 katas das demonstrações iniciais.
+3. **Expansão Futura Simplificada:**
+   - **Via Antigravity:** O usuário pode simplesmente solicitar em uma sessão futura ("Antigravity, adicione este novo vídeo do YouTube ao banco");
+   - **Via Calibrador Web:** O usuário (ou qualquer colega de Kendo) pode carregar qualquer URL diretamente no navegador e marcar os 10 katas em poucos minutos usando os atalhos de teclado.
 
 ### 4.2 Calibrador Web Integrado (Interface de Precisão)
 1. Permite carregar qualquer vídeo do YouTube pelo navegador.
