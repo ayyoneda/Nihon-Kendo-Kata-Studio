@@ -5,6 +5,7 @@
 import { calculateTimeWindow, formatRelativeTime } from './syncEngine.js';
 import { renderPedagogyPanel } from './pedagogyPanel.js';
 import { VideoGridManager } from './videoGrid.js';
+import { WebCalibrator } from './calibrator.js';
 
 let db = null;
 let currentKataId = "kata_01";
@@ -12,11 +13,13 @@ let currentLayout = "grid-2x2";
 let selectedDemoIds = [];
 let isPlaying = false;
 let isLooping = true;
+let isCalibratorOpen = false;
 let playbackRate = 0.50;
 let currentRelativeTime = 0.0;
 let timeWindow = { preDuration: 15, postDuration: 15, minRelative: -15, maxRelative: 15, totalDuration: 30 };
 
 let gridManager = null;
+let calibrator = null;
 let syncTickerId = null;
 let lastTickTime = null;
 
@@ -271,6 +274,36 @@ async function initApp() {
   btnTogglePedagogy.addEventListener('click', () => {
     pedagogyPanelEl.classList.toggle('collapsed');
     btnTogglePedagogy.classList.toggle('active');
+  });
+
+  // Alternador de Modo Calibrador
+  btnToggleCalibrator.addEventListener('click', () => {
+    isCalibratorOpen = !isCalibratorOpen;
+    btnToggleCalibrator.classList.toggle('active', isCalibratorOpen);
+
+    if (isCalibratorOpen) {
+      pausePlayback();
+      videoGridEl.classList.add('hidden');
+      calibratorViewEl.classList.remove('hidden');
+
+      if (!calibrator) {
+        calibrator = new WebCalibrator({
+          containerEl: calibratorViewEl,
+          db,
+          onDatabaseUpdated: (newDb) => {
+            db = newDb;
+          }
+        });
+      }
+      calibrator.render();
+    } else {
+      if (calibrator) {
+        calibrator.destroy();
+      }
+      calibratorViewEl.classList.add('hidden');
+      videoGridEl.classList.remove('hidden');
+      switchKata(currentKataId);
+    }
   });
 
   // Atalhos de teclado globais de playback
