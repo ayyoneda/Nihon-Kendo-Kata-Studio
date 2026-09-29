@@ -226,7 +226,7 @@ export class WebCalibrator {
     }
   }
 
-  saveCurrentTiming() {
+  async saveCurrentTiming() {
     const start = parseFloat(this.containerEl.querySelector('#input-start').value);
     const climax = parseFloat(this.containerEl.querySelector('#input-climax').value);
     const end = parseFloat(this.containerEl.querySelector('#input-end').value);
@@ -240,7 +240,37 @@ export class WebCalibrator {
     if (!demo.katas) demo.katas = {};
     demo.katas[this.currentKataId] = { start, climax, end };
 
-    alert(`Timestamps do ${this.currentKataId} salvos com sucesso na memória!`);
+    // Salva no localStorage como backup local imediato
+    try {
+      localStorage.setItem('kendo_kata_db', JSON.stringify(this.db));
+    } catch (e) {}
+
+    const saveBtn = this.containerEl.querySelector('#btn-save-kata-timing');
+    const originalText = saveBtn ? saveBtn.innerHTML : '';
+    if (saveBtn) saveBtn.innerHTML = '⏳ Salvando...';
+
+    // Envia para o endpoint do Vite para gravar no arquivo do disco
+    try {
+      const response = await fetch('/api/save-database', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.db)
+      });
+
+      if (response.ok) {
+        if (saveBtn) {
+          saveBtn.innerHTML = '✅ Salvo no Disco!';
+          setTimeout(() => { saveBtn.innerHTML = originalText; }, 2500);
+        }
+        alert(`✅ Sucesso! Os timestamps do ${this.currentKataId} foram salvos diretamente no arquivo data/kata_database.json no disco!`);
+      } else {
+        throw new Error(`Status ${response.status}`);
+      }
+    } catch (err) {
+      if (saveBtn) saveBtn.innerHTML = originalText;
+      alert(`ℹ️ Timestamps salvos na memória do navegador. Para atualizar o arquivo físico no disco, clique em "Baixar kata_database.json".`);
+    }
+
     if (this.onDatabaseUpdated) {
       this.onDatabaseUpdated(this.db);
     }
