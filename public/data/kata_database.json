@@ -422,8 +422,8 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 75.9,
-          "climax": 108.4,
+          "start": 12,
+          "climax": 58.55,
           "end": 140.9
         },
         "kata_01": {
@@ -432,59 +432,59 @@
           "end": 167
         },
         "kata_02": {
-          "start": 167.04,
+          "start": 167,
           "climax": 173.07,
           "end": 188.47
         },
         "kata_03": {
           "start": 188.47,
-          "climax": 192,
-          "end": 214
+          "climax": 199.11,
+          "end": 220.29
         },
         "kata_04": {
-          "start": 223,
-          "climax": 238,
-          "end": 258
+          "start": 220.29,
+          "climax": 231.56,
+          "end": 248.75
         },
         "kata_05": {
-          "start": 268,
-          "climax": 281,
-          "end": 300
+          "start": 248.75,
+          "climax": 256.41,
+          "end": 277.46
         },
         "kata_06": {
-          "start": 310,
-          "climax": 323,
-          "end": 342
+          "start": 277.46,
+          "climax": 285.92,
+          "end": 304.35
         },
         "kata_07": {
-          "start": 352,
-          "climax": 367,
-          "end": 391
+          "start": 304.35,
+          "climax": 311.75,
+          "end": 324.87
         },
         "troca_kodachi": {
-          "start": 391,
-          "climax": 405.5,
-          "end": 420
+          "start": 324.87,
+          "climax": 385.41,
+          "end": 398.03
         },
         "kata_08": {
-          "start": 420,
-          "climax": 433,
-          "end": 451
+          "start": 398.03,
+          "climax": 403.89,
+          "end": 422.33
         },
         "kata_09": {
-          "start": 460,
-          "climax": 472,
-          "end": 490
+          "start": 422.33,
+          "climax": 430.54,
+          "end": 448.05
         },
         "kata_10": {
-          "start": 500,
-          "climax": 517,
-          "end": 539
+          "start": 448.05,
+          "climax": 454.56,
+          "end": 462.05
         },
         "reiho_final": {
-          "start": 539,
-          "climax": 565,
-          "end": 594
+          "start": 462.05,
+          "climax": 525.46,
+          "end": 557.96
         }
       }
     },
@@ -506,69 +506,69 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 23,
-          "climax": 55.5,
-          "end": 88
+          "start": 131.4,
+          "climax": 198.8,
+          "end": 220.7
         },
         "kata_01": {
-          "start": 88,
-          "climax": 103,
-          "end": 122
+          "start": 220.7,
+          "climax": 227.84,
+          "end": 246.64
         },
         "kata_02": {
-          "start": 130,
-          "climax": 143,
-          "end": 160
+          "start": 246.64,
+          "climax": 254.16,
+          "end": 269.56
         },
         "kata_03": {
-          "start": 169,
-          "climax": 186,
-          "end": 207
+          "start": 269.56,
+          "climax": 279.72,
+          "end": 300.72
         },
         "kata_04": {
-          "start": 216,
-          "climax": 231,
-          "end": 251
+          "start": 300.72,
+          "climax": 311.78,
+          "end": 328.78
         },
         "kata_05": {
-          "start": 260,
-          "climax": 273,
-          "end": 292
+          "start": 328.78,
+          "climax": 336.34,
+          "end": 357.34
         },
         "kata_06": {
-          "start": 302,
-          "climax": 315,
-          "end": 334
+          "start": 357.34,
+          "climax": 364.34,
+          "end": 382.34
         },
         "kata_07": {
-          "start": 344,
-          "climax": 359,
-          "end": 382
+          "start": 382.34,
+          "climax": 392.18,
+          "end": 405.18
         },
         "troca_kodachi": {
-          "start": 382,
-          "climax": 397,
-          "end": 412
+          "start": 405.18,
+          "climax": 473.0,
+          "end": 485.32
         },
         "kata_08": {
-          "start": 412,
-          "climax": 425,
-          "end": 443
+          "start": 485.32,
+          "climax": 491.18,
+          "end": 509.62
         },
         "kata_09": {
-          "start": 452,
-          "climax": 464,
-          "end": 481
+          "start": 509.62,
+          "climax": 521.38,
+          "end": 538.89
         },
         "kata_10": {
-          "start": 491,
-          "climax": 508,
-          "end": 530
+          "start": 538.89,
+          "climax": 550.52,
+          "end": 558.01
         },
         "reiho_final": {
-          "start": 530,
-          "climax": 556,
-          "end": 585
+          "start": 558.01,
+          "climax": 590.2,
+          "end": 616.5
         }
       }
     },
