@@ -1,0 +1,480 @@
+{
+  "version": "1.0",
+  "katas_pedagogical": {
+    "kata_01": {
+      "id": "kata_01",
+      "number": 1,
+      "name_jp": "一本目",
+      "name_romaji": "Ippon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Morote Hidari Jodan",
+      "kamae_shidachi": "Morote Migi Jodan",
+      "target_uchidachi": "Shomen (visando a linha dos dentes)",
+      "waza_shidachi": "Men-nuki-men",
+      "sen": "Sen-sen-no-sen (先々の先)",
+      "zanshin": "Morote Hidari Jodan com avanço imponente do pé esquerdo",
+      "chakuganten": [
+        "Uchidachi deve cortar sem puxar a lâmina para trás (sem handō)",
+        "Shidachi deve manter o tronco perfeitamente aprumado (shizentai) na esquiva",
+        "Distância de corte de Uchidachi visando a cabeça com corte amplo (o-waza)"
+      ],
+      "common_mistakes": [
+        "Perda do alinhamento vertical da coluna de Shidachi ao recuar",
+        "Hesitação entre a esquiva e o contra-ataque",
+        "Ausência de tensão espiritual (kigurai) contínua durante a transição para o Jodan de zanshin"
+      ],
+      "riai_summary": "Confronto direto da postura ofensiva do fogo (Jodan). Shidachi domina a vontade agressiva de Uchidachi antes que o golpe atinja o alvo (Sen-sen-no-sen)."
+    },
+    "kata_02": {
+      "id": "kata_02",
+      "number": 2,
+      "name_jp": "二本目",
+      "name_romaji": "Nihon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Chudan no kamae",
+      "kamae_shidachi": "Chudan no kamae",
+      "target_uchidachi": "Migi-kote (punho direito)",
+      "waza_shidachi": "Kote-nuki-kote",
+      "sen": "Sen-sen-no-sen (先々の先)",
+      "zanshin": "Chudan dominante apontando a ponta (kensen) para a garganta de Uchidachi",
+      "chakuganten": [
+        "Uchidachi deve frear a espada logo abaixo da altura do pulso do oponente, sem atingir a linha dos joelhos",
+        "Shidachi deve executar o semicírculo de esquiva de forma contida e fluida pela esquerda e para baixo, sem abrir os cotovelos",
+        "Corte do punho de Shidachi em sincronia exata com o avanço do pé direito"
+      ],
+      "common_mistakes": [
+        "Excesso de amplitude no arco da ponta de Shidachi, desprotegendo o tronco",
+        "Descompasso entre o corte do kote e o avanço da passada",
+        "Uchidachi baixar excessivamente a lâmina após o golpe errar o alvo"
+      ],
+      "riai_summary": "Disputa rigorosa pelo domínio do centro em Chudan. Shidachi faz a investida de Uchidachi cortar o vazio e retoma o centro instantaneamente."
+    },
+    "kata_03": {
+      "id": "kata_03",
+      "number": 3,
+      "name_jp": "三本目",
+      "name_romaji": "Sanbon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Gedan no kamae -> Chudan no kamae",
+      "kamae_shidachi": "Gedan no kamae -> Chudan no kamae",
+      "target_uchidachi": "Suigetsu (estocada profunda no plexo solar)",
+      "waza_shidachi": "Nayashi-tsuki seguido de Kurai-zume",
+      "sen": "Sen-sen-no-sen (先々の先)",
+      "zanshin": "Chudan dominante avançando em passos curtos (ko-ashi) em Kurai-zume, elevando a ponta aos olhos de Uchidachi",
+      "chakuganten": [
+        "O nayashi deve ser um deslize aderente de lâmina (omote-shinogi), e não uma pancada de varredura (harai)",
+        "Estocada de retorno de Shidachi deve mirar com autoridade o plexo solar de Uchidachi",
+        "Avanço contínuo em kurai-zume sem quebrar a pressão física e mental"
+      ],
+      "common_mistakes": [
+        "Bater de forma seca na espada de Uchidachi",
+        "Perder a mira central nos olhos durante o avanço de kurai-zume",
+        "Recuo mecânico de Uchidachi sem expressar o reconhecimento da derrota moral"
+      ],
+      "riai_summary": "Katsujinken: a espada que domina e preserva a vida sem necessidade de matar. Vitória pela autoridade postural e espiritual."
+    },
+    "kata_04": {
+      "id": "kata_04",
+      "number": 4,
+      "name_jp": "四本目",
+      "name_romaji": "Yonhon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Hasso no kamae",
+      "kamae_shidachi": "Waki-gamae",
+      "target_uchidachi": "Shomen (após ambos subirem para Jodan)",
+      "waza_shidachi": "Aiuchi seguido de Maki-kaeshi-tsuki",
+      "sen": "Go-no-sen (後の先)",
+      "zanshin": "Chudan dominante com kensen cravado no hemitórax direito de Uchidachi",
+      "chakuganten": [
+        "Sincronia perfeita na transição de Hasso e Waki para o Jodan central com kiai simultâneo",
+        "Compromisso real de corte mútuo no aiuchi com impacto firme no centro",
+        "Giro helicoidal (maki-kaeshi) pelo shinogi sem perder contato mecânico com a lâmina adversária"
+      ],
+      "common_mistakes": [
+        "Subida assimétrica ou descompassada para Jodan",
+        "Transformar o aiuchi em uma simulação frouxa sem intenção de corte",
+        "Direcionamento incorreto da estocada para a garganta em vez do tórax direito (migi-kyobu)"
+      ],
+      "riai_summary": "Vitória obtida respondendo à energia do impacto já deflagrado (Go-no-sen). Shidachi absorve o choque do Aiuchi e estoca com rotação contínua."
+    },
+    "kata_05": {
+      "id": "kata_05",
+      "number": 5,
+      "name_jp": "五本目",
+      "name_romaji": "Gohon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Morote Hidari Jodan",
+      "kamae_shidachi": "Chudan no kamae",
+      "target_uchidachi": "Shomen (corte profundo e resoluto)",
+      "waza_shidachi": "Men-suriage-men (omote-shinogi)",
+      "sen": "Sen-no-sen (先の先)",
+      "zanshin": "Morote Hidari Jodan dominador avançando com a perna esquerda",
+      "chakuganten": [
+        "Uchidachi deve cortar resolutamente a cabeça de Shidachi e não visar a espada deste",
+        "Shidachi deve defletir na subida da lâmina (suriage) no topo da cabeça em tempo contínuo (ippyo-shi)",
+        "O contra-ataque de Men deve ocorrer em um só fôlego, sem pausa entre o desvio e o corte"
+      ],
+      "common_mistakes": [
+        "Fracionar a técnica em dois tempos (bloquear primeiro e cortar depois)",
+        "Usar a lâmina para empurrar lateralmente como num golpe de harai",
+        "Recuar os pés ou desalinhar a base durante o contra-ataque"
+      ],
+      "riai_summary": "Interceptação no instante milimétrico em que a trajetória ofensiva se desenvolve (Sen-no-sen). Deflexão ascendente fluida sem choque perpendicular."
+    },
+    "kata_06": {
+      "id": "kata_06",
+      "number": 6,
+      "name_jp": "六本目",
+      "name_romaji": "Roppon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Chudan -> Gedan no kamae",
+      "kamae_shidachi": "Chudan no kamae (centro)",
+      "target_uchidachi": "Migi-kote (tentativa de rompimento)",
+      "waza_shidachi": "Kote-suriage-kote (ura-shinogi)",
+      "sen": "Go-no-sen (後の先)",
+      "zanshin": "Chudan dominante apontando à garganta e forçando o recuo de Uchidachi",
+      "chakuganten": [
+        "Desvio ascendente contido e rápido com a face interna da lâmina (ura-shinogi)",
+        "Sincronia precisa entre o corte do punho e o avanço da passada direita",
+        "Pressão inabalável no kensen apontado para a garganta forçando o recuo de Uchidachi"
+      ],
+      "common_mistakes": [
+        "Golpear a espada de Uchidachi com pancada lateral excessiva",
+        "Atrasar a resposta do contra-ataque de kote",
+        "Afrouxar a postura física e mental ao término da ação"
+      ],
+      "riai_summary": "Neutralização por Go-no-sen de uma tentativa de sondagem tática. Shidachi deflete por dentro e contra-ataca o punho armado."
+    },
+    "kata_07": {
+      "id": "kata_07",
+      "number": 7,
+      "name_jp": "七本目",
+      "name_romaji": "Nanahon-me",
+      "type": "tachi",
+      "kamae_uchidachi": "Chudan no kamae",
+      "kamae_shidachi": "Chudan no kamae",
+      "target_uchidachi": "Tsuki no tórax seguido de Shomen",
+      "waza_shidachi": "Ura-nayashi seguido de Men-nuki-do",
+      "sen": "Go-no-sen (後の先)",
+      "zanshin": "Waki-gamae imponente virando-se em direção a Uchidachi",
+      "chakuganten": [
+        "Desvio suave da estocada inicial com o ura-shinogi mantendo o centro",
+        "Deslocamento corporal (tai-sabaki) a 45 graus em deslizamento (suri-ashi) sem saltos",
+        "Corte do tronco (do) com braços estendidos e fio correto da lâmina (hasuji)"
+      ],
+      "common_mistakes": [
+        "Pular ou dar saltos no deslocamento lateral",
+        "Golpear o abdômen de Uchidachi com a lateral chapada da lâmina",
+        "Virar as costas para o adversário durante a transição para Waki-gamae"
+      ],
+      "riai_summary": "Culminância dos katas de espada longa: evasão tridimensional de golpe descendente e corte horizontal de tronco com zanshin em guarda oculta."
+    },
+    "kata_08": {
+      "id": "kata_08",
+      "number": 8,
+      "name_jp": "小太刀一本目",
+      "name_romaji": "Kodachi Ippon-me",
+      "type": "kodachi",
+      "kamae_uchidachi": "Morote Hidari Jodan (espada longa)",
+      "kamae_shidachi": "Chudan Hanmi no kamae (espada curta de perfil)",
+      "target_uchidachi": "Shomen",
+      "waza_shidachi": "Men-ukenagashi-men (hidari-shinogi)",
+      "sen": "Sen-sen-no-sen (先々の先)",
+      "zanshin": "Katate Chudan com braço direito estendido e kensen cravado no centro",
+      "chakuganten": [
+        "Postura correta em Chudan Hanmi com pé direito à frente",
+        "Entrada profunda no raio de ação (irimi) na diagonal dianteira direita",
+        "Deflexão circular contínua (uke-nagashi) pelo lado esquerdo sem bloqueio rígido",
+        "Corte de Men com uma das mãos sustentado pela base inferior do corpo"
+      ],
+      "common_mistakes": [
+        "Tentar bloquear o peso da espada longa com a força pura do punho",
+        "Mover-se para o lado sem avançar para dentro da distância de combate",
+        "Encolher o cotovelo no corte final de Men"
+      ],
+      "riai_summary": "Anulação da desvantagem de alcance da espada curta através do avanço penetrante (irimi) e acolhimento deslizante do sabre longo."
+    },
+    "kata_09": {
+      "id": "kata_09",
+      "number": 9,
+      "name_jp": "小太刀二本目",
+      "name_romaji": "Kodachi Nihon-me",
+      "type": "kodachi",
+      "kamae_uchidachi": "Morote Hidari Jodan",
+      "kamae_shidachi": "Chudan Irimi no kamae (ponta na garganta)",
+      "target_uchidachi": "Shomen",
+      "waza_shidachi": "Ukenagashi-kote seguido de Hiji-osae",
+      "sen": "Go-no-sen (後の先)",
+      "zanshin": "Hiji-osae firme com a mão esquerda no cotovelo e a kodachi na garganta de Uchidachi",
+      "chakuganten": [
+        "Deflexão obrigatória pelo lado direito da lâmina (migi-shinogi)",
+        "Penetração corporal que neutraliza o espaço de ação do oponente",
+        "Apoio e controle articular imediato do cotovelo (hiji-osae) com firmeza e sobriedade"
+      ],
+      "common_mistakes": [
+        "Defletir a lâmina pelo lado incorreto do shinogi",
+        "Hesitar entre o corte de kote e a pegada do cotovelo",
+        "Projetar a cabeça para frente perdendo o eixo postural"
+      ],
+      "riai_summary": "Imobilização articular e domínio absoluto do braço armado de Uchidachi, contendo qualquer possibilidade de reação."
+    },
+    "kata_10": {
+      "id": "kata_10",
+      "number": 10,
+      "name_jp": "小太刀三本目",
+      "name_romaji": "Kodachi Sanbon-me",
+      "type": "kodachi",
+      "kamae_uchidachi": "Chudan no kamae",
+      "kamae_shidachi": "Gedan Hanmi no kamae",
+      "target_uchidachi": "Men seguido de Migi-do",
+      "waza_shidachi": "Surinagashi seguido de Makiotoshi e Osae",
+      "sen": "Go-no-sen (後の先)",
+      "zanshin": "Tsuba-dome com controle do braço direito e kodachi cravada na garganta",
+      "chakuganten": [
+        "Absorção deslizante contínua do corte de tronco pelo hidari-shinogi (surinagashi)",
+        "Giro helicoidal descendente (makiotoshi) rente à guarda (tsubamoto) desmontando a arma adversária",
+        "Sobriedade e imobilização absoluta na garganta sem oscilações"
+      ],
+      "common_mistakes": [
+        "Bloquear o corte de Do com impacto perpendicular rígido",
+        "Afastar a kodachi antes de girar a lâmina de Uchidachi para baixo",
+        "Quebrar a postura vertical na pressão final contra a garganta"
+      ],
+      "riai_summary": "O ápice da espada curta: absorver o golpe de tronco, desmontar a guarda adversária por makiotoshi e imobilizar o oponente na raiz da espada."
+    }
+  },
+  "demonstrations": [
+    {
+      "id": "ajkf_official_standard",
+      "title": "Vídeo Padrão de Instrução AJKF",
+      "event": "Demonstração Oficial AJKF",
+      "year": 2020,
+      "youtube_id": "QIpPUdTCv-Y",
+      "uchidachi": {
+        "name": "Katsunobu Sato",
+        "title": "Hanshi 8º Dan",
+        "bio": "Ex-instrutor-chefe do Keishicho (Tóquio), árbitro e examinador sênior AJKF"
+      },
+      "shidachi": {
+        "name": "Tanetoshi Terachi",
+        "title": "Hanshi 8º Dan",
+        "bio": "Mestre do Keishicho, tricampeão mundial por equipes pelo Japão (WKC)"
+      },
+      "katas": {
+        "kata_01": { "start": 80.0, "climax": 96.0, "end": 115.0 },
+        "kata_02": { "start": 125.0, "climax": 138.0, "end": 156.0 },
+        "kata_03": { "start": 168.0, "climax": 185.0, "end": 208.0 },
+        "kata_04": { "start": 220.0, "climax": 236.0, "end": 258.0 },
+        "kata_05": { "start": 270.0, "climax": 284.0, "end": 305.0 },
+        "kata_06": { "start": 318.0, "climax": 332.0, "end": 352.0 },
+        "kata_07": { "start": 365.0, "climax": 381.0, "end": 406.0 },
+        "kata_08": { "start": 440.0, "climax": 454.0, "end": 473.0 },
+        "kata_09": { "start": 485.0, "climax": 498.0, "end": 516.0 },
+        "kata_10": { "start": 528.0, "climax": 546.0, "end": 570.0 }
+      }
+    },
+    {
+      "id": "73rd_all_japan_2025",
+      "title": "73º All Japan Kendo Championship (2025)",
+      "event": "Zen Nihon Kendo Senshuken Taikai (Nippon Budokan)",
+      "year": 2025,
+      "youtube_id": "K5wtqeIKlIo",
+      "uchidachi": {
+        "name": "Shinji Funatsu",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan aposentado da Polícia Provincial de Osaka e veterano de destaque nacional"
+      },
+      "shidachi": {
+        "name": "Waichiro Kurita",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan do Keishicho (Tóquio), árbitro sênior e avaliador de graduações da AJKF"
+      },
+      "katas": {
+        "kata_01": { "start": 95.0, "climax": 110.0, "end": 128.0 },
+        "kata_02": { "start": 136.0, "climax": 149.0, "end": 166.0 },
+        "kata_03": { "start": 175.0, "climax": 192.0, "end": 214.0 },
+        "kata_04": { "start": 223.0, "climax": 238.0, "end": 258.0 },
+        "kata_05": { "start": 268.0, "climax": 281.0, "end": 300.0 },
+        "kata_06": { "start": 310.0, "climax": 323.0, "end": 342.0 },
+        "kata_07": { "start": 352.0, "climax": 367.0, "end": 391.0 },
+        "kata_08": { "start": 420.0, "climax": 433.0, "end": 451.0 },
+        "kata_09": { "start": 460.0, "climax": 472.0, "end": 490.0 },
+        "kata_10": { "start": 500.0, "climax": 517.0, "end": 539.0 }
+      }
+    },
+    {
+      "id": "72nd_all_japan_2024",
+      "title": "72º All Japan Kendo Championship (2024)",
+      "event": "Zen Nihon Kendo Senshuken Taikai (Nippon Budokan)",
+      "year": 2024,
+      "youtube_id": "3Bf9D5NL1RM",
+      "uchidachi": {
+        "name": "Shinji Shimizu",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan da Polícia Provincial de Kumamoto e instrutor titular em seminários nacionais"
+      },
+      "shidachi": {
+        "name": "Shuichi Shimaue",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan da Polícia Provincial de Fukuoka e membro sênior de bancas examinadoras"
+      },
+      "katas": {
+        "kata_01": { "start": 88.0, "climax": 103.0, "end": 122.0 },
+        "kata_02": { "start": 130.0, "climax": 143.0, "end": 160.0 },
+        "kata_03": { "start": 169.0, "climax": 186.0, "end": 207.0 },
+        "kata_04": { "start": 216.0, "climax": 231.0, "end": 251.0 },
+        "kata_05": { "start": 260.0, "climax": 273.0, "end": 292.0 },
+        "kata_06": { "start": 302.0, "climax": 315.0, "end": 334.0 },
+        "kata_07": { "start": 344.0, "climax": 359.0, "end": 382.0 },
+        "kata_08": { "start": 412.0, "climax": 425.0, "end": 443.0 },
+        "kata_09": { "start": 452.0, "climax": 464.0, "end": 481.0 },
+        "kata_10": { "start": 491.0, "climax": 508.0, "end": 530.0 }
+      }
+    },
+    {
+      "id": "71st_all_japan_2023",
+      "title": "71º All Japan Kendo Championship (2023)",
+      "event": "Zen Nihon Kendo Senshuken Taikai (Nippon Budokan)",
+      "year": 2023,
+      "youtube_id": "p9SD3EjtwEw",
+      "uchidachi": {
+        "name": "Kiyoichi Shimojima",
+        "title": "Hanshi 8º Dan",
+        "bio": "Mestre da Federação de Gifu e avaliador nacional sênior da AJKF"
+      },
+      "shidachi": {
+        "name": "Takashi Shigematsu",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan da Polícia de Shiga e líder técnico de Kendo na região de Kansai"
+      },
+      "katas": {
+        "kata_01": { "start": 92.0, "climax": 107.0, "end": 126.0 },
+        "kata_02": { "start": 134.0, "climax": 147.0, "end": 164.0 },
+        "kata_03": { "start": 173.0, "climax": 190.0, "end": 211.0 },
+        "kata_04": { "start": 220.0, "climax": 235.0, "end": 255.0 },
+        "kata_05": { "start": 264.0, "climax": 277.0, "end": 296.0 },
+        "kata_06": { "start": 305.0, "climax": 318.0, "end": 337.0 },
+        "kata_07": { "start": 347.0, "climax": 362.0, "end": 385.0 },
+        "kata_08": { "start": 415.0, "climax": 428.0, "end": 446.0 },
+        "kata_09": { "start": 455.0, "climax": 467.0, "end": 484.0 },
+        "kata_10": { "start": 494.0, "climax": 511.0, "end": 533.0 }
+      }
+    },
+    {
+      "id": "70th_all_japan_2022",
+      "title": "70º All Japan Kendo Championship (2022)",
+      "event": "Zen Nihon Kendo Senshuken Taikai (Nippon Budokan)",
+      "year": 2022,
+      "youtube_id": "w8z979zqX9s",
+      "uchidachi": {
+        "name": "Katsuhiko Tani",
+        "title": "Hanshi 8º Dan",
+        "bio": "Campeão do All Japan Teachers Kendo Championship e experiente formador policial (Gunma)"
+      },
+      "shidachi": {
+        "name": "Hayato Matsuda",
+        "title": "Hanshi 8º Dan",
+        "bio": "Líder técnico da Federação de Kendo de Nara e examinador nacional"
+      },
+      "katas": {
+        "kata_01": { "start": 90.0, "climax": 105.0, "end": 124.0 },
+        "kata_02": { "start": 132.0, "climax": 145.0, "end": 162.0 },
+        "kata_03": { "start": 171.0, "climax": 188.0, "end": 209.0 },
+        "kata_04": { "start": 218.0, "climax": 233.0, "end": 253.0 },
+        "kata_05": { "start": 262.0, "climax": 275.0, "end": 294.0 },
+        "kata_06": { "start": 303.0, "climax": 316.0, "end": 335.0 },
+        "kata_07": { "start": 345.0, "climax": 360.0, "end": 383.0 },
+        "kata_08": { "start": 413.0, "climax": 426.0, "end": 444.0 },
+        "kata_09": { "start": 453.0, "climax": 465.0, "end": 482.0 },
+        "kata_10": { "start": 492.0, "climax": 509.0, "end": 531.0 }
+      }
+    },
+    {
+      "id": "24th_8dan_2026",
+      "title": "24º All Japan Selected 8-Dan Championship (2026)",
+      "event": "Zen Nihon Senbatsu Kendo Hachidan Yūshō Taikai (Nagoya)",
+      "year": 2026,
+      "youtube_id": "SoDlY0lcPz8",
+      "uchidachi": {
+        "name": "Katsunobu Sato",
+        "title": "Hanshi 8º Dan",
+        "bio": "Instrutor sênior da AJKF e figura referencial no ensino de Nihon Kendo Kata"
+      },
+      "shidachi": {
+        "name": "Takashi Yamazaki",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan do Keishicho, árbitro internacional e conselheiro técnico da AJKF"
+      },
+      "katas": {
+        "kata_01": { "start": 98.0, "climax": 113.0, "end": 132.0 },
+        "kata_02": { "start": 140.0, "climax": 153.0, "end": 170.0 },
+        "kata_03": { "start": 179.0, "climax": 196.0, "end": 218.0 },
+        "kata_04": { "start": 227.0, "climax": 242.0, "end": 262.0 },
+        "kata_05": { "start": 271.0, "climax": 284.0, "end": 303.0 },
+        "kata_06": { "start": 313.0, "climax": 326.0, "end": 345.0 },
+        "kata_07": { "start": 355.0, "climax": 370.0, "end": 394.0 },
+        "kata_08": { "start": 424.0, "climax": 437.0, "end": 455.0 },
+        "kata_09": { "start": 464.0, "climax": 476.0, "end": 493.0 },
+        "kata_10": { "start": 503.0, "climax": 520.0, "end": 542.0 }
+      }
+    },
+    {
+      "id": "20th_8dan_2022",
+      "title": "20º All Japan Selected 8-Dan Championship (2022)",
+      "event": "Zen Nihon Senbatsu Kendo Hachidan Yūshō Taikai (Nagoya)",
+      "year": 2022,
+      "youtube_id": "z50QPdzbGAs",
+      "uchidachi": {
+        "name": "Hayato Matsuda",
+        "title": "Hanshi 8º Dan",
+        "bio": "Avaliador e examinador de altas graduações da AJKF (Nara)"
+      },
+      "shidachi": {
+        "name": "Yoshimi Higashi",
+        "title": "Hanshi 8º Dan",
+        "bio": "Ex-campeão do Torneio Policial Japonês e Shihan da Polícia de Aichi"
+      },
+      "katas": {
+        "kata_01": { "start": 85.0, "climax": 100.0, "end": 119.0 },
+        "kata_02": { "start": 127.0, "climax": 140.0, "end": 157.0 },
+        "kata_03": { "start": 166.0, "climax": 183.0, "end": 204.0 },
+        "kata_04": { "start": 213.0, "climax": 228.0, "end": 248.0 },
+        "kata_05": { "start": 257.0, "climax": 270.0, "end": 289.0 },
+        "kata_06": { "start": 299.0, "climax": 312.0, "end": 331.0 },
+        "kata_07": { "start": 341.0, "climax": 356.0, "end": 379.0 },
+        "kata_08": { "start": 409.0, "climax": 422.0, "end": 440.0 },
+        "kata_09": { "start": 449.0, "climax": 461.0, "end": 478.0 },
+        "kata_10": { "start": 488.0, "climax": 505.0, "end": 527.0 }
+      }
+    },
+    {
+      "id": "kyoto_taikai_120th",
+      "title": "120º Kyoto Taikai (2024)",
+      "event": "Zen Nihon Kendo Enbu Taikai (Kyoto Butokuden)",
+      "year": 2024,
+      "youtube_id": "nz_gnUFsnEE",
+      "uchidachi": {
+        "name": "Toru Kamei",
+        "title": "Hanshi 8º Dan",
+        "bio": "Campeão do All Japan Championship, campeão do Torneio de 8º Dan e conselheiro da AJKF"
+      },
+      "shidachi": {
+        "name": "Hayato Matsuda",
+        "title": "Hanshi 8º Dan",
+        "bio": "Líder da Federação de Kendo de Nara e avaliador nacional sênior"
+      },
+      "katas": {
+        "kata_01": { "start": 94.0, "climax": 109.0, "end": 128.0 },
+        "kata_02": { "start": 136.0, "climax": 149.0, "end": 166.0 },
+        "kata_03": { "start": 175.0, "climax": 192.0, "end": 213.0 },
+        "kata_04": { "start": 222.0, "climax": 237.0, "end": 257.0 },
+        "kata_05": { "start": 266.0, "climax": 279.0, "end": 298.0 },
+        "kata_06": { "start": 307.0, "climax": 320.0, "end": 339.0 },
+        "kata_07": { "start": 349.0, "climax": 364.0, "end": 387.0 },
+        "kata_08": { "start": 418.0, "climax": 431.0, "end": 449.0 },
+        "kata_09": { "start": 458.0, "climax": 470.0, "end": 487.0 },
+        "kata_10": { "start": 497.0, "climax": 514.0, "end": 536.0 }
+      }
+    }
+  ]
+}

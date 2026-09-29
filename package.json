@@ -4,7 +4,8 @@
   "description": "Plataforma de estudo e comparação multivídeo de Nihon Kendo Kata",
   "type": "module",
   "scripts": {
-    "test": "node --test tests/*.test.js",
+    "test": "node --test tests/syncEngine.test.js tests/test_frontend_integration.js",
+    "prebuild": "node -e \"const fs=require('fs'); fs.mkdirSync('public/data', {recursive:true}); fs.copyFileSync('data/kata_database.json', 'public/data/kata_database.json');\"",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
