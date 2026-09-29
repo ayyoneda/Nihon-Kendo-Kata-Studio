@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.pytest_cache/
+tests/__pycache__/
+raw_videos/
+output/
+.superpowers/
+package-lock.json
