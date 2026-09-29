@@ -1,6 +1,31 @@
 {
   "version": "1.0",
   "katas_pedagogical": {
+    "reiho_inicial": {
+      "id": "reiho_inicial",
+      "number": 0,
+      "name_jp": "礼法（前）",
+      "name_romaji": "Reiho Inicial (Zarei)",
+      "type": "reiho",
+      "kamae_uchidachi": "Sage-to -> Tai-to -> Zarei -> Sonkyo -> Chudan",
+      "kamae_shidachi": "Sage-to -> Tai-to -> Zarei -> Sonkyo -> Chudan",
+      "target_uchidachi": "Shomen (Rei) e Shidachi (Zarei mútuo)",
+      "waza_shidachi": "Ritsurei ao Shomen, marcha solene, Zarei mútuo no tatame, desembainhar em Sonkyo",
+      "sen": "Rei (Conexão e respeito mútuo)",
+      "zanshin": "Assunção sincronizada de Chudan no kamae a 9 passos (Chika-ma)",
+      "climax_desc": "Rei mútuo entre Uchidachi e Shidachi em Zarei",
+      "chakuganten": [
+        "Marcha coordenada em ritmo cerimonial até a distância de 9 passos (kyu-ho)",
+        "Sincronismo no zarei (inclinação a aproximadamente 30 graus, mãos em triângulo sem levantar os quadris)",
+        "Transição solene de sonkyo ao desembainhar (nuki-tsuke) sincronizado até a fixação do kensen em Chudan"
+      ],
+      "common_mistakes": [
+        "Descompasso nos passos de aproximação até o centro da quadra",
+        "Elevar o quadril ou inclinar a cabeça de forma brusca no zarei",
+        "Desalinhamento da altura dos kensen no sonkyo ao desembainhar"
+      ],
+      "riai_summary": "O início cerimonial do Kendo Kata: respeito mútuo, solenidade e purificação do espaço sagrado antes do primeiro confronto de intenções (Ippon-me)."
+    },
     "kata_01": {
       "id": "kata_01",
       "number": 1,
@@ -9,7 +34,7 @@
       "type": "tachi",
       "kamae_uchidachi": "Morote Hidari Jodan",
       "kamae_shidachi": "Morote Migi Jodan",
-      "target_uchidachi": "Shomen (visando a linha dos dentes)",
+      "target_uchidachi": "Shomen",
       "waza_shidachi": "Men-nuki-men",
       "sen": "Sen-sen-no-sen (先々の先)",
       "zanshin": "Morote Hidari Jodan com avanço imponente do pé esquerdo",
@@ -81,8 +106,8 @@
       "type": "tachi",
       "kamae_uchidachi": "Hasso no kamae",
       "kamae_shidachi": "Waki-gamae",
-      "target_uchidachi": "Shomen (após ambos subirem para Jodan)",
-      "waza_shidachi": "Aiuchi seguido de Maki-kaeshi-tsuki",
+      "target_uchidachi": "Migihai (estocada no pulmão direito)",
+      "waza_shidachi": "Maki-kaeshi-men",
       "sen": "Go-no-sen (後の先)",
       "zanshin": "Chudan dominante com kensen cravado no hemitórax direito de Uchidachi",
       "chakuganten": [
@@ -108,7 +133,7 @@
       "target_uchidachi": "Shomen (corte profundo e resoluto)",
       "waza_shidachi": "Men-suriage-men (omote-shinogi)",
       "sen": "Sen-no-sen (先の先)",
-      "zanshin": "Morote Hidari Jodan dominador avançando com a perna esquerda",
+      "zanshin": "Morote Hidari Jodan recuando com a perna direita",
       "chakuganten": [
         "Uchidachi deve cortar resolutamente a cabeça de Shidachi e não visar a espada deste",
         "Shidachi deve defletir na subida da lâmina (suriage) no topo da cabeça em tempo contínuo (ippyo-shi)",
@@ -127,9 +152,9 @@
       "name_jp": "六本目",
       "name_romaji": "Roppon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Chudan -> Gedan no kamae",
-      "kamae_shidachi": "Chudan no kamae (centro)",
-      "target_uchidachi": "Migi-kote (tentativa de rompimento)",
+      "kamae_uchidachi": "Chudan no kamae",
+      "kamae_shidachi": "Gedan no kamae",
+      "target_uchidachi": "Migi-kote",
       "waza_shidachi": "Kote-suriage-kote (ura-shinogi)",
       "sen": "Go-no-sen (後の先)",
       "zanshin": "Chudan dominante apontando à garganta e forçando o recuo de Uchidachi",
@@ -169,14 +194,39 @@
       ],
       "riai_summary": "Culminância dos katas de espada longa: evasão tridimensional de golpe descendente e corte horizontal de tronco com zanshin em guarda oculta."
     },
+    "troca_kodachi": {
+      "id": "troca_kodachi",
+      "number": 7.5,
+      "name_jp": "小太刀への交換",
+      "name_romaji": "Troca para Kodachi",
+      "type": "reiho",
+      "kamae_uchidachi": "Osame-to -> Recuo a 9 passos -> Aguardo em Sage-to",
+      "kamae_shidachi": "Osame-to -> Recuo à posição de troca -> Empunhadura da Kodachi",
+      "target_uchidachi": "Troca de armamento e postura de espera",
+      "waza_shidachi": "Embainhar tachi, recuo com postura ereta, troca cerimonial pela kodachi, avanço a 9 passos e sonkyo com kodachi",
+      "sen": "Zanshin e compostura cerimonial",
+      "zanshin": "Posicionamento em Sonkyo com a Kodachi desembainhada",
+      "climax_desc": "Sonkyo sincronizado com a Kodachi",
+      "chakuganten": [
+        "Embainhar (osame-to) simultâneo e com zanshin inabalável após o Nanahon-me",
+        "Movimentação serena e sóbria de Shidachi até a posição de troca de armas sem dar as costas de forma desleixada",
+        "Sonkyo de desembainhar com a kodachi perfeitamente sincronizado com o sonkyo de Uchidachi"
+      ],
+      "common_mistakes": [
+        "Apressar o embainhar ou perder a tensão espiritual ao término do Nanahon-me",
+        "Manuseio desajeitado da kodachi no momento da substituição",
+        "Descompasso de distância ao retornar à marca de 9 passos para o início dos katas de Kodachi"
+      ],
+      "riai_summary": "Transição formal da espada longa para a espada curta. Demonstração de compostura e etiqueta no manejo e substituição dos instrumentos sagrados."
+    },
     "kata_08": {
       "id": "kata_08",
       "number": 8,
       "name_jp": "小太刀一本目",
       "name_romaji": "Kodachi Ippon-me",
       "type": "kodachi",
-      "kamae_uchidachi": "Morote Hidari Jodan (espada longa)",
-      "kamae_shidachi": "Chudan Hanmi no kamae (espada curta de perfil)",
+      "kamae_uchidachi": "Morote Hidari Jodan",
+      "kamae_shidachi": "Chudan Hanmi no kamae",
       "target_uchidachi": "Shomen",
       "waza_shidachi": "Men-ukenagashi-men (hidari-shinogi)",
       "sen": "Sen-sen-no-sen (先々の先)",
@@ -241,6 +291,32 @@
         "Quebrar a postura vertical na pressão final contra a garganta"
       ],
       "riai_summary": "O ápice da espada curta: absorver o golpe de tronco, desmontar a guarda adversária por makiotoshi e imobilizar o oponente na raiz da espada."
+    },
+    "reiho_final": {
+      "id": "reiho_final",
+      "number": 11,
+      "name_jp": "礼法（後）",
+      "name_romaji": "Reiho Final (Zarei e Saída)",
+      "type": "reiho",
+      "kamae_uchidachi": "Sonkyo -> Osame-to -> Zarei -> Retirada em Sage-to",
+      "kamae_shidachi": "Sonkyo -> Osame-to -> Zarei -> Retirada em Sage-to",
+      "target_uchidachi": "Shidachi (Zarei de encerramento) e Shomen (Ritsurei)",
+      "waza_shidachi": "Embainhar da kodachi e tachi em sonkyo, recuo coordenado a 9 passos, zarei mútuo, sage-to e ritsurei final ao shomen",
+      "sen": "Rei e Zanshin total",
+      "zanshin": "Saída do dojo com postura digna e alinhamento visual no Shomen",
+      "climax_desc": "Zarei mútuo final de agradecimento",
+      "chakuganten": [
+        "Embainhar simultâneo em sonkyo com perfeita sobriedade e retenção das espadas",
+        "Recuo até a distância inicial mantendo o olhar firme no oponente",
+        "Zarei mútuo profundo de agradecimento e harmonia mútua",
+        "Retirada solene até a borda da quadra com ritsurei final uníssono em direção ao Shomen"
+      ],
+      "common_mistakes": [
+        "Desconexão de atenção logo após o sonkyo final (quebra prematura de zanshin)",
+        "Falta de sincronia no ritmo dos passos de saída em direção à borda",
+        "Ritsurei final desalinhado ou apressado"
+      ],
+      "riai_summary": "Fechamento solene da demonstração: 'O Kendo começa com o Rei e termina com o Rei' (Rei ni hajimari, Rei ni owaru)."
     }
   },
   "demonstrations": [
@@ -261,16 +337,71 @@
         "bio": "Mestre do Keishicho, tricampeão mundial por equipes pelo Japão (WKC)"
       },
       "katas": {
-        "kata_01": { "start": 80.0, "climax": 96.0, "end": 115.0 },
-        "kata_02": { "start": 125.0, "climax": 138.0, "end": 156.0 },
-        "kata_03": { "start": 168.0, "climax": 185.0, "end": 208.0 },
-        "kata_04": { "start": 220.0, "climax": 236.0, "end": 258.0 },
-        "kata_05": { "start": 270.0, "climax": 284.0, "end": 305.0 },
-        "kata_06": { "start": 318.0, "climax": 332.0, "end": 352.0 },
-        "kata_07": { "start": 365.0, "climax": 381.0, "end": 406.0 },
-        "kata_08": { "start": 440.0, "climax": 454.0, "end": 473.0 },
-        "kata_09": { "start": 485.0, "climax": 498.0, "end": 516.0 },
-        "kata_10": { "start": 528.0, "climax": 546.0, "end": 570.0 }
+        "reiho_inicial": {
+          "start": 15,
+          "climax": 47.5,
+          "end": 80
+        },
+        "kata_01": {
+          "start": 80,
+          "climax": 96,
+          "end": 115
+        },
+        "kata_02": {
+          "start": 125,
+          "climax": 138,
+          "end": 156
+        },
+        "kata_03": {
+          "start": 168,
+          "climax": 185,
+          "end": 208
+        },
+        "kata_04": {
+          "start": 220,
+          "climax": 236,
+          "end": 258
+        },
+        "kata_05": {
+          "start": 270,
+          "climax": 284,
+          "end": 305
+        },
+        "kata_06": {
+          "start": 318,
+          "climax": 332,
+          "end": 352
+        },
+        "kata_07": {
+          "start": 365,
+          "climax": 381,
+          "end": 406
+        },
+        "troca_kodachi": {
+          "start": 406,
+          "climax": 423,
+          "end": 440
+        },
+        "kata_08": {
+          "start": 440,
+          "climax": 454,
+          "end": 473
+        },
+        "kata_09": {
+          "start": 485,
+          "climax": 498,
+          "end": 516
+        },
+        "kata_10": {
+          "start": 528,
+          "climax": 546,
+          "end": 570
+        },
+        "reiho_final": {
+          "start": 570,
+          "climax": 596,
+          "end": 625
+        }
       }
     },
     {
@@ -290,16 +421,71 @@
         "bio": "Shihan do Keishicho (Tóquio), árbitro sênior e avaliador de graduações da AJKF"
       },
       "katas": {
-        "kata_01": { "start": 95.0, "climax": 110.0, "end": 128.0 },
-        "kata_02": { "start": 136.0, "climax": 149.0, "end": 166.0 },
-        "kata_03": { "start": 175.0, "climax": 192.0, "end": 214.0 },
-        "kata_04": { "start": 223.0, "climax": 238.0, "end": 258.0 },
-        "kata_05": { "start": 268.0, "climax": 281.0, "end": 300.0 },
-        "kata_06": { "start": 310.0, "climax": 323.0, "end": 342.0 },
-        "kata_07": { "start": 352.0, "climax": 367.0, "end": 391.0 },
-        "kata_08": { "start": 420.0, "climax": 433.0, "end": 451.0 },
-        "kata_09": { "start": 460.0, "climax": 472.0, "end": 490.0 },
-        "kata_10": { "start": 500.0, "climax": 517.0, "end": 539.0 }
+        "reiho_inicial": {
+          "start": 75.9,
+          "climax": 108.4,
+          "end": 140.9
+        },
+        "kata_01": {
+          "start": 140.9,
+          "climax": 148.2,
+          "end": 167
+        },
+        "kata_02": {
+          "start": 167.04,
+          "climax": 173.07,
+          "end": 188.47
+        },
+        "kata_03": {
+          "start": 188.47,
+          "climax": 192,
+          "end": 214
+        },
+        "kata_04": {
+          "start": 223,
+          "climax": 238,
+          "end": 258
+        },
+        "kata_05": {
+          "start": 268,
+          "climax": 281,
+          "end": 300
+        },
+        "kata_06": {
+          "start": 310,
+          "climax": 323,
+          "end": 342
+        },
+        "kata_07": {
+          "start": 352,
+          "climax": 367,
+          "end": 391
+        },
+        "troca_kodachi": {
+          "start": 391,
+          "climax": 405.5,
+          "end": 420
+        },
+        "kata_08": {
+          "start": 420,
+          "climax": 433,
+          "end": 451
+        },
+        "kata_09": {
+          "start": 460,
+          "climax": 472,
+          "end": 490
+        },
+        "kata_10": {
+          "start": 500,
+          "climax": 517,
+          "end": 539
+        },
+        "reiho_final": {
+          "start": 539,
+          "climax": 565,
+          "end": 594
+        }
       }
     },
     {
@@ -319,16 +505,71 @@
         "bio": "Shihan da Polícia Provincial de Fukuoka e membro sênior de bancas examinadoras"
       },
       "katas": {
-        "kata_01": { "start": 88.0, "climax": 103.0, "end": 122.0 },
-        "kata_02": { "start": 130.0, "climax": 143.0, "end": 160.0 },
-        "kata_03": { "start": 169.0, "climax": 186.0, "end": 207.0 },
-        "kata_04": { "start": 216.0, "climax": 231.0, "end": 251.0 },
-        "kata_05": { "start": 260.0, "climax": 273.0, "end": 292.0 },
-        "kata_06": { "start": 302.0, "climax": 315.0, "end": 334.0 },
-        "kata_07": { "start": 344.0, "climax": 359.0, "end": 382.0 },
-        "kata_08": { "start": 412.0, "climax": 425.0, "end": 443.0 },
-        "kata_09": { "start": 452.0, "climax": 464.0, "end": 481.0 },
-        "kata_10": { "start": 491.0, "climax": 508.0, "end": 530.0 }
+        "reiho_inicial": {
+          "start": 23,
+          "climax": 55.5,
+          "end": 88
+        },
+        "kata_01": {
+          "start": 88,
+          "climax": 103,
+          "end": 122
+        },
+        "kata_02": {
+          "start": 130,
+          "climax": 143,
+          "end": 160
+        },
+        "kata_03": {
+          "start": 169,
+          "climax": 186,
+          "end": 207
+        },
+        "kata_04": {
+          "start": 216,
+          "climax": 231,
+          "end": 251
+        },
+        "kata_05": {
+          "start": 260,
+          "climax": 273,
+          "end": 292
+        },
+        "kata_06": {
+          "start": 302,
+          "climax": 315,
+          "end": 334
+        },
+        "kata_07": {
+          "start": 344,
+          "climax": 359,
+          "end": 382
+        },
+        "troca_kodachi": {
+          "start": 382,
+          "climax": 397,
+          "end": 412
+        },
+        "kata_08": {
+          "start": 412,
+          "climax": 425,
+          "end": 443
+        },
+        "kata_09": {
+          "start": 452,
+          "climax": 464,
+          "end": 481
+        },
+        "kata_10": {
+          "start": 491,
+          "climax": 508,
+          "end": 530
+        },
+        "reiho_final": {
+          "start": 530,
+          "climax": 556,
+          "end": 585
+        }
       }
     },
     {
@@ -348,16 +589,71 @@
         "bio": "Shihan da Polícia de Shiga e líder técnico de Kendo na região de Kansai"
       },
       "katas": {
-        "kata_01": { "start": 92.0, "climax": 107.0, "end": 126.0 },
-        "kata_02": { "start": 134.0, "climax": 147.0, "end": 164.0 },
-        "kata_03": { "start": 173.0, "climax": 190.0, "end": 211.0 },
-        "kata_04": { "start": 220.0, "climax": 235.0, "end": 255.0 },
-        "kata_05": { "start": 264.0, "climax": 277.0, "end": 296.0 },
-        "kata_06": { "start": 305.0, "climax": 318.0, "end": 337.0 },
-        "kata_07": { "start": 347.0, "climax": 362.0, "end": 385.0 },
-        "kata_08": { "start": 415.0, "climax": 428.0, "end": 446.0 },
-        "kata_09": { "start": 455.0, "climax": 467.0, "end": 484.0 },
-        "kata_10": { "start": 494.0, "climax": 511.0, "end": 533.0 }
+        "reiho_inicial": {
+          "start": 27,
+          "climax": 59.5,
+          "end": 92
+        },
+        "kata_01": {
+          "start": 92,
+          "climax": 107,
+          "end": 126
+        },
+        "kata_02": {
+          "start": 134,
+          "climax": 147,
+          "end": 164
+        },
+        "kata_03": {
+          "start": 173,
+          "climax": 190,
+          "end": 211
+        },
+        "kata_04": {
+          "start": 220,
+          "climax": 235,
+          "end": 255
+        },
+        "kata_05": {
+          "start": 264,
+          "climax": 277,
+          "end": 296
+        },
+        "kata_06": {
+          "start": 305,
+          "climax": 318,
+          "end": 337
+        },
+        "kata_07": {
+          "start": 347,
+          "climax": 362,
+          "end": 385
+        },
+        "troca_kodachi": {
+          "start": 385,
+          "climax": 400,
+          "end": 415
+        },
+        "kata_08": {
+          "start": 415,
+          "climax": 428,
+          "end": 446
+        },
+        "kata_09": {
+          "start": 455,
+          "climax": 467,
+          "end": 484
+        },
+        "kata_10": {
+          "start": 494,
+          "climax": 511,
+          "end": 533
+        },
+        "reiho_final": {
+          "start": 533,
+          "climax": 559,
+          "end": 588
+        }
       }
     },
     {
@@ -377,16 +673,71 @@
         "bio": "Líder técnico da Federação de Kendo de Nara e examinador nacional"
       },
       "katas": {
-        "kata_01": { "start": 90.0, "climax": 105.0, "end": 124.0 },
-        "kata_02": { "start": 132.0, "climax": 145.0, "end": 162.0 },
-        "kata_03": { "start": 171.0, "climax": 188.0, "end": 209.0 },
-        "kata_04": { "start": 218.0, "climax": 233.0, "end": 253.0 },
-        "kata_05": { "start": 262.0, "climax": 275.0, "end": 294.0 },
-        "kata_06": { "start": 303.0, "climax": 316.0, "end": 335.0 },
-        "kata_07": { "start": 345.0, "climax": 360.0, "end": 383.0 },
-        "kata_08": { "start": 413.0, "climax": 426.0, "end": 444.0 },
-        "kata_09": { "start": 453.0, "climax": 465.0, "end": 482.0 },
-        "kata_10": { "start": 492.0, "climax": 509.0, "end": 531.0 }
+        "reiho_inicial": {
+          "start": 25,
+          "climax": 57.5,
+          "end": 90
+        },
+        "kata_01": {
+          "start": 90,
+          "climax": 105,
+          "end": 124
+        },
+        "kata_02": {
+          "start": 132,
+          "climax": 145,
+          "end": 162
+        },
+        "kata_03": {
+          "start": 171,
+          "climax": 188,
+          "end": 209
+        },
+        "kata_04": {
+          "start": 218,
+          "climax": 233,
+          "end": 253
+        },
+        "kata_05": {
+          "start": 262,
+          "climax": 275,
+          "end": 294
+        },
+        "kata_06": {
+          "start": 303,
+          "climax": 316,
+          "end": 335
+        },
+        "kata_07": {
+          "start": 345,
+          "climax": 360,
+          "end": 383
+        },
+        "troca_kodachi": {
+          "start": 383,
+          "climax": 398,
+          "end": 413
+        },
+        "kata_08": {
+          "start": 413,
+          "climax": 426,
+          "end": 444
+        },
+        "kata_09": {
+          "start": 453,
+          "climax": 465,
+          "end": 482
+        },
+        "kata_10": {
+          "start": 492,
+          "climax": 509,
+          "end": 531
+        },
+        "reiho_final": {
+          "start": 531,
+          "climax": 557,
+          "end": 586
+        }
       }
     },
     {
@@ -406,16 +757,71 @@
         "bio": "Shihan do Keishicho, árbitro internacional e conselheiro técnico da AJKF"
       },
       "katas": {
-        "kata_01": { "start": 98.0, "climax": 113.0, "end": 132.0 },
-        "kata_02": { "start": 140.0, "climax": 153.0, "end": 170.0 },
-        "kata_03": { "start": 179.0, "climax": 196.0, "end": 218.0 },
-        "kata_04": { "start": 227.0, "climax": 242.0, "end": 262.0 },
-        "kata_05": { "start": 271.0, "climax": 284.0, "end": 303.0 },
-        "kata_06": { "start": 313.0, "climax": 326.0, "end": 345.0 },
-        "kata_07": { "start": 355.0, "climax": 370.0, "end": 394.0 },
-        "kata_08": { "start": 424.0, "climax": 437.0, "end": 455.0 },
-        "kata_09": { "start": 464.0, "climax": 476.0, "end": 493.0 },
-        "kata_10": { "start": 503.0, "climax": 520.0, "end": 542.0 }
+        "reiho_inicial": {
+          "start": 33,
+          "climax": 65.5,
+          "end": 98
+        },
+        "kata_01": {
+          "start": 98,
+          "climax": 113,
+          "end": 132
+        },
+        "kata_02": {
+          "start": 140,
+          "climax": 153,
+          "end": 170
+        },
+        "kata_03": {
+          "start": 179,
+          "climax": 196,
+          "end": 218
+        },
+        "kata_04": {
+          "start": 227,
+          "climax": 242,
+          "end": 262
+        },
+        "kata_05": {
+          "start": 271,
+          "climax": 284,
+          "end": 303
+        },
+        "kata_06": {
+          "start": 313,
+          "climax": 326,
+          "end": 345
+        },
+        "kata_07": {
+          "start": 355,
+          "climax": 370,
+          "end": 394
+        },
+        "troca_kodachi": {
+          "start": 394,
+          "climax": 409,
+          "end": 424
+        },
+        "kata_08": {
+          "start": 424,
+          "climax": 437,
+          "end": 455
+        },
+        "kata_09": {
+          "start": 464,
+          "climax": 476,
+          "end": 493
+        },
+        "kata_10": {
+          "start": 503,
+          "climax": 520,
+          "end": 542
+        },
+        "reiho_final": {
+          "start": 542,
+          "climax": 568,
+          "end": 597
+        }
       }
     },
     {
@@ -435,16 +841,71 @@
         "bio": "Ex-campeão do Torneio Policial Japonês e Shihan da Polícia de Aichi"
       },
       "katas": {
-        "kata_01": { "start": 85.0, "climax": 100.0, "end": 119.0 },
-        "kata_02": { "start": 127.0, "climax": 140.0, "end": 157.0 },
-        "kata_03": { "start": 166.0, "climax": 183.0, "end": 204.0 },
-        "kata_04": { "start": 213.0, "climax": 228.0, "end": 248.0 },
-        "kata_05": { "start": 257.0, "climax": 270.0, "end": 289.0 },
-        "kata_06": { "start": 299.0, "climax": 312.0, "end": 331.0 },
-        "kata_07": { "start": 341.0, "climax": 356.0, "end": 379.0 },
-        "kata_08": { "start": 409.0, "climax": 422.0, "end": 440.0 },
-        "kata_09": { "start": 449.0, "climax": 461.0, "end": 478.0 },
-        "kata_10": { "start": 488.0, "climax": 505.0, "end": 527.0 }
+        "reiho_inicial": {
+          "start": 20,
+          "climax": 52.5,
+          "end": 85
+        },
+        "kata_01": {
+          "start": 85,
+          "climax": 100,
+          "end": 119
+        },
+        "kata_02": {
+          "start": 127,
+          "climax": 140,
+          "end": 157
+        },
+        "kata_03": {
+          "start": 166,
+          "climax": 183,
+          "end": 204
+        },
+        "kata_04": {
+          "start": 213,
+          "climax": 228,
+          "end": 248
+        },
+        "kata_05": {
+          "start": 257,
+          "climax": 270,
+          "end": 289
+        },
+        "kata_06": {
+          "start": 299,
+          "climax": 312,
+          "end": 331
+        },
+        "kata_07": {
+          "start": 341,
+          "climax": 356,
+          "end": 379
+        },
+        "troca_kodachi": {
+          "start": 379,
+          "climax": 394,
+          "end": 409
+        },
+        "kata_08": {
+          "start": 409,
+          "climax": 422,
+          "end": 440
+        },
+        "kata_09": {
+          "start": 449,
+          "climax": 461,
+          "end": 478
+        },
+        "kata_10": {
+          "start": 488,
+          "climax": 505,
+          "end": 527
+        },
+        "reiho_final": {
+          "start": 527,
+          "climax": 553,
+          "end": 582
+        }
       }
     },
     {
@@ -464,16 +925,71 @@
         "bio": "Líder da Federação de Kendo de Nara e avaliador nacional sênior"
       },
       "katas": {
-        "kata_01": { "start": 94.0, "climax": 109.0, "end": 128.0 },
-        "kata_02": { "start": 136.0, "climax": 149.0, "end": 166.0 },
-        "kata_03": { "start": 175.0, "climax": 192.0, "end": 213.0 },
-        "kata_04": { "start": 222.0, "climax": 237.0, "end": 257.0 },
-        "kata_05": { "start": 266.0, "climax": 279.0, "end": 298.0 },
-        "kata_06": { "start": 307.0, "climax": 320.0, "end": 339.0 },
-        "kata_07": { "start": 349.0, "climax": 364.0, "end": 387.0 },
-        "kata_08": { "start": 418.0, "climax": 431.0, "end": 449.0 },
-        "kata_09": { "start": 458.0, "climax": 470.0, "end": 487.0 },
-        "kata_10": { "start": 497.0, "climax": 514.0, "end": 536.0 }
+        "reiho_inicial": {
+          "start": 29,
+          "climax": 61.5,
+          "end": 94
+        },
+        "kata_01": {
+          "start": 94,
+          "climax": 109,
+          "end": 128
+        },
+        "kata_02": {
+          "start": 136,
+          "climax": 149,
+          "end": 166
+        },
+        "kata_03": {
+          "start": 175,
+          "climax": 192,
+          "end": 213
+        },
+        "kata_04": {
+          "start": 222,
+          "climax": 237,
+          "end": 257
+        },
+        "kata_05": {
+          "start": 266,
+          "climax": 279,
+          "end": 298
+        },
+        "kata_06": {
+          "start": 307,
+          "climax": 320,
+          "end": 339
+        },
+        "kata_07": {
+          "start": 349,
+          "climax": 364,
+          "end": 387
+        },
+        "troca_kodachi": {
+          "start": 387,
+          "climax": 402.5,
+          "end": 418
+        },
+        "kata_08": {
+          "start": 418,
+          "climax": 431,
+          "end": 449
+        },
+        "kata_09": {
+          "start": 458,
+          "climax": 470,
+          "end": 487
+        },
+        "kata_10": {
+          "start": 497,
+          "climax": 514,
+          "end": 536
+        },
+        "reiho_final": {
+          "start": 536,
+          "climax": 562,
+          "end": 591
+        }
       }
     }
   ]

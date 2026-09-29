@@ -925,6 +925,55 @@ body {
   margin-top: 0.5rem;
 }
 
+.btn-chain-link {
+  background-color: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93C5FD;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-chain-link:hover {
+  background-color: rgba(59, 130, 246, 0.25);
+  border-color: #3B82F6;
+  color: #FFF;
+}
+
+.chain-badge-info {
+  display: block;
+  font-size: 0.7rem;
+  color: #60A5FA;
+  margin-top: 0.25rem;
+}
+
+.calibrator-nav-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.calibrator-nav-btn:hover:not(:disabled) {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+.calibrator-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 .hidden {
   display: none !important;
 }
