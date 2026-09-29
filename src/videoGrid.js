@@ -1,0 +1,301 @@
+/**
+ * Gerenciador da Grade Dinâmica de Vídeos e Integração com a YouTube IFrame API
+ */
+
+import { getAbsoluteVideoTime } from './syncEngine.js';
+
+let isYouTubeApiReady = false;
+const pendingCallbacks = [];
+
+// Carrega o script da API do YouTube se ainda não foi injetado
+export function ensureYouTubeIFrameApi() {
+  return new Promise((resolve) => {
+    if (window.YT && window.YT.Player) {
+      isYouTubeApiReady = true;
+      resolve();
+      return;
+    }
+
+    pendingCallbacks.push(resolve);
+
+    if (!document.getElementById('youtube-iframe-api-script')) {
+      const tag = document.createElement('script');
+      tag.id = 'youtube-iframe-api-script';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        isYouTubeApiReady = true;
+        while (pendingCallbacks.length) {
+          const cb = pendingCallbacks.shift();
+          cb();
+        }
+      };
+    }
+  });
+}
+
+export class VideoGridManager {
+  constructor({ containerEl, db, onAudioChange, onReadyStateChange }) {
+    this.containerEl = containerEl;
+    this.db = db;
+    this.onAudioChange = onAudioChange;
+    this.onReadyStateChange = onReadyStateChange;
+
+    this.slots = []; // Array de slots ativos: [{ index, demoId, ytPlayer, isReady, isMuted }]
+    this.activeAudioIndex = 0; // Por padrão, slot 0 tem áudio
+    this.currentKataId = "kata_01";
+    this.currentLayout = "grid-2x2";
+  }
+
+  /**
+   * Configura e renderiza a grade para o layout e lista de demonstrações selecionadas.
+   */
+  async setupGrid(layout, selectedDemoIds, currentKataId) {
+    this.currentLayout = layout;
+    this.currentKataId = currentKataId;
+
+    // Destrói players antigos para liberar memória
+    this.destroyPlayers();
+
+    // Determina quantos slots exibir
+    let numSlots = 4;
+    if (layout === 'grid-1x1') numSlots = 1;
+    else if (layout === 'grid-1x2') numSlots = 2;
+
+    this.containerEl.className = `video-grid ${layout}`;
+    this.containerEl.innerHTML = '';
+
+    await ensureYouTubeIFrameApi();
+
+    this.slots = [];
+    for (let i = 0; i < numSlots; i++) {
+      const demoId = selectedDemoIds[i] || this.db.demonstrations[i % this.db.demonstrations.length].id;
+      const slot = this.createSlotElement(i, demoId);
+      this.slots.push(slot);
+    }
+
+    // Inicializa os players do YouTube
+    for (const slot of this.slots) {
+      this.initPlayerForSlot(slot);
+    }
+  }
+
+  createSlotElement(index, demoId) {
+    const demo = this.db.demonstrations.find(d => d.id === demoId) || this.db.demonstrations[0];
+    const cardEl = document.createElement('div');
+    cardEl.className = `player-card ${index === this.activeAudioIndex ? 'active-audio' : ''}`;
+    cardEl.id = `player-card-${index}`;
+
+    const quadrantLabels = ["Q1 • Superior Esquerdo", "Q2 • Superior Direito", "Q3 • Inferior Esquerdo", "Q4 • Inferior Direito"];
+    const qBadge = quadrantLabels[index] || `Slot ${index + 1}`;
+
+    const demoOptionsHtml = this.db.demonstrations.map(d => {
+      return `<option value="${d.id}" ${d.id === demo.id ? 'selected' : ''}>${d.title}</option>`;
+    }).join("");
+
+    cardEl.innerHTML = `
+      <div class="player-card-header">
+        <div class="demo-selector-group">
+          <span class="quadrant-badge">${qBadge}</span>
+          <select class="kendo-select demo-select" id="select-demo-${index}" title="Selecionar Demonstração">
+            ${demoOptionsHtml}
+          </select>
+        </div>
+        <div class="player-actions">
+          <button class="btn-audio ${index === this.activeAudioIndex ? 'unmuted' : ''}" id="btn-audio-${index}" title="Alternar áudio deste quadrante">
+            ${index === this.activeAudioIndex ? '🔊 Áudio' : '🔇 Mudo'}
+          </button>
+        </div>
+      </div>
+
+      <div class="video-wrapper">
+        <div id="yt-player-target-${index}"></div>
+      </div>
+
+      <div class="player-card-footer">
+        <span class="masters-names">
+          ${demo.uchidachi.name} (${demo.uchidachi.title}) × ${demo.shidachi.name} (${demo.shidachi.title})
+        </span>
+        <span class="event-year">${demo.year || ''}</span>
+      </div>
+    `;
+
+    this.containerEl.appendChild(cardEl);
+
+    // Eventos do card
+    const selectEl = cardEl.querySelector(`#select-demo-${index}`);
+    selectEl.addEventListener('change', (e) => {
+      this.changeDemoForSlot(index, e.target.value);
+    });
+
+    const audioBtn = cardEl.querySelector(`#btn-audio-${index}`);
+    audioBtn.addEventListener('click', () => {
+      this.setActiveAudio(index);
+    });
+
+    return {
+      index,
+      demoId: demo.id,
+      cardEl,
+      ytPlayer: null,
+      isReady: false,
+      isMuted: index !== this.activeAudioIndex
+    };
+  }
+
+  initPlayerForSlot(slot) {
+    const demo = this.db.demonstrations.find(d => d.id === slot.demoId) || this.db.demonstrations[0];
+    const initialTime = getAbsoluteVideoTime(0.0, demo.id, this.currentKataId, this.db);
+
+    slot.ytPlayer = new window.YT.Player(`yt-player-target-${slot.index}`, {
+      videoId: demo.youtube_id,
+      playerVars: {
+        autoplay: 0,
+        controls: 0, // Controles limpos controlados pela timeline mestre
+        disablekb: 1,
+        fs: 0,
+        rel: 0,
+        modestbranding: 1,
+        playsinline: 1,
+        start: Math.floor(initialTime)
+      },
+      events: {
+        onReady: (event) => {
+          slot.isReady = true;
+          if (slot.isMuted) {
+            event.target.mute();
+          } else {
+            event.target.unMute();
+            event.target.setVolume(100);
+          }
+          // Pausa no início exato para sincronia
+          event.target.seekTo(initialTime, true);
+          event.target.pauseVideo();
+
+          if (this.onReadyStateChange) {
+            this.onReadyStateChange();
+          }
+        },
+        onStateChange: (event) => {
+          // Monitoramento de buffering / loop
+        }
+      }
+    });
+  }
+
+  changeDemoForSlot(slotIndex, newDemoId) {
+    const slot = this.slots.find(s => s.index === slotIndex);
+    if (!slot) return;
+
+    slot.demoId = newDemoId;
+    const demo = this.db.demonstrations.find(d => d.id === newDemoId);
+    if (!demo) return;
+
+    // Atualiza nomes no footer
+    const footerNameEl = slot.cardEl.querySelector('.masters-names');
+    if (footerNameEl) {
+      footerNameEl.textContent = `${demo.uchidachi.name} (${demo.uchidachi.title}) × ${demo.shidachi.name} (${demo.shidachi.title})`;
+    }
+
+    if (slot.ytPlayer && typeof slot.ytPlayer.loadVideoById === 'function') {
+      const initialTime = getAbsoluteVideoTime(0.0, demo.id, this.currentKataId, this.db);
+      slot.ytPlayer.loadVideoById({
+        videoId: demo.youtube_id,
+        startSeconds: Math.floor(initialTime)
+      });
+      slot.ytPlayer.pauseVideo();
+    }
+  }
+
+  setActiveAudio(activeSlotIndex) {
+    this.activeAudioIndex = activeSlotIndex;
+    this.slots.forEach(slot => {
+      const btn = slot.cardEl.querySelector(`#btn-audio-${slot.index}`);
+      if (slot.index === activeSlotIndex) {
+        slot.isMuted = false;
+        slot.cardEl.classList.add('active-audio');
+        if (slot.ytPlayer && typeof slot.ytPlayer.unMute === 'function') {
+          slot.ytPlayer.unMute();
+          slot.ytPlayer.setVolume(100);
+        }
+        if (btn) {
+          btn.innerHTML = '🔊 Áudio';
+          btn.classList.add('unmuted');
+        }
+      } else {
+        slot.isMuted = true;
+        slot.cardEl.classList.remove('active-audio');
+        if (slot.ytPlayer && typeof slot.ytPlayer.mute === 'function') {
+          slot.ytPlayer.mute();
+        }
+        if (btn) {
+          btn.innerHTML = '🔇 Mudo';
+          btn.classList.remove('unmuted');
+        }
+      }
+    });
+
+    if (this.onAudioChange) {
+      const activeSlot = this.slots.find(s => s.index === activeSlotIndex);
+      const demo = activeSlot ? this.db.demonstrations.find(d => d.id === activeSlot.demoId) : null;
+      this.onAudioChange(demo ? demo.title : "Nenhum");
+    }
+  }
+
+  seekAll(relativeTime, kataId) {
+    this.currentKataId = kataId;
+    this.slots.forEach(slot => {
+      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.seekTo === 'function') {
+        const absTime = getAbsoluteVideoTime(relativeTime, slot.demoId, kataId, this.db);
+        slot.ytPlayer.seekTo(absTime, true);
+      }
+    });
+  }
+
+  playAll() {
+    this.slots.forEach(slot => {
+      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.playVideo === 'function') {
+        slot.ytPlayer.playVideo();
+      }
+    });
+  }
+
+  pauseAll() {
+    this.slots.forEach(slot => {
+      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.pauseVideo === 'function') {
+        slot.ytPlayer.pauseVideo();
+      }
+    });
+  }
+
+  setPlaybackRate(rate) {
+    this.slots.forEach(slot => {
+      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.setPlaybackRate === 'function') {
+        slot.ytPlayer.setPlaybackRate(rate);
+      }
+    });
+  }
+
+  destroyPlayers() {
+    this.slots.forEach(slot => {
+      if (slot.ytPlayer && typeof slot.ytPlayer.destroy === 'function') {
+        try {
+          slot.ytPlayer.destroy();
+        } catch (e) {
+          // ignore
+        }
+      }
+    });
+    this.slots = [];
+  }
+
+  areAllReady() {
+    return this.slots.length > 0 && this.slots.every(s => s.isReady);
+  }
+
+  getActiveDemoIds() {
+    return this.slots.map(s => s.demoId);
+  }
+}

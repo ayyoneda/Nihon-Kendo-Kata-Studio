@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nihon Kendo Kata Studio - Comparador Multivídeo Oficial</title>
+  <meta name="description" content="Plataforma de alta precisão para estudo e comparação multivídeo sincronizado de Nihon Kendo Kata (Hanshi 8º Dan) ancorado no clímax do golpe." />
+  
+  <!-- Google Fonts: Inter e Noto Serif JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="app" class="app-root">
+    
+    <!-- Top Header -->
+    <header class="studio-header">
+      <div class="brand-area">
+        <div class="brand-emblem">⛩️</div>
+        <div class="brand-titles">
+          <h1 class="brand-title">NIHON KENDO KATA STUDIO</h1>
+          <span class="brand-subtitle">日本剣道形 • Comparador Multivídeo • Hanshi 8º Dan</span>
+        </div>
+      </div>
+
+      <!-- Controls & Nav in Header -->
+      <div class="header-controls">
+        <!-- Kata Selector -->
+        <div class="control-group">
+          <label for="kata-select" class="control-label">Kata:</label>
+          <select id="kata-select" class="kendo-select kata-dropdown">
+            <!-- Populado dinamicamente via JS -->
+          </select>
+        </div>
+
+        <!-- Grid Layout Switcher -->
+        <div class="control-group layout-group">
+          <span class="control-label">Grade:</span>
+          <div class="button-toggle-group">
+            <button id="layout-1x1" class="btn-toggle" title="1 Vídeo (Foco Solo)">1x1</button>
+            <button id="layout-1x2" class="btn-toggle" title="2 Vídeos (Lado a Lado)">1x2</button>
+            <button id="layout-2x2" class="btn-toggle active" title="4 Vídeos (Matriz 2x2)">2x2</button>
+          </div>
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div class="control-group">
+          <button id="btn-toggle-calibrator" class="btn-pill" title="Alternar para mesa de calibração">
+            <span class="btn-icon">⏱️</span> Calibrador
+          </button>
+          <button id="btn-toggle-pedagogy" class="btn-pill active" title="Alternar painel didático">
+            <span class="btn-icon">📜</span> Doutrina
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="studio-workspace">
+      
+      <!-- Video Grid Area -->
+      <section class="video-section">
+        <div id="video-grid" class="video-grid grid-2x2">
+          <!-- Quadrantes dos Players inseridos dinamicamente -->
+        </div>
+
+        <!-- Calibrator Overlay View (Alternável) -->
+        <div id="calibrator-view" class="calibrator-container hidden">
+          <!-- Injetado via calibrator.js -->
+        </div>
+      </section>
+
+      <!-- Pedagogical Sidebar Panel -->
+      <aside id="pedagogy-panel" class="pedagogy-sidebar">
+        <!-- Populado dinamicamente via pedagogyPanel.js -->
+      </aside>
+
+    </main>
+
+    <!-- Master Synchronization Footer Bar -->
+    <footer class="master-timeline-bar">
+      <div class="playback-actions">
+        <button id="btn-jump-climax" class="btn-climax" title="Saltar para o instante exato do contragolpe (t=0)">
+          <span class="climax-bolt">⚡</span> CLÍMAX (t=0)
+        </button>
+
+        <button id="btn-step-back" class="btn-icon-action" title="Voltar 1 segundo">⏮ -1s</button>
+        <button id="btn-play-pause" class="btn-play-pause" title="Play / Pausa Sincronizado">
+          <span id="play-pause-icon">▶</span>
+        </button>
+        <button id="btn-step-fwd" class="btn-icon-action" title="Avançar 1 segundo">⏭ +1s</button>
+
+        <div class="speed-control">
+          <label for="speed-select" class="sr-only">Velocidade</label>
+          <select id="speed-select" class="kendo-select-sm" title="Velocidade de Reprodução Sincronizada">
+            <option value="0.25">0.25x</option>
+            <option value="0.5" selected>0.50x (Slow-mo)</option>
+            <option value="0.75">0.75x</option>
+            <option value="1.0">1.00x (Normal)</option>
+          </select>
+        </div>
+
+        <button id="btn-toggle-loop" class="btn-icon-action active" title="Loop automático do Kata">
+          🔁 Loop
+        </button>
+      </div>
+
+      <!-- Scrubber Center -->
+      <div class="scrubber-container">
+        <div class="scrubber-labels">
+          <span id="label-time-start" class="time-mark">-12.0s</span>
+          <span id="label-time-current" class="time-current">0.0s (Clímax)</span>
+          <span id="label-time-end" class="time-mark">+15.0s</span>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="master-scrubber" class="kendo-slider" min="-15" max="15" step="0.05" value="0" />
+          <div class="climax-tick" title="Ponto de impacto (t=0)"></div>
+        </div>
+      </div>
+
+      <!-- Audio Status Indicator -->
+      <div class="audio-status-box">
+        <span class="audio-label">Áudio:</span>
+        <span id="active-audio-name" class="audio-name">Dupla 1 (Sato & Terachi)</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
