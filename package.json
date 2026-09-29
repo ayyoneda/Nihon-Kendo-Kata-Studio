@@ -1,0 +1,23 @@
+{
+  "name": "kendo-kata-studio",
+  "version": "1.0.0",
+  "description": "Plataforma de estudo e comparação multivídeo de Nihon Kendo Kata",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "kendo",
+    "kata",
+    "martial-arts",
+    "video-sync"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
