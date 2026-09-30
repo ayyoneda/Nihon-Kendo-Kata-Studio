@@ -338,69 +338,69 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 15,
-          "climax": 47.5,
-          "end": 80
+          "start": 56.67,
+          "climax": 88.49,
+          "end": 166.73
         },
         "kata_01": {
-          "start": 80,
-          "climax": 96,
-          "end": 115
+          "start": 166.73,
+          "climax": 176.88,
+          "end": 203.08
         },
         "kata_02": {
-          "start": 125,
-          "climax": 138,
-          "end": 156
+          "start": 203.08,
+          "climax": 212.05,
+          "end": 235.47
         },
         "kata_03": {
-          "start": 168,
-          "climax": 185,
-          "end": 208
+          "start": 235.47,
+          "climax": 252.3,
+          "end": 281.35
         },
         "kata_04": {
-          "start": 220,
-          "climax": 236,
-          "end": 258
+          "start": 281.35,
+          "climax": 295.93,
+          "end": 320.21
         },
         "kata_05": {
-          "start": 270,
-          "climax": 284,
-          "end": 305
+          "start": 320.21,
+          "climax": 331.06,
+          "end": 361.12
         },
         "kata_06": {
-          "start": 318,
-          "climax": 332,
-          "end": 352
+          "start": 361.12,
+          "climax": 376.29,
+          "end": 401.16
         },
         "kata_07": {
-          "start": 365,
-          "climax": 381,
-          "end": 406
+          "start": 401.16,
+          "climax": 413.48,
+          "end": 433.67
         },
         "troca_kodachi": {
-          "start": 406,
-          "climax": 423,
-          "end": 440
+          "start": 433.67,
+          "climax": 493.3,
+          "end": 511.8
         },
         "kata_08": {
-          "start": 440,
-          "climax": 454,
-          "end": 473
+          "start": 511.8,
+          "climax": 520.08,
+          "end": 547.05
         },
         "kata_09": {
-          "start": 485,
-          "climax": 498,
-          "end": 516
+          "start": 547.05,
+          "climax": 560.95,
+          "end": 585.76
         },
         "kata_10": {
-          "start": 528,
-          "climax": 546,
-          "end": 570
+          "start": 585.76,
+          "climax": 595.37,
+          "end": 608.04
         },
         "reiho_final": {
-          "start": 570,
-          "climax": 596,
-          "end": 625
+          "start": 608.04,
+          "climax": 675.28,
+          "end": 706.31
         }
       }
     },
@@ -506,69 +506,69 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 131.4,
-          "climax": 198.8,
-          "end": 220.7
+          "start": 39.69,
+          "climax": 78.03,
+          "end": 189.51
         },
         "kata_01": {
-          "start": 220.7,
-          "climax": 227.84,
-          "end": 246.64
+          "start": 189.51,
+          "climax": 199.97,
+          "end": 221.99
         },
         "kata_02": {
-          "start": 246.64,
-          "climax": 254.16,
-          "end": 269.56
+          "start": 221.99,
+          "climax": 228.49,
+          "end": 248.25
         },
         "kata_03": {
-          "start": 269.56,
-          "climax": 279.72,
-          "end": 300.72
+          "start": 248.25,
+          "climax": 262.58,
+          "end": 287.56
         },
         "kata_04": {
-          "start": 300.72,
-          "climax": 311.78,
-          "end": 328.78
+          "start": 287.56,
+          "climax": 300.87,
+          "end": 321.48
         },
         "kata_05": {
-          "start": 328.78,
-          "climax": 336.34,
-          "end": 357.34
+          "start": 321.48,
+          "climax": 329.95,
+          "end": 354.8
         },
         "kata_06": {
-          "start": 357.34,
-          "climax": 364.34,
-          "end": 382.34
+          "start": 354.8,
+          "climax": 364.51,
+          "end": 385.6
         },
         "kata_07": {
-          "start": 382.34,
-          "climax": 392.18,
-          "end": 405.18
+          "start": 385.6,
+          "climax": 392.27,
+          "end": 405.92
         },
         "troca_kodachi": {
-          "start": 405.18,
-          "climax": 473.0,
-          "end": 485.32
+          "start": 405.92,
+          "climax": 469.56,
+          "end": 483.83
         },
         "kata_08": {
-          "start": 485.32,
-          "climax": 491.18,
-          "end": 509.62
+          "start": 483.83,
+          "climax": 490.69,
+          "end": 511.42
         },
         "kata_09": {
-          "start": 509.62,
-          "climax": 521.38,
-          "end": 538.89
+          "start": 511.42,
+          "climax": 521.67,
+          "end": 543.43
         },
         "kata_10": {
-          "start": 538.89,
-          "climax": 550.52,
-          "end": 558.01
+          "start": 543.43,
+          "climax": 550.53,
+          "end": 560.71
         },
         "reiho_final": {
-          "start": 558.01,
-          "climax": 590.2,
-          "end": 616.5
+          "start": 560.71,
+          "climax": 647.42,
+          "end": 682.79
         }
       }
     },
@@ -590,69 +590,69 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 27,
-          "climax": 59.5,
-          "end": 92
+          "start": 11.5,
+          "climax": 65,
+          "end": 153
         },
         "kata_01": {
-          "start": 92,
-          "climax": 107,
-          "end": 126
+          "start": 153,
+          "climax": 162.25,
+          "end": 187.38
         },
         "kata_02": {
-          "start": 134,
-          "climax": 147,
-          "end": 164
+          "start": 187.38,
+          "climax": 195.71,
+          "end": 217.5
         },
         "kata_03": {
-          "start": 173,
-          "climax": 190,
-          "end": 211
+          "start": 217.5,
+          "climax": 237.53,
+          "end": 265.75
         },
         "kata_04": {
-          "start": 220,
-          "climax": 235,
-          "end": 255
+          "start": 265.75,
+          "climax": 283.35,
+          "end": 308.63
         },
         "kata_05": {
-          "start": 264,
-          "climax": 277,
-          "end": 296
+          "start": 308.63,
+          "climax": 318.46,
+          "end": 348.9
         },
         "kata_06": {
-          "start": 305,
-          "climax": 318,
-          "end": 337
+          "start": 348.9,
+          "climax": 361.73,
+          "end": 388.92
         },
         "kata_07": {
-          "start": 347,
-          "climax": 362,
-          "end": 385
+          "start": 388.92,
+          "climax": 398.14,
+          "end": 416.2
         },
         "troca_kodachi": {
-          "start": 385,
-          "climax": 400,
-          "end": 415
+          "start": 416.2,
+          "climax": 484.2,
+          "end": 501.32
         },
         "kata_08": {
-          "start": 415,
-          "climax": 428,
-          "end": 446
+          "start": 501.32,
+          "climax": 509.06,
+          "end": 536.91
         },
         "kata_09": {
-          "start": 455,
-          "climax": 467,
-          "end": 484
+          "start": 536.91,
+          "climax": 550,
+          "end": 573.18
         },
         "kata_10": {
-          "start": 494,
-          "climax": 511,
-          "end": 533
+          "start": 573.18,
+          "climax": 582.86,
+          "end": 595.57
         },
         "reiho_final": {
-          "start": 533,
-          "climax": 559,
-          "end": 588
+          "start": 595.57,
+          "climax": 666.51,
+          "end": 703.71
         }
       }
     },
@@ -674,69 +674,69 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 25,
-          "climax": 57.5,
-          "end": 90
+          "start": 12.19,
+          "climax": 52.9,
+          "end": 178.5
         },
         "kata_01": {
-          "start": 90,
-          "climax": 105,
-          "end": 124
+          "start": 178.5,
+          "climax": 186.68,
+          "end": 213.61
         },
         "kata_02": {
-          "start": 132,
-          "climax": 145,
-          "end": 162
+          "start": 213.61,
+          "climax": 220.1,
+          "end": 242.74
         },
         "kata_03": {
-          "start": 171,
-          "climax": 188,
-          "end": 209
+          "start": 242.74,
+          "climax": 260.3,
+          "end": 285.54
         },
         "kata_04": {
-          "start": 218,
-          "climax": 233,
-          "end": 253
+          "start": 285.54,
+          "climax": 299.47,
+          "end": 322.33
         },
         "kata_05": {
-          "start": 262,
-          "climax": 275,
-          "end": 294
+          "start": 322.33,
+          "climax": 331.03,
+          "end": 356.76
         },
         "kata_06": {
-          "start": 303,
-          "climax": 316,
-          "end": 335
+          "start": 356.76,
+          "climax": 365.88,
+          "end": 388.8
         },
         "kata_07": {
-          "start": 345,
-          "climax": 360,
-          "end": 383
+          "start": 388.8,
+          "climax": 395.38,
+          "end": 410.48
         },
         "troca_kodachi": {
-          "start": 383,
-          "climax": 398,
-          "end": 413
+          "start": 410.48,
+          "climax": 473.82,
+          "end": 490.98
         },
         "kata_08": {
-          "start": 413,
-          "climax": 426,
-          "end": 444
+          "start": 490.98,
+          "climax": 496.62,
+          "end": 520.28
         },
         "kata_09": {
-          "start": 453,
-          "climax": 465,
-          "end": 482
+          "start": 520.28,
+          "climax": 529.42,
+          "end": 552.16
         },
         "kata_10": {
-          "start": 492,
-          "climax": 509,
-          "end": 531
+          "start": 552.16,
+          "climax": 559.18,
+          "end": 569.32
         },
         "reiho_final": {
-          "start": 531,
-          "climax": 557,
-          "end": 586
+          "start": 569.32,
+          "climax": 663.11,
+          "end": 701.01
         }
       }
     },
@@ -758,69 +758,321 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 33,
-          "climax": 65.5,
-          "end": 98
+          "start": 25.64,
+          "climax": 56.78,
+          "end": 144.15
         },
         "kata_01": {
-          "start": 98,
-          "climax": 113,
-          "end": 132
+          "start": 144.15,
+          "climax": 152.15,
+          "end": 174.77
         },
         "kata_02": {
-          "start": 140,
-          "climax": 153,
-          "end": 170
+          "start": 174.77,
+          "climax": 181.23,
+          "end": 200.83
         },
         "kata_03": {
-          "start": 179,
-          "climax": 196,
-          "end": 218
+          "start": 200.83,
+          "climax": 212.49,
+          "end": 238.54
         },
         "kata_04": {
-          "start": 227,
-          "climax": 242,
-          "end": 262
+          "start": 238.54,
+          "climax": 251.41,
+          "end": 271.12
         },
         "kata_05": {
-          "start": 271,
-          "climax": 284,
-          "end": 303
+          "start": 271.12,
+          "climax": 278.26,
+          "end": 304.57
         },
         "kata_06": {
-          "start": 313,
-          "climax": 326,
-          "end": 345
+          "start": 304.57,
+          "climax": 315.41,
+          "end": 337.31
         },
         "kata_07": {
-          "start": 355,
-          "climax": 370,
-          "end": 394
+          "start": 337.31,
+          "climax": 345.67,
+          "end": 361.25
         },
         "troca_kodachi": {
-          "start": 394,
-          "climax": 409,
-          "end": 424
+          "start": 361.25,
+          "climax": 427.76,
+          "end": 442.88
         },
         "kata_08": {
-          "start": 424,
-          "climax": 437,
-          "end": 455
+          "start": 442.88,
+          "climax": 449.5,
+          "end": 471.59
         },
         "kata_09": {
-          "start": 464,
-          "climax": 476,
-          "end": 493
+          "start": 471.59,
+          "climax": 481.48,
+          "end": 502.1
         },
         "kata_10": {
-          "start": 503,
-          "climax": 520,
-          "end": 542
+          "start": 502.1,
+          "climax": 508.97,
+          "end": 518.18
         },
         "reiho_final": {
-          "start": 542,
-          "climax": 568,
-          "end": 597
+          "start": 518.18,
+          "climax": 590.92,
+          "end": 619.77
+        }
+      }
+    },
+    {
+      "id": "23rd_8dan_2025",
+      "title": "23º All Japan Selected 8-Dan Championship (2025)",
+      "event": "Zen Nihon Senbatsu Kendo Hachidan Yūshō Taikai (Nagoya)",
+      "year": 2025,
+      "youtube_id": "s3Hu-PN5ZAk",
+      "uchidachi": {
+        "name": "Kiyokazu Shimojima",
+        "title": "Hanshi 8º Dan",
+        "bio": "Mestre da Federação de Gifu e membro do comitê examinador de altas graduações"
+      },
+      "shidachi": {
+        "name": "Katsuhiko Tani",
+        "title": "Hanshi 8º Dan",
+        "bio": "Campeão de Kendo de Gunma, experiente formador policial e autoridade em Kata"
+      },
+      "katas": {
+        "reiho_inicial": {
+          "start": 28.21,
+          "climax": 67.74,
+          "end": 171.87
+        },
+        "kata_01": {
+          "start": 171.87,
+          "climax": 181.65,
+          "end": 205.73
+        },
+        "kata_02": {
+          "start": 205.73,
+          "climax": 211.25,
+          "end": 231.94
+        },
+        "kata_03": {
+          "start": 231.94,
+          "climax": 250.37,
+          "end": 276.56
+        },
+        "kata_04": {
+          "start": 276.56,
+          "climax": 293.95,
+          "end": 317.92
+        },
+        "kata_05": {
+          "start": 317.92,
+          "climax": 327.02,
+          "end": 354.35
+        },
+        "kata_06": {
+          "start": 354.35,
+          "climax": 366.89,
+          "end": 390.89
+        },
+        "kata_07": {
+          "start": 390.89,
+          "climax": 399.51,
+          "end": 419.52
+        },
+        "troca_kodachi": {
+          "start": 419.52,
+          "climax": 494.98,
+          "end": 511.41
+        },
+        "kata_08": {
+          "start": 511.41,
+          "climax": 518.21,
+          "end": 542.19
+        },
+        "kata_09": {
+          "start": 542.19,
+          "climax": 553.57,
+          "end": 574.11
+        },
+        "kata_10": {
+          "start": 574.11,
+          "climax": 582.32,
+          "end": 593.35
+        },
+        "reiho_final": {
+          "start": 593.35,
+          "climax": 677.23,
+          "end": 712.54
+        }
+      }
+    },
+    {
+      "id": "22nd_8dan_2024",
+      "title": "22º All Japan Selected 8-Dan Championship (2024)",
+      "event": "Zen Nihon Senbatsu Kendo Hachidan Yūshō Taikai (Nagoya)",
+      "year": 2024,
+      "youtube_id": "x_ItyzolzSU",
+      "uchidachi": {
+        "name": "Toru Kamei",
+        "title": "Hanshi 8º Dan",
+        "bio": "Ex-campeão do All Japan Championship, campeão de 8º Dan e conselheiro técnico da AJKF"
+      },
+      "shidachi": {
+        "name": "Isato Matsuda",
+        "title": "Hanshi 8º Dan",
+        "bio": "Líder técnico da Federação de Kendo de Nara e examinador titular da AJKF"
+      },
+      "katas": {
+        "reiho_inicial": {
+          "start": 25.12,
+          "climax": 57.26,
+          "end": 139.04
+        },
+        "kata_01": {
+          "start": 139.04,
+          "climax": 146.89,
+          "end": 170.39
+        },
+        "kata_02": {
+          "start": 170.39,
+          "climax": 176.43,
+          "end": 196.89
+        },
+        "kata_03": {
+          "start": 196.89,
+          "climax": 210.5,
+          "end": 235.43
+        },
+        "kata_04": {
+          "start": 235.43,
+          "climax": 247.32,
+          "end": 269.81
+        },
+        "kata_05": {
+          "start": 269.81,
+          "climax": 277.28,
+          "end": 302.79
+        },
+        "kata_06": {
+          "start": 302.79,
+          "climax": 312.42,
+          "end": 333.68
+        },
+        "kata_07": {
+          "start": 333.68,
+          "climax": 340.87,
+          "end": 358.28
+        },
+        "troca_kodachi": {
+          "start": 358.28,
+          "climax": 415.36,
+          "end": 433.4
+        },
+        "kata_08": {
+          "start": 433.4,
+          "climax": 439.17,
+          "end": 462.54
+        },
+        "kata_09": {
+          "start": 462.54,
+          "climax": 471.13,
+          "end": 493.03
+        },
+        "kata_10": {
+          "start": 493.03,
+          "climax": 499.97,
+          "end": 509.05
+        },
+        "reiho_final": {
+          "start": 509.05,
+          "climax": 574.75,
+          "end": 602.44
+        }
+      }
+    },
+    {
+      "id": "21st_8dan_2023",
+      "title": "21º All Japan Selected 8-Dan Championship (2023)",
+      "event": "Zen Nihon Senbatsu Kendo Hachidan Yūshō Taikai (Nagoya)",
+      "year": 2023,
+      "youtube_id": "mPsIraHH7gA",
+      "uchidachi": {
+        "name": "Koji Kasamura",
+        "title": "Hanshi 8º Dan",
+        "bio": "Shihan da Polícia de Kanagawa e instrutor sênior em seminários nacionais da AJKF"
+      },
+      "shidachi": {
+        "name": "Isao Okido",
+        "title": "Hanshi 8º Dan",
+        "bio": "Mestre da Federação de Ehime e renomado árbitro de campeonatos nacionais"
+      },
+      "katas": {
+        "reiho_inicial": {
+          "start": 25,
+          "climax": 59.64,
+          "end": 138.8
+        },
+        "kata_01": {
+          "start": 138.8,
+          "climax": 146.23,
+          "end": 167.27
+        },
+        "kata_02": {
+          "start": 167.27,
+          "climax": 172.32,
+          "end": 190.34
+        },
+        "kata_03": {
+          "start": 190.34,
+          "climax": 200.32,
+          "end": 222.36
+        },
+        "kata_04": {
+          "start": 222.36,
+          "climax": 233.78,
+          "end": 253.1
+        },
+        "kata_05": {
+          "start": 253.1,
+          "climax": 259.65,
+          "end": 281.96
+        },
+        "kata_06": {
+          "start": 281.96,
+          "climax": 291.88,
+          "end": 312.14
+        },
+        "kata_07": {
+          "start": 312.14,
+          "climax": 318.12,
+          "end": 331.89
+        },
+        "troca_kodachi": {
+          "start": 331.89,
+          "climax": 387.51,
+          "end": 402.18
+        },
+        "kata_08": {
+          "start": 402.18,
+          "climax": 407.62,
+          "end": 428.11
+        },
+        "kata_09": {
+          "start": 428.11,
+          "climax": 436.66,
+          "end": 455.86
+        },
+        "kata_10": {
+          "start": 455.86,
+          "climax": 461.89,
+          "end": 471.83
+        },
+        "reiho_final": {
+          "start": 471.83,
+          "climax": 528.65,
+          "end": 553.18
         }
       }
     },
@@ -829,11 +1081,11 @@
       "title": "20º All Japan Selected 8-Dan Championship (2022)",
       "event": "Zen Nihon Senbatsu Kendo Hachidan Yūshō Taikai (Nagoya)",
       "year": 2022,
-      "youtube_id": "z50QPdzbGAs",
+      "youtube_id": "QuZj8IADBLg",
       "uchidachi": {
-        "name": "Hayato Matsuda",
+        "name": "Kazuo Furukawa",
         "title": "Hanshi 8º Dan",
-        "bio": "Avaliador e examinador de altas graduações da AJKF (Nara)"
+        "bio": "Líder técnico da Federação de Kendo de Hokkaido e avaliador nacional da AJKF"
       },
       "shidachi": {
         "name": "Yoshimi Higashi",
@@ -843,68 +1095,236 @@
       "katas": {
         "reiho_inicial": {
           "start": 20,
-          "climax": 52.5,
-          "end": 85
+          "climax": 48,
+          "end": 91.4
         },
         "kata_01": {
-          "start": 85,
-          "climax": 100,
-          "end": 119
+          "start": 91.4,
+          "climax": 99.72,
+          "end": 125.1
         },
         "kata_02": {
-          "start": 127,
-          "climax": 140,
-          "end": 157
+          "start": 125.1,
+          "climax": 154.76,
+          "end": 172.27
         },
         "kata_03": {
-          "start": 166,
-          "climax": 183,
-          "end": 204
+          "start": 172.27,
+          "climax": 189.84,
+          "end": 214
         },
         "kata_04": {
-          "start": 213,
-          "climax": 228,
-          "end": 248
+          "start": 214,
+          "climax": 230.08,
+          "end": 257.33
         },
         "kata_05": {
-          "start": 257,
-          "climax": 270,
-          "end": 289
+          "start": 257.33,
+          "climax": 275.24,
+          "end": 289.17
         },
         "kata_06": {
-          "start": 299,
-          "climax": 312,
-          "end": 331
+          "start": 289.17,
+          "climax": 310.8,
+          "end": 326.63
         },
         "kata_07": {
-          "start": 341,
-          "climax": 356,
-          "end": 379
+          "start": 326.63,
+          "climax": 348.56,
+          "end": 363
         },
         "troca_kodachi": {
-          "start": 379,
-          "climax": 394,
-          "end": 409
+          "start": 363,
+          "climax": 409.33,
+          "end": 422.4
         },
         "kata_08": {
-          "start": 409,
-          "climax": 422,
-          "end": 440
+          "start": 422.4,
+          "climax": 430.24,
+          "end": 460.8
         },
         "kata_09": {
-          "start": 449,
-          "climax": 461,
-          "end": 478
+          "start": 460.8,
+          "climax": 487.48,
+          "end": 510.43
         },
         "kata_10": {
-          "start": 488,
-          "climax": 505,
-          "end": 527
+          "start": 510.43,
+          "climax": 529.52,
+          "end": 540.3
         },
         "reiho_final": {
-          "start": 527,
-          "climax": 553,
-          "end": 582
+          "start": 540.3,
+          "climax": 618.3,
+          "end": 653.3
+        }
+      }
+    },
+    {
+      "id": "kyoto_taikai_122nd",
+      "title": "122º Kyoto Taikai (2026)",
+      "event": "Zen Nihon Kendo Enbu Taikai (Kyoto Butokuden)",
+      "year": 2026,
+      "youtube_id": "zFEsZFYjbjk",
+      "uchidachi": {
+        "name": "Mestre Uchidachi",
+        "title": "Hanshi 8º Dan",
+        "bio": "Apresentador oficial de Nihon Kendo Kata no Butokuden de Kyoto"
+      },
+      "shidachi": {
+        "name": "Mestre Shidachi",
+        "title": "Hanshi 8º Dan",
+        "bio": "Apresentador oficial de Nihon Kendo Kata no Butokuden de Kyoto"
+      },
+      "katas": {
+        "reiho_inicial": {
+          "start": 2611.5,
+          "climax": 2656.57,
+          "end": 2758.66
+        },
+        "kata_01": {
+          "start": 2758.66,
+          "climax": 2770.38,
+          "end": 2797.94
+        },
+        "kata_02": {
+          "start": 2797.94,
+          "climax": 2805.52,
+          "end": 2829.26
+        },
+        "kata_03": {
+          "start": 2829.26,
+          "climax": 2847.77,
+          "end": 2877.15
+        },
+        "kata_04": {
+          "start": 2877.15,
+          "climax": 2895.95,
+          "end": 2920.71
+        },
+        "kata_05": {
+          "start": 2920.71,
+          "climax": 2931.63,
+          "end": 2963.71
+        },
+        "kata_06": {
+          "start": 2963.71,
+          "climax": 2979.88,
+          "end": 3009.64
+        },
+        "kata_07": {
+          "start": 3009.64,
+          "climax": 3019.92,
+          "end": 3037.86
+        },
+        "troca_kodachi": {
+          "start": 3037.86,
+          "climax": 3119.52,
+          "end": 3139.98
+        },
+        "kata_08": {
+          "start": 3139.98,
+          "climax": 3148.26,
+          "end": 3178.76
+        },
+        "kata_09": {
+          "start": 3178.76,
+          "climax": 3191.1,
+          "end": 3219.31
+        },
+        "kata_10": {
+          "start": 3219.31,
+          "climax": 3230.36,
+          "end": 3240.87
+        },
+        "reiho_final": {
+          "start": 3240.87,
+          "climax": 3321.77,
+          "end": 3360.03
+        }
+      }
+    },
+    {
+      "id": "kyoto_taikai_121st",
+      "title": "121º Kyoto Taikai (2025)",
+      "event": "Zen Nihon Kendo Enbu Taikai (Kyoto Butokuden)",
+      "year": 2025,
+      "youtube_id": "schuajX1WoY",
+      "uchidachi": {
+        "name": "Mestre Uchidachi",
+        "title": "Hanshi 8º Dan",
+        "bio": "Apresentador oficial de Nihon Kendo Kata no Butokuden de Kyoto"
+      },
+      "shidachi": {
+        "name": "Mestre Shidachi",
+        "title": "Hanshi 8º Dan",
+        "bio": "Apresentador oficial de Nihon Kendo Kata no Butokuden de Kyoto"
+      },
+      "katas": {
+        "reiho_inicial": {
+          "start": 2274.94,
+          "climax": 2315.43,
+          "end": 2409.78
+        },
+        "kata_01": {
+          "start": 2409.78,
+          "climax": 2418.73,
+          "end": 2449.8
+        },
+        "kata_02": {
+          "start": 2449.8,
+          "climax": 2456.42,
+          "end": 2481.37
+        },
+        "kata_03": {
+          "start": 2481.37,
+          "climax": 2495.9,
+          "end": 2527.86
+        },
+        "kata_04": {
+          "start": 2527.86,
+          "climax": 2545.07,
+          "end": 2569.04
+        },
+        "kata_05": {
+          "start": 2569.04,
+          "climax": 2577.89,
+          "end": 2607.96
+        },
+        "kata_06": {
+          "start": 2607.96,
+          "climax": 2619.22,
+          "end": 2645.77
+        },
+        "kata_07": {
+          "start": 2645.77,
+          "climax": 2653.23,
+          "end": 2671.72
+        },
+        "troca_kodachi": {
+          "start": 2671.72,
+          "climax": 2744.46,
+          "end": 2763.61
+        },
+        "kata_08": {
+          "start": 2763.61,
+          "climax": 2770.48,
+          "end": 2798.89
+        },
+        "kata_09": {
+          "start": 2798.89,
+          "climax": 2809.56,
+          "end": 2834.34
+        },
+        "kata_10": {
+          "start": 2834.34,
+          "climax": 2841.52,
+          "end": 2853.32
+        },
+        "reiho_final": {
+          "start": 2853.32,
+          "climax": 2922.67,
+          "end": 2956.69
         }
       }
     },
@@ -926,69 +1346,69 @@
       },
       "katas": {
         "reiho_inicial": {
-          "start": 29,
-          "climax": 61.5,
-          "end": 94
+          "start": 30.59,
+          "climax": 71.67,
+          "end": 159.35
         },
         "kata_01": {
-          "start": 94,
-          "climax": 109,
-          "end": 128
+          "start": 159.35,
+          "climax": 168.1,
+          "end": 190.71
         },
         "kata_02": {
-          "start": 136,
-          "climax": 149,
-          "end": 166
+          "start": 190.71,
+          "climax": 197.37,
+          "end": 215.59
         },
         "kata_03": {
-          "start": 175,
-          "climax": 192,
-          "end": 213
+          "start": 215.59,
+          "climax": 229.86,
+          "end": 254.31
         },
         "kata_04": {
-          "start": 222,
-          "climax": 237,
-          "end": 257
+          "start": 254.31,
+          "climax": 269.06,
+          "end": 289.15
         },
         "kata_05": {
-          "start": 266,
-          "climax": 279,
-          "end": 298
+          "start": 289.15,
+          "climax": 297.08,
+          "end": 321.69
         },
         "kata_06": {
-          "start": 307,
-          "climax": 320,
-          "end": 339
+          "start": 321.69,
+          "climax": 334.15,
+          "end": 357.6
         },
         "kata_07": {
-          "start": 349,
-          "climax": 364,
-          "end": 387
+          "start": 357.6,
+          "climax": 365.24,
+          "end": 382.65
         },
         "troca_kodachi": {
-          "start": 387,
-          "climax": 402.5,
-          "end": 418
+          "start": 382.65,
+          "climax": 449.79,
+          "end": 464.73
         },
         "kata_08": {
-          "start": 418,
-          "climax": 431,
-          "end": 449
+          "start": 464.73,
+          "climax": 470.41,
+          "end": 493.18
         },
         "kata_09": {
-          "start": 458,
-          "climax": 470,
-          "end": 487
+          "start": 493.18,
+          "climax": 503.1,
+          "end": 523.97
         },
         "kata_10": {
-          "start": 497,
-          "climax": 514,
-          "end": 536
+          "start": 523.97,
+          "climax": 531.53,
+          "end": 541.82
         },
         "reiho_final": {
-          "start": 536,
-          "climax": 562,
-          "end": 591
+          "start": 541.82,
+          "climax": 609.17,
+          "end": 645.5
         }
       }
     }

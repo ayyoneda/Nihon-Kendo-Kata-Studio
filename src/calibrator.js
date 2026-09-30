@@ -43,9 +43,24 @@ export class WebCalibrator {
       kataTiming.start = prevEnd;
     }
 
-    const demoOptions = this.db.demonstrations.map(d => {
-      return `<option value="${d.id}" ${d.id === this.currentDemoId ? 'selected' : ''}>${d.title}</option>`;
-    }).join("");
+    const demoCategories = [
+      { label: "📘 Manual & Padrão Oficial AJKF", filter: d => d.id === 'ajkf_official_standard' },
+      { label: "🏆 All Japan Kendo Championship (Zen Nihon)", filter: d => d.id.includes('all_japan') },
+      { label: "⚔️ Torneio Selecionado de 8º Dan (Nagoya)", filter: d => d.id.includes('8dan') },
+      { label: "⛩️ Kyoto Taikai (Butokuden)", filter: d => d.id.includes('kyoto') }
+    ];
+
+    let demoOptions = "";
+    for (const cat of demoCategories) {
+      const catDemos = this.db.demonstrations.filter(cat.filter);
+      if (catDemos.length > 0) {
+        demoOptions += `<optgroup label="${cat.label}">`;
+        for (const d of catDemos) {
+          demoOptions += `<option value="${d.id}" ${d.id === this.currentDemoId ? 'selected' : ''}>${d.title}</option>`;
+        }
+        demoOptions += `</optgroup>`;
+      }
+    }
 
     // Agrupamento pedagógico cronológico
     const groups = [
@@ -129,75 +144,84 @@ export class WebCalibrator {
         </div>
       </div>
 
-      <!-- Player de Alta Precisão -->
-      <div class="calibrator-player-box">
-        <div class="video-wrapper">
-          <div id="calibrator-yt-target"></div>
-        </div>
-      </div>
-
-      <!-- Display de Tempo e Controles Frame a Frame -->
-      <div class="calibrator-controls-panel">
-        <div class="precision-time-display">
-          <span class="time-readout-label">Tempo Atual:</span>
-          <span id="calib-current-time" class="time-readout-val">00:00.000</span>
-          <span id="calib-current-sec" class="time-sec-val">(0.000s)</span>
-        </div>
-
-        <div class="precision-btn-row">
-          <button id="calib-step-back-sec" class="btn-icon-action" title="Voltar 1 segundo (Seta Esquerda)">⏮ -1.0s</button>
-          <button id="calib-step-back-frame" class="btn-icon-action" title="Voltar 1 frame / 0.1s (J)">⏪ -0.1s [J]</button>
-          <button id="calib-play-pause" class="btn-play-pause" title="Play / Pausa (Espaço)"><span id="calib-play-icon">▶</span></button>
-          <button id="calib-step-fwd-frame" class="btn-icon-action" title="Avançar 1 frame / 0.1s (L)">⏩ +0.1s [L]</button>
-          <button id="calib-step-fwd-sec" class="btn-icon-action" title="Avançar 1 segundo (Seta Direita)">⏭ +1.0s</button>
-        </div>
-
-        <!-- Marcações de Início, Clímax e Fim -->
-        <div class="markers-grid">
-          <div class="marker-card start-card">
-            <div class="marker-title">${startTitle}</div>
-            <div class="marker-desc">${startDesc}</div>
-            <div class="marker-input-row">
-              <input type="number" step="0.05" id="input-start" class="kendo-input-num" value="${kataTiming.start.toFixed(2)}" />
-              <button id="btn-mark-start" class="btn-mark btn-start" title="Atalho: tecla S">📍 Marcar [S]</button>
-            </div>
-            ${chainPrevBtnHtml}
-          </div>
-
-          <div class="marker-card climax-card">
-            <div class="marker-title">${climaxTitle}</div>
-            <div class="marker-desc">${climaxDesc}</div>
-            <div class="marker-input-row">
-              <input type="number" step="0.05" id="input-climax" class="kendo-input-num" value="${kataTiming.climax.toFixed(2)}" />
-              <button id="btn-mark-climax" class="btn-mark btn-climax-mark" title="Atalho: tecla C">⚡ Marcar [C]</button>
+      <div class="calibrator-workspace-grid">
+        <!-- Coluna da Esquerda: Vídeo Amplo + Controles de Reprodução -->
+        <div class="calibrator-left-col">
+          <div class="calibrator-player-box">
+            <div class="video-wrapper">
+              <div id="calibrator-yt-target"></div>
             </div>
           </div>
 
-          <div class="marker-card end-card">
-            <div class="marker-title">${endTitle}</div>
-            <div class="marker-desc">${endDesc}</div>
-            <div class="marker-input-row">
-              <input type="number" step="0.05" id="input-end" class="kendo-input-num" value="${kataTiming.end.toFixed(2)}" />
-              <button id="btn-mark-end" class="btn-mark btn-end" title="Atalho: tecla E">🏁 Marcar [E]</button>
+          <!-- Barra de Transporte e Tempo Frame a Frame logo abaixo do vídeo -->
+          <div class="calibrator-transport-bar">
+            <div class="precision-time-display">
+              <span class="time-readout-label">Tempo:</span>
+              <span id="calib-current-time" class="time-readout-val">00:00.000</span>
+              <span id="calib-current-sec" class="time-sec-val">(0.000s)</span>
             </div>
-            <span class="chain-badge-info">🔗 Ao salvar, o Fim deste bloco será atribuído ao Início do próximo.</span>
+
+            <div class="precision-btn-row">
+              <button id="calib-step-back-sec" class="btn-icon-action" title="Voltar 1 segundo (Seta Esquerda)">⏮ -1.0s</button>
+              <button id="calib-step-back-frame" class="btn-icon-action" title="Voltar 1 frame / 0.1s (J)">⏪ -0.1s [J]</button>
+              <button id="calib-play-pause" class="btn-play-pause" title="Play / Pausa (Espaço)"><span id="calib-play-icon">▶</span></button>
+              <button id="calib-step-fwd-frame" class="btn-icon-action" title="Avançar 1 frame / 0.1s (L)">⏩ +0.1s [L]</button>
+              <button id="calib-step-fwd-sec" class="btn-icon-action" title="Avançar 1 segundo (Seta Direita)">⏭ +1.0s</button>
+            </div>
           </div>
         </div>
 
-        <!-- Ações do Calibrador -->
-        <div class="calibrator-footer-actions">
-          <button id="btn-test-preview" class="btn-pill" style="border-color: var(--gold-primary);">
-            <span>🔄</span> Testar Loop do Corte
-          </button>
-          <button id="btn-save-kata-timing" class="btn-pill" style="background-color: rgba(16, 185, 129, 0.2); border-color: #10B981; color: #10B981;">
-            <span>💾</span> Salvar no Banco
-          </button>
-          <button id="btn-export-json" class="btn-pill" style="background-color: var(--gold-primary); color: #070A11; font-weight: 700;">
-            <span>📥</span> Baixar kata_database.json
-          </button>
-          <button id="btn-copy-json" class="btn-pill">
-            <span>📋</span> Copiar JSON
-          </button>
+        <!-- Coluna da Direita: Painel de Marcações e Ações (Sem scroll!) -->
+        <div class="calibrator-right-col">
+          <div class="markers-grid-vertical">
+            <!-- 1. Start -->
+            <div class="marker-card start-card">
+              <div class="marker-header-row">
+                <span class="marker-title">${startTitle}</span>
+                <button id="btn-mark-start" class="btn-mark btn-start" title="Atalho: tecla S">📍 Marcar [S]</button>
+              </div>
+              <div class="marker-desc">${startDesc}</div>
+              <div class="marker-input-row">
+                <input type="number" step="0.05" id="input-start" class="kendo-input-num" value="${kataTiming.start.toFixed(2)}" />
+              </div>
+              ${chainPrevBtnHtml}
+            </div>
+
+            <!-- 2. Climax -->
+            <div class="marker-card climax-card">
+              <div class="marker-header-row">
+                <span class="marker-title">${climaxTitle}</span>
+                <button id="btn-mark-climax" class="btn-mark btn-climax-mark" title="Atalho: tecla C">⚡ Marcar [C]</button>
+              </div>
+              <div class="marker-desc">${climaxDesc}</div>
+              <div class="marker-input-row">
+                <input type="number" step="0.05" id="input-climax" class="kendo-input-num" value="${kataTiming.climax.toFixed(2)}" />
+              </div>
+            </div>
+
+            <!-- 3. End -->
+            <div class="marker-card end-card">
+              <div class="marker-header-row">
+                <span class="marker-title">${endTitle}</span>
+                <button id="btn-mark-end" class="btn-mark btn-end" title="Atalho: tecla E">🏁 Marcar [E]</button>
+              </div>
+              <div class="marker-desc">${endDesc}</div>
+              <div class="marker-input-row">
+                <input type="number" step="0.05" id="input-end" class="kendo-input-num" value="${kataTiming.end.toFixed(2)}" />
+              </div>
+              <span class="chain-badge-info">🔗 Ao salvar, o Fim deste bloco é atribuído ao Início do próximo.</span>
+            </div>
+          </div>
+
+          <!-- Ações do Calibrador -->
+          <div class="calibrator-sidebar-actions">
+            <button id="btn-test-preview" class="btn-action-wide btn-test-loop">
+              <span>🔄</span> Testar Loop do Corte
+            </button>
+            <button id="btn-save-kata-timing" class="btn-action-wide btn-save-db">
+              <span>💾</span> Salvar no Banco
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -262,13 +286,17 @@ export class WebCalibrator {
     // Ações finais
     this.containerEl.querySelector('#btn-test-preview').addEventListener('click', () => this.testLoop());
     this.containerEl.querySelector('#btn-save-kata-timing').addEventListener('click', () => this.saveCurrentTiming());
-    this.containerEl.querySelector('#btn-export-json').addEventListener('click', () => this.exportJson());
-    this.containerEl.querySelector('#btn-copy-json').addEventListener('click', () => this.copyJson());
   }
 
   initYouTubePlayer() {
     const demo = this.db.demonstrations.find(d => d.id === this.currentDemoId);
+    if (!demo) return;
     const timing = (demo.katas && demo.katas[this.currentKataId]) || { start: 0 };
+
+    if (!window.YT || !window.YT.Player) {
+      setTimeout(() => this.initYouTubePlayer(), 200);
+      return;
+    }
 
     if (this.calibratorPlayer && typeof this.calibratorPlayer.destroy === 'function') {
       try { this.calibratorPlayer.destroy(); } catch (e) {}
@@ -396,7 +424,7 @@ export class WebCalibrator {
       }
     } catch (err) {
       if (saveBtn) saveBtn.innerHTML = originalText;
-      alert(`ℹ️ Timestamps salvos na memória do navegador. Para atualizar o arquivo físico no disco, clique em "Baixar kata_database.json".`);
+      alert(`⚠️ Erro ao salvar diretamente no servidor dev (${err.message}). Os timestamps foram mantidos na memória local do navegador.`);
     }
 
     if (this.onDatabaseUpdated) {
@@ -422,22 +450,6 @@ export class WebCalibrator {
         this.calibratorPlayer.seekTo(start, true);
       }
     }, 100);
-  }
-
-  exportJson() {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.db, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "kata_database.json");
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-  }
-
-  copyJson() {
-    navigator.clipboard.writeText(JSON.stringify(this.db, null, 2)).then(() => {
-      alert("Banco de dados JSON copiado para a área de transferência!");
-    });
   }
 
   destroy() {

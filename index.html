@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nihon Kendo Kata Studio - Comparador Multivídeo Oficial</title>
-  <meta name="description" content="Plataforma de alta precisão para estudo e comparação multivídeo sincronizado de Nihon Kendo Kata (Hanshi 8º Dan) ancorado no clímax do golpe." />
+  <title>Nihon Kendo Kata Studio - Adrian Yoneda (Renshi 7º Dan - Brasil)</title>
+  <meta name="description" content="Plataforma de alta precisão para estudo e comparação multivídeo sincronizado de Nihon Kendo Kata ancorado no clímax do golpe. Elaborada por Adrian Yoneda (Renshi 7º Dan - Brasil)." />
   
   <!-- Google Fonts: Inter e Noto Serif JP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
         <div class="brand-emblem">⛩️</div>
         <div class="brand-titles">
           <h1 class="brand-title">NIHON KENDO KATA STUDIO</h1>
-          <span class="brand-subtitle">日本剣道形 • Comparador Multivídeo • Hanshi 8º Dan</span>
+          <span class="brand-subtitle">日本剣道形 • Ferramenta elaborada por: Adrian Yoneda (Renshi 7º Dan - Brasil)</span>
         </div>
       </div>
 
@@ -51,8 +51,8 @@
           <button id="btn-toggle-calibrator" class="btn-pill" title="Alternar para mesa de calibração">
             <span class="btn-icon">⏱️</span> Calibrador
           </button>
-          <button id="btn-toggle-pedagogy" class="btn-pill active" title="Alternar painel didático">
-            <span class="btn-icon">📜</span> Doutrina
+          <button id="btn-toggle-pedagogy" class="btn-pill active" title="Alternar painel didático de Fundamentos">
+            <span class="btn-icon">📜</span> Fundamentos
           </button>
         </div>
       </div>
@@ -83,6 +83,10 @@
     <!-- Master Synchronization Footer Bar -->
     <footer class="master-timeline-bar">
       <div class="playback-actions">
+        <button id="btn-jump-start" class="btn-icon-action" style="font-weight: 700; border-color: #3B82F6; color: #93C5FD;" title="Voltar ao início do Kata / Bloco">
+          <span>⏮</span> Início
+        </button>
+
         <button id="btn-jump-climax" class="btn-climax" title="Saltar para o instante exato do contragolpe (t=0)">
           <span class="climax-bolt">⚡</span> CLÍMAX (t=0)
         </button>
@@ -121,12 +125,73 @@
         </div>
       </div>
 
-      <!-- Audio Status Indicator -->
-      <div class="audio-status-box">
-        <span class="audio-label">Áudio:</span>
-        <span id="active-audio-name" class="audio-name">Dupla 1 (Sato & Terachi)</span>
+      <!-- Audio Status Indicator & Copyright Link -->
+      <div class="footer-meta-group">
+        <div class="audio-status-box">
+          <span class="audio-label">Áudio:</span>
+          <span id="active-audio-name" class="audio-name">Dupla 1 (Sato & Terachi)</span>
+        </div>
+        <button id="btn-open-copyright" class="btn-copyright-link" title="Aviso Legal, Direitos Autorais e Créditos">
+          ⚖️ Direitos & Créditos
+        </button>
       </div>
     </footer>
+
+    <!-- Modal de Direitos Autorais & Créditos Oficiais -->
+    <div id="modal-copyright" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-copyright-title">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-icon">⚖️</span>
+            <h2 id="modal-copyright-title" class="modal-title">Aviso Legal, Direitos Autorais & Créditos Oficiais</h2>
+          </div>
+          <button id="btn-close-copyright" class="btn-modal-close" title="Fechar">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+          <div class="copyright-badge">
+            <span class="badge-title">⛩️ Nihon Kendo Kata Studio</span>
+            <span class="badge-sub">Plataforma Educacional e de Pesquisa Técnica Independente</span>
+          </div>
+
+          <p class="copyright-p">
+            Esta plataforma foi idealizada e desenvolvida de forma independente por <strong>Adrian Yoneda (Renshi 7º Dan - Brasil)</strong> com propósitos estritamente pedagógicos, culturais e de estudo aprofundado do <em>Nihon Kendo Kata (日本剣道形)</em>.
+          </p>
+
+          <div class="copyright-section">
+            <h3>🎬 Titularidade e Direitos Audiovisuais</h3>
+            <p>
+              Todos os registros audiovisuais integrados a este comparador pertencem com exclusividade à <strong>All Japan Kendo Federation (全日本剣道連盟 - AJKF)</strong> e aos seus respectivos produtores e canais detentores de direitos.
+            </p>
+          </div>
+
+          <div class="copyright-section">
+            <h3>⚡ Reprodução via YouTube IFrame API (Zero Hosting)</h3>
+            <p>
+              A aplicação <strong>não armazena, não baixa e não re-hospeda</strong> nenhum arquivo de vídeo em servidores próprios. Todas as transmissões são carregadas em tempo real diretamente dos servidores oficiais do YouTube através da <strong>YouTube IFrame Player API</strong>, em estrita conformidade com os Termos de Serviço da plataforma.
+            </p>
+            <p>
+              Dessa forma, toda a audiência, tempo de exibição e métricas geradas são integralmente atribuídas aos canais proprietários oficiais no YouTube.
+            </p>
+          </div>
+
+          <div class="copyright-section">
+            <h3>📬 Canal de Contato & Política de Retirada (Notice and Take-Down)</h3>
+            <p>
+              Em respeito irrestrito à AJKF, aos mestres executantes e à comunidade internacional de Kendo, qualquer solicitação de esclarecimento, ajuste ou remoção pode ser encaminhada diretamente ao autor:
+            </p>
+            <div class="contact-email-box">
+              <span>📧 Contato direto:</span>
+              <a href="mailto:adrian.yoneda@gmail.com" class="contact-email-link">adrian.yoneda@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="btn-ack-copyright" class="btn-modal-ack">Entendido e Fechar</button>
+        </div>
+      </div>
+    </div>
 
   </div>
 

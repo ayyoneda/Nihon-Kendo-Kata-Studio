@@ -29,6 +29,7 @@ const videoGridEl = document.getElementById('video-grid');
 const pedagogyPanelEl = document.getElementById('pedagogy-panel');
 const btnPlayPause = document.getElementById('btn-play-pause');
 const playPauseIcon = document.getElementById('play-pause-icon');
+const btnJumpStart = document.getElementById('btn-jump-start');
 const btnJumpClimax = document.getElementById('btn-jump-climax');
 const btnStepBack = document.getElementById('btn-step-back');
 const btnStepFwd = document.getElementById('btn-step-fwd');
@@ -123,8 +124,21 @@ function switchKata(newKataId) {
   labelTimeStart.textContent = `${timeWindow.minRelative}s`;
   labelTimeEnd.textContent = `+${timeWindow.maxRelative}s`;
 
-  // Salta para o Clímax
-  jumpToClimax();
+  // Inicia no Começo do Kata (com pré-rolagem calibrada para atingir o clímax juntos)
+  jumpToStart();
+}
+
+/**
+ * Salta para o início do kata (t = minRelative), permitindo reprodução
+ * sincronizada desde a aproximação dos mestres até o clímax simultâneo (t = 0).
+ */
+function jumpToStart() {
+  currentRelativeTime = timeWindow.minRelative;
+  masterScrubber.value = timeWindow.minRelative;
+  updateTimeDisplay();
+  if (gridManager) {
+    gridManager.seekAll(timeWindow.minRelative, currentKataId);
+  }
 }
 
 /**
@@ -265,6 +279,7 @@ async function initApp() {
 
   // Eventos da Timeline Mestre
   btnPlayPause.addEventListener('click', togglePlayPause);
+  btnJumpStart.addEventListener('click', jumpToStart);
   btnJumpClimax.addEventListener('click', jumpToClimax);
 
   btnStepBack.addEventListener('click', () => {
@@ -303,10 +318,19 @@ async function initApp() {
     btnTogglePedagogy.classList.toggle('active');
   });
 
-  // Alternador de Modo Calibrador
+  // Controle de Acesso Administrativo (Opção A: Calibrador restrito a localhost / 127.0.0.1)
+  const isLocalAdmin = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if (!isLocalAdmin && btnToggleCalibrator) {
+    btnToggleCalibrator.style.display = 'none';
+  }
+
+  // Alternador de Modo Calibrador (Exclusivo para Administrador Local)
   btnToggleCalibrator.addEventListener('click', () => {
+    if (!isLocalAdmin) return;
+
     isCalibratorOpen = !isCalibratorOpen;
     btnToggleCalibrator.classList.toggle('active', isCalibratorOpen);
+    document.body.classList.toggle('calibrator-mode', isCalibratorOpen);
 
     if (isCalibratorOpen) {
       pausePlayback();
@@ -332,6 +356,29 @@ async function initApp() {
       switchKata(currentKataId);
     }
   });
+
+  // Modal de Direitos Autorais e Créditos Oficiais
+  const btnOpenCopyright = document.getElementById('btn-open-copyright');
+  const modalCopyright = document.getElementById('modal-copyright');
+  const btnCloseCopyright = document.getElementById('btn-close-copyright');
+  const btnAckCopyright = document.getElementById('btn-ack-copyright');
+
+  if (btnOpenCopyright && modalCopyright) {
+    const openCopyright = () => modalCopyright.classList.remove('hidden');
+    const closeCopyright = () => modalCopyright.classList.add('hidden');
+
+    btnOpenCopyright.addEventListener('click', openCopyright);
+    if (btnCloseCopyright) btnCloseCopyright.addEventListener('click', closeCopyright);
+    if (btnAckCopyright) btnAckCopyright.addEventListener('click', closeCopyright);
+    modalCopyright.addEventListener('click', (e) => {
+      if (e.target === modalCopyright) closeCopyright();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalCopyright.classList.contains('hidden')) {
+        closeCopyright();
+      }
+    });
+  }
 
   // Atalhos de teclado globais de playback
   window.addEventListener('keydown', (e) => {
