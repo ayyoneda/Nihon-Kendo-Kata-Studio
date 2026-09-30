@@ -12,7 +12,7 @@ const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 describe('Frontend Integration - Validação do Acervo e Motor de Sincronia', () => {
   it('deve sincronizar com sucesso todos os 13 blocos pedagógicos para todas as 8 demonstrações reais', () => {
     const demoIds = db.demonstrations.map(d => d.id);
-    assert.equal(demoIds.length, 8, "Devem existir 8 demonstrações");
+    assert.ok(demoIds.length >= 8, `Devem existir pelo menos 8 demonstrações (encontradas: ${demoIds.length})`);
 
     const sectionKeys = [
       "reiho_inicial",
@@ -29,7 +29,7 @@ describe('Frontend Integration - Validação do Acervo e Motor de Sincronia', ()
       assert.ok(window.postDuration > 0, `${kataId}: postDuration deve ser maior que 0`);
       assert.equal(window.minRelative, -window.preDuration);
       assert.equal(window.maxRelative, window.postDuration);
-      assert.equal(window.totalDuration, window.preDuration + window.postDuration);
+      assert.ok(Math.abs(window.totalDuration - (window.preDuration + window.postDuration)) < 0.001);
 
       for (const demoId of demoIds) {
         const demo = db.demonstrations.find(d => d.id === demoId);

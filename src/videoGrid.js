@@ -2,7 +2,7 @@
  * Gerenciador da Grade Dinâmica de Vídeos e Integração com a YouTube IFrame API
  */
 
-import { getAbsoluteVideoTime } from './syncEngine.js';
+import { getAbsoluteVideoTime, calculateTimeWindow } from './syncEngine.js';
 
 let isYouTubeApiReady = false;
 const pendingCallbacks = [];
@@ -80,6 +80,8 @@ export class VideoGridManager {
     for (const slot of this.slots) {
       this.initPlayerForSlot(slot);
     }
+
+    this.notifyAudioChange();
   }
 
   createSlotElement(index, demoId) {
@@ -91,9 +93,24 @@ export class VideoGridManager {
     const quadrantLabels = ["Q1 • Superior Esquerdo", "Q2 • Superior Direito", "Q3 • Inferior Esquerdo", "Q4 • Inferior Direito"];
     const qBadge = quadrantLabels[index] || `Slot ${index + 1}`;
 
-    const demoOptionsHtml = this.db.demonstrations.map(d => {
-      return `<option value="${d.id}" ${d.id === demo.id ? 'selected' : ''}>${d.title}</option>`;
-    }).join("");
+    const categories = [
+      { label: "📘 Manual & Padrão Oficial AJKF", filter: d => d.id === 'ajkf_official_standard' },
+      { label: "🏆 All Japan Kendo Championship (Zen Nihon)", filter: d => d.id.includes('all_japan') },
+      { label: "⚔️ Torneio Selecionado de 8º Dan (Nagoya)", filter: d => d.id.includes('8dan') },
+      { label: "⛩️ Kyoto Taikai (Butokuden)", filter: d => d.id.includes('kyoto') }
+    ];
+
+    let demoOptionsHtml = "";
+    for (const cat of categories) {
+      const catDemos = this.db.demonstrations.filter(cat.filter);
+      if (catDemos.length > 0) {
+        demoOptionsHtml += `<optgroup label="${cat.label}">`;
+        for (const d of catDemos) {
+          demoOptionsHtml += `<option value="${d.id}" ${d.id === demo.id ? 'selected' : ''}>${d.title}</option>`;
+        }
+        demoOptionsHtml += `</optgroup>`;
+      }
+    }
 
     cardEl.innerHTML = `
       <div class="player-card-header">
@@ -118,7 +135,6 @@ export class VideoGridManager {
         <span class="masters-names">
           ${demo.uchidachi.name} (${demo.uchidachi.title}) × ${demo.shidachi.name} (${demo.shidachi.title})
         </span>
-        <span class="event-year">${demo.year || ''}</span>
       </div>
     `;
 
@@ -147,7 +163,8 @@ export class VideoGridManager {
 
   initPlayerForSlot(slot) {
     const demo = this.db.demonstrations.find(d => d.id === slot.demoId) || this.db.demonstrations[0];
-    const initialTime = getAbsoluteVideoTime(0.0, demo.id, this.currentKataId, this.db);
+    const tw = calculateTimeWindow(this.currentKataId, [slot.demoId], this.db);
+    const initialTime = getAbsoluteVideoTime(tw.minRelative, demo.id, this.currentKataId, this.db);
 
     slot.ytPlayer = new window.YT.Player(`yt-player-target-${slot.index}`, {
       videoId: demo.youtube_id,
@@ -200,12 +217,32 @@ export class VideoGridManager {
     }
 
     if (slot.ytPlayer && typeof slot.ytPlayer.loadVideoById === 'function') {
-      const initialTime = getAbsoluteVideoTime(0.0, demo.id, this.currentKataId, this.db);
+      const tw = calculateTimeWindow(this.currentKataId, [demo.id], this.db);
+      const initialTime = getAbsoluteVideoTime(tw.minRelative, demo.id, this.currentKataId, this.db);
       slot.ytPlayer.loadVideoById({
         videoId: demo.youtube_id,
         startSeconds: Math.floor(initialTime)
       });
       slot.ytPlayer.pauseVideo();
+    }
+
+    if (slotIndex === this.activeAudioIndex) {
+      this.notifyAudioChange();
+    }
+  }
+
+  notifyAudioChange() {
+    if (this.onAudioChange) {
+      const activeSlot = this.slots.find(s => s.index === this.activeAudioIndex);
+      const demo = activeSlot ? this.db.demonstrations.find(d => d.id === activeSlot.demoId) : null;
+      if (demo) {
+        const uLastName = (demo.uchidachi && demo.uchidachi.name) ? demo.uchidachi.name.split(' ')[0] : '';
+        const sLastName = (demo.shidachi && demo.shidachi.name) ? demo.shidachi.name.split(' ')[0] : '';
+        const duoText = (uLastName && sLastName) ? ` (${uLastName} & ${sLastName})` : '';
+        this.onAudioChange(`Q${this.activeAudioIndex + 1}: ${demo.title}${duoText}`);
+      } else {
+        this.onAudioChange("Nenhum");
+      }
     }
   }
 
@@ -237,11 +274,7 @@ export class VideoGridManager {
       }
     });
 
-    if (this.onAudioChange) {
-      const activeSlot = this.slots.find(s => s.index === activeSlotIndex);
-      const demo = activeSlot ? this.db.demonstrations.find(d => d.id === activeSlot.demoId) : null;
-      this.onAudioChange(demo ? demo.title : "Nenhum");
-    }
+    this.notifyAudioChange();
   }
 
   seekAll(relativeTime, kataId) {
