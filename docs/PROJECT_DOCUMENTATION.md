@@ -104,13 +104,12 @@ Para evitar a reincidência de erros técnicos em futuras implementações, as s
 
 ## 4. Próximas Etapas e Roadmap Priorizado
 
-### Prioridade 1: Responsividade Mobile e Padronização de Defaults
-- **Objetivo:** Garantir uma experiência limpa em smartphones e definir preferências padrão ideais.
-- **Especificações:**
-  - Detecção automática de dispositivos móveis via media query CSS e largura de tela.
-  - No mobile: focar em layout **1x1** (1 vídeo), com curadoria de kata ativa e menu simplificado; o painel de "Fundamentos" inicia **recolhido/fechado** para priorizar a área visual.
-  - No computador/desktop: o layout padrão inicia em **1x2** (2 vídeos lado a lado para estudo comparativo) com o painel de "Fundamentos" **aberto/ativo**.
-  - Velocidade de reprodução padrão ajustada para **1.0x (Normal)** em todos os dispositivos (mantendo seletores para 0.25x, 0.5x, 0.75x).
+### Prioridade 1: Responsividade Mobile e Padronização de Defaults (✅ Concluída)
+- **Status:** Implementado e validado via testes automatizados.
+- **Detecção:** `window.innerWidth <= 768px` e `@media (max-width: 768px)`.
+- **Comportamento Mobile:** Inicia em `grid-1x1` focado em 1 vídeo com badge "Vídeo Principal"; grupo de alternância de grade ocultado; "Fundamentos" inicia fechado/recolhido e abre como gaveta overlay ao ser tocado; timeline mestre reorganizada em dois níveis verticais com altura dinâmica `100dvh`.
+- **Comportamento Desktop:** Inicia em `grid-1x2` com 2 vídeos e "Fundamentos" aberto/ativo por padrão.
+- **Velocidade Padrão:** Padronizada para `1.00x (Normal)` para todos os dispositivos.
 
 ### Prioridade 2: Resiliência a Anúncios do YouTube (Contas Gratuitas / Anônimas)
 - **Objetivo:** Mitigar o impacto de anúncios pre-roll e mid-roll para usuários sem YouTube Premium.
