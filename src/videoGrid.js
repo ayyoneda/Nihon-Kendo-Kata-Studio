@@ -47,8 +47,8 @@ export class VideoGridManager {
     this.slots = []; // Array de slots ativos: [{ index, demoId, ytPlayer, isReady, isMuted }]
     this.activeAudioIndex = 0; // Por padrão, slot 0 tem áudio
     this.currentKataId = "kata_01";
-    this.currentLayout = "grid-2x2";
-    this.playbackRate = 0.50;
+    this.currentLayout = "grid-1x2";
+    this.playbackRate = 1.0;
   }
 
   /**
@@ -92,8 +92,15 @@ export class VideoGridManager {
     cardEl.className = `player-card ${index === this.activeAudioIndex ? 'active-audio' : ''}`;
     cardEl.id = `player-card-${index}`;
 
-    const quadrantLabels = ["Q1 • Superior Esquerdo", "Q2 • Superior Direito", "Q3 • Inferior Esquerdo", "Q4 • Inferior Direito"];
-    const qBadge = quadrantLabels[index] || `Slot ${index + 1}`;
+    let qBadge = `Vídeo ${index + 1}`;
+    if (this.currentLayout === 'grid-1x1') {
+      qBadge = "Vídeo Principal";
+    } else if (this.currentLayout === 'grid-1x2') {
+      qBadge = index === 0 ? "Vídeo 1 (Esquerda)" : "Vídeo 2 (Direita)";
+    } else {
+      const quadrantLabels = ["Q1 • Sup. Esquerdo", "Q2 • Sup. Direito", "Q3 • Inf. Esquerdo", "Q4 • Inf. Direito"];
+      qBadge = quadrantLabels[index] || `Slot ${index + 1}`;
+    }
 
     const categories = [
       { label: "📘 Manual & Padrão Oficial AJKF", filter: d => d.id === 'ajkf_official_standard' },
