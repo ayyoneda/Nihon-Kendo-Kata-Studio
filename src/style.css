@@ -374,6 +374,56 @@ body {
   color: var(--gold-light);
 }
 
+.btn-resync-slot {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.25rem 0.45rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-resync-slot:hover {
+  border-color: #10B981;
+  color: #34D399;
+  background-color: rgba(16, 185, 129, 0.15);
+}
+
+.btn-resync-slot.spinning {
+  animation: spin 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Notificação visual de anúncio comercial do YouTube */
+.ad-notice-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid #F59E0B;
+  color: #FCD34D;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  animation: pulseAd 1.5s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulseAd {
+  0% { opacity: 0.85; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1.02); }
+}
+
 /* Área do Vídeo */
 .video-wrapper {
   position: relative;
@@ -640,6 +690,30 @@ body {
 .btn-icon-action.active {
   border-color: var(--gold-primary);
   color: var(--gold-light);
+}
+
+/* Botão de Ressincronização Rápida */
+.btn-resync {
+  border-color: #059669;
+  color: #34D399;
+  background-color: rgba(5, 150, 105, 0.14);
+}
+
+.btn-resync:hover {
+  border-color: #10B981;
+  color: #6EE7B7;
+  background-color: rgba(5, 150, 105, 0.24);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+}
+
+.rotate-anim {
+  display: inline-block;
+  animation: spin 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Scrubber */
@@ -2193,7 +2267,8 @@ body.calibrator-mode .video-section {
   #btn-jump-start,
   #btn-step-back,
   #btn-step-fwd,
-  #btn-toggle-loop {
+  #btn-toggle-loop,
+  #btn-quick-resync {
     padding: 0.35rem 0.5rem;
     font-size: 0.72rem;
     white-space: nowrap;

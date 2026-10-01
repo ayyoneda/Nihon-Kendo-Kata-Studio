@@ -247,7 +247,11 @@ function handleSyncLoop(now) {
   const delta = (now - lastTickTime) / 1000;
   lastTickTime = now;
 
-  currentRelativeTime += delta * playbackRate;
+  // Se algum vídeo estiver preso em anúncio comercial do YouTube, suspende o relógio mestre
+  const isAdActive = gridManager && gridManager.hasActiveAd();
+  if (!isAdActive) {
+    currentRelativeTime += delta * playbackRate;
+  }
 
   // Atualiza transições de estado dos players (início de defasagem e fim de kata)
   if (gridManager) {
@@ -401,6 +405,26 @@ async function initApp() {
     isLooping = !isLooping;
     btnToggleLoop.classList.toggle('active', isLooping);
   });
+
+  // Botão de Ressincronização Rápida (Mitigação de Anúncios e Buffering)
+  const btnQuickResync = document.getElementById('btn-quick-resync');
+  if (btnQuickResync) {
+    btnQuickResync.addEventListener('click', () => {
+      if (!gridManager) return;
+
+      btnQuickResync.classList.add('spinning');
+      const icon = btnQuickResync.querySelector('.resync-icon');
+      if (icon) icon.classList.add('rotate-anim');
+
+      // Força alinhamento milimétrico de todos os vídeos ativos
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
+
+      setTimeout(() => {
+        btnQuickResync.classList.remove('spinning');
+        if (icon) icon.classList.remove('rotate-anim');
+      }, 750);
+    });
+  }
 
   masterScrubber.addEventListener('input', (e) => {
     currentRelativeTime = parseFloat(e.target.value);
