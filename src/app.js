@@ -10,12 +10,12 @@ import { UserGuideModal } from './userGuide.js';
 
 let db = null;
 let currentKataId = "reiho_inicial";
-let currentLayout = "grid-2x2";
+let currentLayout = "grid-1x2";
 let selectedDemoIds = [];
 let isPlaying = false;
 let isLooping = true;
 let isCalibratorOpen = false;
-let playbackRate = 0.50;
+let playbackRate = 1.0;
 let currentRelativeTime = 0.0;
 let syncMode = 'climax'; // 'climax' | 'start'
 let timeWindow = { preDuration: 15, postDuration: 15, minRelative: -15, maxRelative: 15, totalDuration: 30 };
@@ -311,8 +311,35 @@ async function initApp() {
   const data = await loadDatabase();
   if (!data) return;
 
-  // Demonstrações padrão iniciais
-  selectedDemoIds = data.demonstrations.slice(0, 4).map(d => d.id);
+  // Detecção automática de celular (tela pequena) vs Computador
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    currentLayout = "grid-1x1";
+    selectedDemoIds = [data.demonstrations[0].id];
+    // No celular, inicia com fundamentos desativado/recolhido
+    pedagogyPanelEl.classList.add('collapsed');
+    btnTogglePedagogy.classList.remove('active');
+  } else {
+    currentLayout = "grid-1x2";
+    selectedDemoIds = data.demonstrations.slice(0, 2).map(d => d.id);
+    // No computador, inicia em 1x2 com fundamentos ativo/aberto
+    pedagogyPanelEl.classList.remove('collapsed');
+    btnTogglePedagogy.classList.add('active');
+  }
+
+  // Atualiza botões visuais da grade
+  ['1x1', '1x2', '2x2'].forEach(l => {
+    const btn = document.getElementById(`layout-${l}`);
+    if (btn) {
+      btn.classList.toggle('active', currentLayout === `grid-${l}`);
+    }
+  });
+
+  // Atualiza seletor de velocidade padrão para 1.0x (Normal)
+  if (speedSelectEl) {
+    speedSelectEl.value = "1";
+  }
 
   // Inicializa seletores e painel
   initKataSelector();
