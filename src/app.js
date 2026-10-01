@@ -144,6 +144,20 @@ function recalculateTimeline(keepPosition = false) {
     btnJumpStart.classList.remove('active');
   }
 
+  // Posiciona dinamicamente a linha vermelha do Clímax (t = 0.0s) na barra
+  const climaxTickEl = document.getElementById('climax-tick');
+  if (climaxTickEl) {
+    if (syncMode === 'climax') {
+      const range = timeWindow.maxRelative - timeWindow.minRelative;
+      const climaxPercent = range > 0 ? ((0 - timeWindow.minRelative) / range) * 100 : 50;
+      climaxTickEl.style.display = 'block';
+      climaxTickEl.style.left = `${climaxPercent.toFixed(2)}%`;
+      climaxTickEl.title = `Momento do Clímax / Contragolpe (t = 0.0s)`;
+    } else {
+      climaxTickEl.style.display = 'none';
+    }
+  }
+
   if (!keepPosition) {
     currentRelativeTime = 0.0;
     masterScrubber.value = currentRelativeTime;
@@ -240,19 +254,27 @@ function handleSyncLoop(now) {
     gridManager.onPlaybackTick(currentRelativeTime, currentKataId, syncMode);
   }
 
-  // Checa se atingiu o fim da janela do kata
-  if (currentRelativeTime >= timeWindow.maxRelative) {
+  // Checa se todos os slots terminaram OU se a timeline atingiu o fim
+  const allEnded = gridManager && gridManager.slots.length > 0 && gridManager.slots.every(s => s.playbackState === 'ended');
+  const isAtOrPastMax = currentRelativeTime >= timeWindow.maxRelative;
+
+  if (allEnded || isAtOrPastMax) {
     if (isLooping) {
       currentRelativeTime = syncMode === 'start' ? 0.0 : timeWindow.minRelative;
+      masterScrubber.value = currentRelativeTime;
+      updateTimeDisplay();
       if (gridManager) {
         gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, true);
       }
     } else {
       pausePlayback();
       currentRelativeTime = timeWindow.maxRelative;
+      masterScrubber.value = currentRelativeTime;
+      updateTimeDisplay();
       if (gridManager) {
         gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, false);
       }
+      return;
     }
   }
 
@@ -317,6 +339,7 @@ async function initApp() {
 
   // Renderiza a grade padrão
   await gridManager.setupGrid(currentLayout, selectedDemoIds, currentKataId);
+  gridManager.setPlaybackRate(playbackRate);
   recalculateTimeline(false);
 
   // Eventos da Timeline Mestre
