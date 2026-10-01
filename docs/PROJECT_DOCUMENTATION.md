@@ -111,13 +111,13 @@ Para evitar a reincidência de erros técnicos em futuras implementações, as s
 - **Comportamento Desktop:** Inicia em `grid-1x2` com 2 vídeos e "Fundamentos" aberto/ativo por padrão.
 - **Velocidade Padrão:** Padronizada para `1.00x (Normal)` para todos os dispositivos.
 
-### Prioridade 2: Resiliência a Anúncios do YouTube (Contas Gratuitas / Anônimas)
-- **Objetivo:** Mitigar o impacto de anúncios pre-roll e mid-roll para usuários sem YouTube Premium.
-- **Especificações:**
-  - Detecção de estado de reprodução de anúncio via API do YouTube (`player.getDuration()` ou estados anômalos de buffer).
-  - Pausa inteligente do relógio mestre durante a exibição de anúncio, com aviso visual sutil no slot (*"Aguardando anúncio do YouTube..."*).
-  - Botão de "Ressincronizar" (Quick Resync) com 1 clique para realinhar os vídeos instantaneamente após o anúncio ser pulado ou concluído.
-  - Orientação no Guia da Ferramenta explicando como proceder quando houver anúncio.
+### Prioridade 2: Resiliência a Anúncios do YouTube (Contas Gratuitas / Anônimas) (✅ Concluída)
+- **Status:** Implementado e validado via testes automatizados.
+- **Detecção de Anúncio:** Heurística baseada em duração curta de anúncios comerciais (`getDuration() <= 60s`) e timestamps anômalos em relação ao início do kata.
+- **Congelamento do Relógio Mestre:** Quando um slot está em anúncio, o avanço temporal do motor mestre é suspenso para impedir que os demais vídeos avancem desordenadamente.
+- **Aviso Visual no Slot:** Badge sutil com animação pulsante `📢 Aguardando anúncio do YouTube...` sobreposto ao vídeo.
+- **Ressincronização Rápida:** Botão `[🔄 Sincronizar]` na barra inferior e no cabeçalho de cada vídeo, permitindo realinhar todos os players milimetricamente com 1 único clique após pular anúncios ou eventos de buffering.
+- **Guia do Usuário:** Instruções detalhadas adicionadas ao Passo 5 do Guia Visual de Utilização.
 
 ### Prioridade 3: Revisão Canônica dos Fundamentos via Manuais AJKF e CBK
 - **Objetivo:** Elevar o rigor técnico pedagógico das explicações de cada kata.

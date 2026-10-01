@@ -130,6 +130,9 @@ export class VideoGridManager {
           </select>
         </div>
         <div class="player-actions">
+          <button class="btn-resync-slot" id="btn-resync-slot-${index}" title="Ressincronizar este vídeo individualmente">
+            🔄
+          </button>
           <button class="btn-audio ${index === this.activeAudioIndex ? 'unmuted' : ''}" id="btn-audio-${index}" title="Alternar áudio deste quadrante">
             ${index === this.activeAudioIndex ? '🔊 Áudio' : '🔇 Mudo'}
           </button>
@@ -138,6 +141,10 @@ export class VideoGridManager {
 
       <div class="video-wrapper">
         <div id="yt-player-target-${index}"></div>
+        <div class="ad-notice-badge hidden" id="ad-notice-${index}">
+          <span class="ad-pulse-icon">📢</span>
+          <span>Aguardando anúncio do YouTube...</span>
+        </div>
       </div>
 
       <div class="player-card-footer">
@@ -155,6 +162,14 @@ export class VideoGridManager {
       this.changeDemoForSlot(index, e.target.value);
     });
 
+    const resyncBtn = cardEl.querySelector(`#btn-resync-slot-${index}`);
+    if (resyncBtn) {
+      resyncBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.resyncSlot(index);
+      });
+    }
+
     const audioBtn = cardEl.querySelector(`#btn-audio-${index}`);
     audioBtn.addEventListener('click', () => {
       this.setActiveAudio(index);
@@ -167,7 +182,9 @@ export class VideoGridManager {
       ytPlayer: null,
       isReady: false,
       isMuted: index !== this.activeAudioIndex,
-      playbackState: 'paused'
+      playbackState: 'paused',
+      isAdPlaying: false,
+      adNoticeEl: cardEl.querySelector(`#ad-notice-${index}`)
     };
   }
 
@@ -296,8 +313,16 @@ export class VideoGridManager {
 
   seekAll(relativeTime, kataId, syncMode = 'climax', isPlayingMaster = false) {
     this.currentKataId = kataId;
+    this.lastRelativeTime = relativeTime;
+    this.lastSyncMode = syncMode;
+    this.lastIsPlaying = isPlayingMaster;
+
     this.slots.forEach(slot => {
       if (!slot.ytPlayer || !slot.isReady) return;
+
+      // Limpa qualquer estado transitório de anúncio
+      slot.isAdPlaying = false;
+      if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
 
       const state = getSlotPlaybackState(relativeTime, slot.demoId, kataId, this.db, syncMode);
       if (typeof slot.ytPlayer.seekTo === 'function') {
@@ -320,6 +345,8 @@ export class VideoGridManager {
 
   onPlaybackTick(currentRelativeTime, currentKataId, syncMode = 'climax') {
     this.currentKataId = currentKataId;
+    this.lastRelativeTime = currentRelativeTime;
+    this.lastSyncMode = syncMode;
 
     this.slots.forEach(slot => {
       if (!slot.ytPlayer || !slot.isReady) return;
@@ -327,6 +354,30 @@ export class VideoGridManager {
       const demo = this.db.demonstrations.find(d => d.id === slot.demoId);
       const kata = demo && demo.katas ? demo.katas[currentKataId] : null;
       if (!kata) return;
+
+      // Checagem e detecção heurística de anúncio do YouTube
+      let actualTime = -1;
+      let duration = 0;
+      let playerState = -1;
+      try {
+        if (typeof slot.ytPlayer.getCurrentTime === 'function') actualTime = slot.ytPlayer.getCurrentTime();
+        if (typeof slot.ytPlayer.getDuration === 'function') duration = slot.ytPlayer.getDuration();
+        if (typeof slot.ytPlayer.getPlayerState === 'function') playerState = slot.ytPlayer.getPlayerState();
+      } catch (e) {}
+
+      const isAd = (duration > 0 && duration <= 60 && kata.end > 70) ||
+                   (actualTime >= 0 && actualTime < 60 && kata.start > 70 && (playerState === 1 || playerState === 3));
+
+      if (isAd) {
+        if (!slot.isAdPlaying) {
+          slot.isAdPlaying = true;
+          if (slot.adNoticeEl) slot.adNoticeEl.classList.remove('hidden');
+        }
+        return; // Aguarda o término do anúncio antes de aplicar confinamento de kata
+      } else if (slot.isAdPlaying) {
+        slot.isAdPlaying = false;
+        if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
+      }
 
       const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
 
@@ -346,13 +397,6 @@ export class VideoGridManager {
         }
       } else if (slot.playbackState === 'playing') {
         // Checa se atingiu o fim do kata: verifica tanto a timeline quanto o tempo real do player do YouTube
-        let actualTime = -1;
-        try {
-          if (typeof slot.ytPlayer.getCurrentTime === 'function') {
-            actualTime = slot.ytPlayer.getCurrentTime();
-          }
-        } catch (e) {}
-
         const isPastEnd = state.isFinishedEnd || (actualTime > 0 && actualTime >= kata.end - 0.15);
 
         if (isPastEnd) {
@@ -366,6 +410,44 @@ export class VideoGridManager {
         }
       }
     });
+  }
+
+  /**
+   * Retorna true se qualquer um dos slots ativos estiver reproduzindo anúncio comercial do YouTube.
+   */
+  hasActiveAd() {
+    return this.slots.some(slot => slot.isAdPlaying);
+  }
+
+  /**
+   * Ressincroniza individualmente um slot específico ao tempo relativo atual.
+   */
+  resyncSlot(slotIndex) {
+    const slot = this.slots.find(s => s.index === slotIndex);
+    if (!slot || !slot.ytPlayer || !slot.isReady) return;
+
+    const relTime = this.lastRelativeTime !== undefined ? this.lastRelativeTime : 0;
+    const mode = this.lastSyncMode || 'climax';
+    const state = getSlotPlaybackState(relTime, slot.demoId, this.currentKataId, this.db, mode);
+
+    slot.isAdPlaying = false;
+    if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
+
+    if (typeof slot.ytPlayer.seekTo === 'function') {
+      slot.ytPlayer.seekTo(state.targetTime, true);
+    }
+    if (this.lastIsPlaying && state.shouldPlay) {
+      slot.playbackState = 'playing';
+      if (typeof slot.ytPlayer.playVideo === 'function') {
+        slot.ytPlayer.playVideo();
+      }
+    }
+
+    const resyncBtn = slot.cardEl ? slot.cardEl.querySelector(`#btn-resync-slot-${slotIndex}`) : null;
+    if (resyncBtn) {
+      resyncBtn.classList.add('spinning');
+      setTimeout(() => resyncBtn.classList.remove('spinning'), 700);
+    }
   }
 
   playAll(currentRelativeTime, currentKataId, syncMode = 'climax') {

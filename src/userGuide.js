@@ -155,6 +155,8 @@ export const GUIDE_STEPS = [
       • ⚠️ <strong>Evite clicar diretamente nos botões nativos do player do YouTube</strong> dentro de cada vídeo, pois isso desalinha o quadrante em relação aos demais.
       <br><br>
       • Você também pode usar os botões de passo rápido <strong>[⏮ -1s]</strong> e <strong>[⏭ +1s]</strong> para avançar ou recuar quadro a quadro.
+      <br><br>
+      • 🔄 <strong>Ressincronização Rápida (Anúncios do YouTube & Buffering):</strong> Se você utiliza uma conta básica sem YouTube Premium e for exibido um anúncio comercial, aguarde o término ou clique em <em>"Pular Anúncio"</em> no vídeo. Em seguida, clique no botão <strong>[🔄 Sincronizar]</strong> na barra inferior (ou no ícone 🔄 no cabeçalho de cada vídeo) para realinhar instantaneamente todos os vídeos ao mesmo milissegundo exato do Kata.
     `,
     mockupHtml: `
       <div class="mockup-box">
@@ -162,13 +164,14 @@ export const GUIDE_STEPS = [
           <span class="mockup-mini-btn">⏮ -1s</span>
           <button class="mockup-play-master">▶ PLAY SINCRONIZADO</button>
           <span class="mockup-mini-btn">⏭ +1s</span>
+          <span class="mockup-mini-btn" style="color: #34D399; border-color: #059669;">🔄 Sincronizar</span>
         </div>
         <div class="mockup-status-alert">
           ✓ Todos os quadrantes ativos respondem instantaneamente ao comando central.
         </div>
       </div>
     `,
-    tip: "💡 <strong>Dica de Estudo:</strong> Ao pausar no clímax (t=0), use os botões <code>-1s</code> e <code>+1s</code> para examinar os instantes que antecedem o <em>nuki</em> ou <em>suriage</em>."
+    tip: "💡 <strong>Dica para Contas Gratuitas:</strong> O botão <code>🔄 Sincronizar</code> realinha imediatamente qualquer vídeo que tenha sofrido atraso por anúncio comercial ou buffering."
   },
   {
     step: 6,
