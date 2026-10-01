@@ -2,7 +2,7 @@
  * Gerenciador da Grade Dinâmica de Vídeos e Integração com a YouTube IFrame API
  */
 
-import { getAbsoluteVideoTime, calculateTimeWindow } from './syncEngine.js';
+import { getAbsoluteVideoTime, calculateTimeWindow, getSlotPlaybackState } from './syncEngine.js';
 
 let isYouTubeApiReady = false;
 const pendingCallbacks = [];
@@ -37,11 +37,12 @@ export function ensureYouTubeIFrameApi() {
 }
 
 export class VideoGridManager {
-  constructor({ containerEl, db, onAudioChange, onReadyStateChange }) {
+  constructor({ containerEl, db, onAudioChange, onReadyStateChange, onDemoChange }) {
     this.containerEl = containerEl;
     this.db = db;
     this.onAudioChange = onAudioChange;
     this.onReadyStateChange = onReadyStateChange;
+    this.onDemoChange = onDemoChange;
 
     this.slots = []; // Array de slots ativos: [{ index, demoId, ytPlayer, isReady, isMuted }]
     this.activeAudioIndex = 0; // Por padrão, slot 0 tem áudio
@@ -229,6 +230,10 @@ export class VideoGridManager {
     if (slotIndex === this.activeAudioIndex) {
       this.notifyAudioChange();
     }
+
+    if (this.onDemoChange) {
+      this.onDemoChange(slotIndex, newDemoId);
+    }
   }
 
   notifyAudioChange() {
@@ -277,22 +282,78 @@ export class VideoGridManager {
     this.notifyAudioChange();
   }
 
-  seekAll(relativeTime, kataId) {
+  seekAll(relativeTime, kataId, syncMode = 'climax') {
     this.currentKataId = kataId;
     this.slots.forEach(slot => {
       if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.seekTo === 'function') {
-        const absTime = getAbsoluteVideoTime(relativeTime, slot.demoId, kataId, this.db);
+        const absTime = getAbsoluteVideoTime(relativeTime, slot.demoId, kataId, this.db, syncMode);
         slot.ytPlayer.seekTo(absTime, true);
       }
     });
   }
 
-  playAll() {
+  updatePlaybackState(currentRelativeTime, currentKataId, isPlayingMaster, syncMode = 'climax') {
+    this.currentKataId = currentKataId;
     this.slots.forEach(slot => {
-      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.playVideo === 'function') {
-        slot.ytPlayer.playVideo();
+      if (!slot.ytPlayer || !slot.isReady) return;
+
+      const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
+
+      if (!isPlayingMaster) {
+        if (typeof slot.ytPlayer.pauseVideo === 'function') {
+          slot.ytPlayer.pauseVideo();
+        }
+        if (typeof slot.ytPlayer.seekTo === 'function') {
+          slot.ytPlayer.seekTo(state.targetTime, true);
+        }
+        return;
+      }
+
+      // Master está reproduzindo (PLAY)
+      if (!state.shouldPlay) {
+        // Pausa no início (aguardando defasagem) ou no fim (kata concluído)
+        if (typeof slot.ytPlayer.pauseVideo === 'function') {
+          slot.ytPlayer.pauseVideo();
+        }
+        if (typeof slot.ytPlayer.seekTo === 'function') {
+          const curTime = typeof slot.ytPlayer.getCurrentTime === 'function' ? slot.ytPlayer.getCurrentTime() : state.targetTime;
+          if (Math.abs(curTime - state.targetTime) > 0.15) {
+            slot.ytPlayer.seekTo(state.targetTime, true);
+          }
+        }
+      } else {
+        // Deve estar reproduzindo normalmente
+        if (typeof slot.ytPlayer.getPlayerState === 'function') {
+          const playerState = slot.ytPlayer.getPlayerState();
+          // Se não estiver tocando (1 = PLAYING, 3 = BUFFERING)
+          if (playerState !== 1 && playerState !== 3) {
+            slot.ytPlayer.playVideo();
+          }
+        } else if (typeof slot.ytPlayer.playVideo === 'function') {
+          slot.ytPlayer.playVideo();
+        }
+
+        // Verificação periódica de drift / atraso por buffering
+        if (typeof slot.ytPlayer.getCurrentTime === 'function' && typeof slot.ytPlayer.seekTo === 'function') {
+          const curTime = slot.ytPlayer.getCurrentTime();
+          if (Math.abs(curTime - state.targetTime) > 0.4) {
+            slot.ytPlayer.seekTo(state.targetTime, true);
+          }
+        }
       }
     });
+  }
+
+  playAll(currentRelativeTime, currentKataId, syncMode = 'climax') {
+    if (currentRelativeTime !== undefined && currentKataId !== undefined) {
+      this.updatePlaybackState(currentRelativeTime, currentKataId, true, syncMode);
+    } else {
+      this.slots.forEach(slot => {
+        if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.playVideo === 'function') {
+          slot.ytPlayer.playVideo();
+        }
+      });
+    }
   }
 
   pauseAll() {

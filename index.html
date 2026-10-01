@@ -54,6 +54,9 @@
           <button id="btn-toggle-pedagogy" class="btn-pill active" title="Alternar painel didático de Fundamentos">
             <span class="btn-icon">📜</span> Fundamentos
           </button>
+          <button id="btn-open-guide" class="btn-pill" title="Guia visual de utilização e metodologia de estudo">
+            <span class="btn-icon">📘</span> Guia de Uso
+          </button>
         </div>
       </div>
     </header>
@@ -136,6 +139,41 @@
         </button>
       </div>
     </footer>
+
+    <!-- Modal do Guia Visual de Utilização -->
+    <div id="modal-guide" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-guide-title">
+      <div class="modal-card modal-card-wide">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-icon">📘</span>
+            <div>
+              <h2 id="modal-guide-title" class="modal-title">Guia de Utilização & Estudo do Nihon Kendo Kata</h2>
+              <span class="modal-subtitle">Passo a passo visual e metodológico para extrair o máximo proveito da ferramenta</span>
+            </div>
+          </div>
+          <button id="btn-close-guide" class="btn-modal-close" title="Fechar">&times;</button>
+        </div>
+
+        <!-- Stepper Navigation -->
+        <div class="guide-stepper-container">
+          <nav id="guide-stepper-nav" class="guide-stepper-nav" aria-label="Passos do Guia"></nav>
+        </div>
+
+        <div class="modal-body guide-modal-body">
+          <div id="guide-step-container">
+            <!-- Injetado dinamicamente via userGuide.js -->
+          </div>
+        </div>
+
+        <div class="modal-footer guide-modal-footer">
+          <button id="btn-guide-prev" class="btn-guide-nav prev">◀ Anterior</button>
+          <div class="guide-footer-actions">
+            <button id="btn-finish-guide" class="btn-modal-cancel">Pular Guia</button>
+            <button id="btn-guide-next" class="btn-guide-nav next">Próximo Passo ▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal de Direitos Autorais & Créditos Oficiais -->
     <div id="modal-copyright" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-copyright-title">

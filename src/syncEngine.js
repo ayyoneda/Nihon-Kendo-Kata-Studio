@@ -29,16 +29,18 @@ function findDemonstration(demoId, db) {
 
 /**
  * Calcula os limites da janela de reprodução relativa considerando
- * todas as duplas selecionadas para o kata atual.
+ * todas as duplas selecionadas para o kata atual e o modo de sincronia.
  *
  * @param {string} kataId - Ex: "kata_01"
  * @param {string[]} activeDemoIds - Lista de IDs das demonstrações ativas na tela
  * @param {object} db - Banco de dados kata_database.json
+ * @param {'climax' | 'start'} syncMode - Modo de sincronia
  * @returns {object} { preDuration, postDuration, minRelative, maxRelative, totalDuration }
  */
-export function calculateTimeWindow(kataId, activeDemoIds, db) {
+export function calculateTimeWindow(kataId, activeDemoIds, db, syncMode = 'climax') {
   let maxPre = 0.0;
   let maxPost = 0.0;
+  let maxDuration = 0.0;
 
   for (const demoId of activeDemoIds) {
     const demo = findDemonstration(demoId, db);
@@ -47,15 +49,28 @@ export function calculateTimeWindow(kataId, activeDemoIds, db) {
     const { start, climax, end } = demo.katas[kataId];
     const pre = Math.max(0, climax - start);
     const post = Math.max(0, end - climax);
+    const dur = Math.max(0, end - start);
 
     if (pre > maxPre) maxPre = pre;
     if (post > maxPost) maxPost = post;
+    if (dur > maxDuration) maxDuration = dur;
   }
 
   // Fallback seguro se não houver dados
   if (maxPre === 0 && maxPost === 0) {
     maxPre = 15.0;
     maxPost = 15.0;
+    maxDuration = 30.0;
+  }
+
+  if (syncMode === 'start') {
+    return {
+      preDuration: 0.0,
+      postDuration: Number(maxDuration.toFixed(3)),
+      minRelative: 0.0,
+      maxRelative: Number(maxDuration.toFixed(3)),
+      totalDuration: Number(maxDuration.toFixed(3))
+    };
   }
 
   return {
@@ -68,27 +83,76 @@ export function calculateTimeWindow(kataId, activeDemoIds, db) {
 }
 
 /**
- * Converte um tempo relativo (-t ... 0 ... +t) para o timestamp absoluto
- * do player do YouTube, com clamping nos limites de start e end do vídeo.
+ * Converte um tempo relativo para o timestamp absoluto do player do YouTube,
+ * com clamping nos limites estritos de start e end do vídeo.
  *
- * @param {number} relativeTime - Segundos relativos ao clímax (ex: -5.0, 0.0, 10.0)
+ * @param {number} relativeTime - Segundos relativos ao clímax (ex: -5.0, 0.0) ou início (0.0, 10.0)
  * @param {string} demoId - ID da demonstração
  * @param {string} kataId - ID do kata
  * @param {object} db - Banco de dados kata_database.json
+ * @param {'climax' | 'start'} syncMode - Modo de sincronia
  * @returns {number} Segundo absoluto no YouTube
  */
-export function getAbsoluteVideoTime(relativeTime, demoId, kataId, db) {
+export function getAbsoluteVideoTime(relativeTime, demoId, kataId, db, syncMode = 'climax') {
   const demo = findDemonstration(demoId, db);
   if (!demo || !demo.katas || !demo.katas[kataId]) {
     return 0.0;
   }
 
   const { start, climax, end } = demo.katas[kataId];
-  const target = climax + relativeTime;
+  const target = syncMode === 'start' ? start + relativeTime : climax + relativeTime;
 
   // Clamping nos limites do kata específico
   const clamped = Math.max(start, Math.min(end, target));
   return Number(clamped.toFixed(3));
+}
+
+/**
+ * Determina o estado estrito de reprodução de uma demonstração em um instante da timeline:
+ * se deve tocar, se deve pausar no início aguardando defasagem, ou se já finalizou e deve pausar no fim.
+ *
+ * @param {number} relativeTime
+ * @param {string} demoId
+ * @param {string} kataId
+ * @param {object} db
+ * @param {'climax' | 'start'} syncMode
+ * @returns {{ shouldPlay: boolean, targetTime: number, isWaitingStart: boolean, isFinishedEnd: boolean }}
+ */
+export function getSlotPlaybackState(relativeTime, demoId, kataId, db, syncMode = 'climax') {
+  const demo = findDemonstration(demoId, db);
+  if (!demo || !demo.katas || !demo.katas[kataId]) {
+    return { shouldPlay: false, targetTime: 0.0, isWaitingStart: false, isFinishedEnd: true };
+  }
+
+  const { start, climax, end } = demo.katas[kataId];
+  const idealAbsTime = syncMode === 'start' ? start + relativeTime : climax + relativeTime;
+
+  if (idealAbsTime < start - 0.05) {
+    // Ainda não atingiu o instante de início desta dupla (aguardando defasagem no clímax)
+    return {
+      shouldPlay: false,
+      targetTime: start,
+      isWaitingStart: true,
+      isFinishedEnd: false
+    };
+  }
+
+  if (idealAbsTime >= end) {
+    // Já concluiu o kata desta dupla (aguardando duplas mais longas concluírem)
+    return {
+      shouldPlay: false,
+      targetTime: end,
+      isWaitingStart: false,
+      isFinishedEnd: true
+    };
+  }
+
+  return {
+    shouldPlay: true,
+    targetTime: Number(idealAbsTime.toFixed(3)),
+    isWaitingStart: false,
+    isFinishedEnd: false
+  };
 }
 
 /**

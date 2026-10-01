@@ -1368,4 +1368,626 @@ body.calibrator-mode .video-section {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* ==========================================================================
+   ESTILOS DO GUIA VISUAL DE UTILIZAÇÃO (MODAL WIDE)
+   ========================================================================== */
+
+.modal-card-wide {
+  max-width: 960px;
+  width: 95vw;
+  max-height: 92vh;
+}
+
+.modal-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* Stepper horizontal */
+.guide-stepper-container {
+  padding: 0.8rem 1.5rem;
+  background: rgba(14, 20, 34, 0.8);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.guide-stepper-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: max-content;
+}
+
+.guide-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.guide-step-pill:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
+
+.guide-step-pill.active {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(18, 26, 42, 0.9) 100%);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  font-weight: 600;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.guide-step-pill.completed {
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #93C5FD;
+}
+
+.pill-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.guide-step-pill.active .pill-number {
+  background: var(--gold-primary);
+  color: #070A11;
+}
+
+.guide-step-pill.completed .pill-number {
+  background: #2563EB;
+  color: #FFF;
+}
+
+/* Corpo do Passo */
+.guide-modal-body {
+  padding: 1.5rem;
+  max-height: calc(92vh - 220px);
+  overflow-y: auto;
+}
+
+.guide-step-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.guide-step-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-primary);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.guide-step-icon {
+  font-size: 1.5rem;
+}
+
+.guide-step-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.25rem;
+  color: #FFF;
+  margin-bottom: 0.3rem;
+}
+
+.guide-step-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-gold);
+  margin-bottom: 1.2rem;
+}
+
+.guide-step-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .guide-step-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-step-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.guide-step-desc strong {
+  color: #FFF;
+}
+
+.guide-step-desc em {
+  color: var(--gold-light);
+  font-style: normal;
+}
+
+.guide-step-tip {
+  margin-top: 1.2rem;
+  padding: 0.85rem 1rem;
+  background: rgba(212, 175, 55, 0.08);
+  border-left: 3px solid var(--gold-primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.85rem;
+  color: #F8FAFC;
+  line-height: 1.5;
+}
+
+.guide-step-tip code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  color: var(--gold-light);
+  font-family: monospace;
+}
+
+/* Mockups Esquemáticos Interativos do Guia */
+.guide-step-mockup {
+  background: var(--bg-card);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mockup-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mockup-header-sample {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mockup-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mockup-btn-group {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.mockup-btn {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.mockup-btn.active-glow {
+  background: var(--gold-primary);
+  color: #070A11;
+  font-weight: 700;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.mockup-grid-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 60px 60px;
+  gap: 0.5rem;
+}
+
+.mockup-quad {
+  background: #0D1424;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mockup-quad.active-border {
+  border: 1.5px solid var(--gold-primary);
+  background: rgba(212, 175, 55, 0.05);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.mockup-card-sample {
+  background: #0E1626;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.mockup-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: #152034;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 0.5rem;
+}
+
+.mockup-badge {
+  font-size: 0.68rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.mockup-select-fake {
+  font-size: 0.72rem;
+  color: #FFF;
+  background: #090E18;
+  border: 1px solid var(--border-accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+}
+
+.mockup-select-fake-large {
+  font-size: 0.8rem;
+  color: #FFF;
+  background: #090E18;
+  border: 1px solid var(--gold-primary);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+.mockup-audio-btn {
+  font-size: 0.7rem;
+  background: #2563EB;
+  color: #FFF;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.mockup-video-canvas {
+  height: 120px;
+  background: #060911;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.mockup-play-icon {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.mockup-footer-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.3rem 0.6rem;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.mockup-category-list {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.mockup-tag {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  background: #131D30;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.mockup-tag.active {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.mockup-sync-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.mockup-btn-sync {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: default;
+}
+
+.mockup-btn-sync.start {
+  background: #1E293B;
+  color: #94A3B8;
+  border: 1px solid #334155;
+}
+
+.mockup-btn-sync.active-climax {
+  background: linear-gradient(135deg, #E03131, #C92A2A);
+  color: #FFF;
+  border: 1px solid #FF8787;
+  box-shadow: 0 0 15px var(--crimson-glow);
+}
+
+.mockup-timeline-explain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: #090E18;
+  border-radius: 6px;
+  font-size: 0.72rem;
+}
+
+.mockup-bar-segment {
+  color: var(--text-muted);
+}
+
+.mockup-bar-bolt {
+  color: #FFD43B;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 212, 59, 0.15);
+  border-radius: 4px;
+}
+
+.mockup-master-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  background: #0B111E;
+  border-radius: 6px;
+}
+
+.mockup-mini-btn {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: #182236;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+}
+
+.mockup-play-master {
+  background: var(--gold-primary);
+  color: #070A11;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 14px var(--gold-glow);
+}
+
+.mockup-status-alert {
+  font-size: 0.75rem;
+  color: #4ADE80;
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+.mockup-scrubber-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  background: #0B111E;
+  border-radius: 6px;
+}
+
+.mockup-slider-track {
+  height: 8px;
+  background: #1E293B;
+  border-radius: 4px;
+  position: relative;
+}
+
+.mockup-slider-fill {
+  height: 100%;
+  background: var(--gold-primary);
+  border-radius: 4px 0 0 4px;
+}
+
+.mockup-slider-thumb {
+  position: absolute;
+  top: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFF;
+  border: 2px solid var(--gold-primary);
+  transform: translateX(-50%);
+}
+
+.mockup-slider-climax-pin {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 3px;
+  height: 12px;
+  background: #E03131;
+  transform: translateX(-50%);
+}
+
+.mockup-slider-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.mockup-highlight-time {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.mockup-tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.mockup-pill-tool {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  background: #141C2E;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.mockup-pill-tool.active-tool {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: #3B82F6;
+  color: #93C5FD;
+}
+
+.mockup-doctrine-sample {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.mockup-doctrine-title {
+  color: var(--gold-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: 0.3rem;
+}
+
+.mockup-doctrine-item strong {
+  color: #FFF;
+}
+
+/* Rodapé do Guia */
+.guide-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(10, 15, 26, 0.8);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.guide-footer-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-guide-nav {
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-guide-nav.prev {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-guide-nav.prev:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+  color: #FFF;
+  border-color: var(--border-accent);
+}
+
+.btn-guide-nav.next {
+  background: linear-gradient(135deg, var(--gold-primary) 0%, #B89628 100%);
+  color: #070A11;
+  border: none;
+  font-weight: 700;
+}
+
+.btn-guide-nav.next:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.btn-modal-cancel {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+}
+
+.btn-modal-cancel:hover {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   ESTILOS DINÂMICOS DOS BOTÕES DE MODO DE SINCRONIA (CLÍMAX vs. INÍCIO)
+   ========================================================================== */
+
+#btn-jump-climax.active {
+  background: linear-gradient(135deg, #E03131, #C92A2A);
+  color: #FFF;
+  border: 1px solid #FF8787;
+  box-shadow: 0 0 16px var(--crimson-glow), 0 0 6px rgba(212, 175, 55, 0.4);
+}
+
+#btn-jump-start.active {
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  color: #FFF !important;
+  border: 1px solid #60A5FA !important;
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.45);
+}
+
+
 
