@@ -149,15 +149,14 @@ function recalculateTimeline(keepPosition = false) {
     masterScrubber.value = currentRelativeTime;
     updateTimeDisplay();
     if (gridManager) {
-      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode);
-      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
     }
   } else {
     currentRelativeTime = Math.max(timeWindow.minRelative, Math.min(timeWindow.maxRelative, currentRelativeTime));
     masterScrubber.value = currentRelativeTime;
     updateTimeDisplay();
     if (gridManager) {
-      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
     }
   }
 }
@@ -236,9 +235,9 @@ function handleSyncLoop(now) {
 
   currentRelativeTime += delta * playbackRate;
 
-  // Atualiza estado individual de cada player (defasagem no início e pausa estrita no fim do kata)
+  // Atualiza transições de estado dos players (início de defasagem e fim de kata)
   if (gridManager) {
-    gridManager.updatePlaybackState(currentRelativeTime, currentKataId, true, syncMode);
+    gridManager.onPlaybackTick(currentRelativeTime, currentKataId, syncMode);
   }
 
   // Checa se atingiu o fim da janela do kata
@@ -246,14 +245,13 @@ function handleSyncLoop(now) {
     if (isLooping) {
       currentRelativeTime = syncMode === 'start' ? 0.0 : timeWindow.minRelative;
       if (gridManager) {
-        gridManager.seekAll(currentRelativeTime, currentKataId, syncMode);
-        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, true, syncMode);
+        gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, true);
       }
     } else {
       pausePlayback();
       currentRelativeTime = timeWindow.maxRelative;
       if (gridManager) {
-        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, false, syncMode);
+        gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, false);
       }
     }
   }
@@ -310,7 +308,7 @@ async function initApp() {
       activeAudioNameEl.textContent = demoTitle;
     },
     onReadyStateChange: () => {
-      recalculateTimeline(true);
+      // Jogadores prontos sem recalcular ou disparar seeks adicionais
     },
     onDemoChange: () => {
       recalculateTimeline(true);
@@ -331,7 +329,7 @@ async function initApp() {
     masterScrubber.value = currentRelativeTime;
     updateTimeDisplay();
     if (gridManager) {
-      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
     }
   });
 
@@ -340,7 +338,7 @@ async function initApp() {
     masterScrubber.value = currentRelativeTime;
     updateTimeDisplay();
     if (gridManager) {
-      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
     }
   });
 
@@ -358,7 +356,7 @@ async function initApp() {
     currentRelativeTime = parseFloat(e.target.value);
     updateTimeDisplay();
     if (gridManager) {
-      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
     }
   });
 
@@ -446,7 +444,7 @@ async function initApp() {
       masterScrubber.value = currentRelativeTime;
       updateTimeDisplay();
       if (gridManager) {
-        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+        gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
       }
     } else if (e.code === 'ArrowRight') {
       e.preventDefault();
@@ -454,7 +452,7 @@ async function initApp() {
       masterScrubber.value = currentRelativeTime;
       updateTimeDisplay();
       if (gridManager) {
-        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+        gridManager.seekAll(currentRelativeTime, currentKataId, syncMode, isPlaying);
       }
     }
   });

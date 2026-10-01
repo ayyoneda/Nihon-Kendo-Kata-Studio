@@ -158,7 +158,8 @@ export class VideoGridManager {
       cardEl,
       ytPlayer: null,
       isReady: false,
-      isMuted: index !== this.activeAudioIndex
+      isMuted: index !== this.activeAudioIndex,
+      playbackState: 'paused'
     };
   }
 
@@ -282,84 +283,97 @@ export class VideoGridManager {
     this.notifyAudioChange();
   }
 
-  seekAll(relativeTime, kataId, syncMode = 'climax') {
+  seekAll(relativeTime, kataId, syncMode = 'climax', isPlayingMaster = false) {
     this.currentKataId = kataId;
     this.slots.forEach(slot => {
-      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.seekTo === 'function') {
-        const absTime = getAbsoluteVideoTime(relativeTime, slot.demoId, kataId, this.db, syncMode);
-        slot.ytPlayer.seekTo(absTime, true);
+      if (!slot.ytPlayer || !slot.isReady) return;
+
+      const state = getSlotPlaybackState(relativeTime, slot.demoId, kataId, this.db, syncMode);
+      if (typeof slot.ytPlayer.seekTo === 'function') {
+        slot.ytPlayer.seekTo(state.targetTime, true);
+      }
+
+      if (isPlayingMaster && state.shouldPlay) {
+        slot.playbackState = 'playing';
+        if (typeof slot.ytPlayer.playVideo === 'function') {
+          slot.ytPlayer.playVideo();
+        }
+      } else {
+        slot.playbackState = state.isWaitingStart ? 'waiting' : (state.isFinishedEnd ? 'ended' : 'paused');
+        if (typeof slot.ytPlayer.pauseVideo === 'function') {
+          slot.ytPlayer.pauseVideo();
+        }
       }
     });
   }
 
-  updatePlaybackState(currentRelativeTime, currentKataId, isPlayingMaster, syncMode = 'climax') {
+  onPlaybackTick(currentRelativeTime, currentKataId, syncMode = 'climax') {
+    this.currentKataId = currentKataId;
+
+    this.slots.forEach(slot => {
+      if (!slot.ytPlayer || !slot.isReady) return;
+
+      const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
+
+      if (slot.playbackState === 'waiting') {
+        // Estava aguardando defasagem no início do clímax. Atingiu o instante exato de iniciar?
+        if (state.shouldPlay) {
+          slot.playbackState = 'playing';
+          if (typeof slot.ytPlayer.seekTo === 'function') {
+            slot.ytPlayer.seekTo(state.targetTime, true);
+          }
+          if (typeof slot.ytPlayer.playVideo === 'function') {
+            slot.ytPlayer.playVideo();
+          }
+        }
+      } else if (slot.playbackState === 'playing') {
+        // Está em reprodução. Atingiu o fim do trecho calibrado deste kata?
+        if (state.isFinishedEnd) {
+          slot.playbackState = 'ended';
+          if (typeof slot.ytPlayer.pauseVideo === 'function') {
+            slot.ytPlayer.pauseVideo();
+          }
+          if (typeof slot.ytPlayer.seekTo === 'function') {
+            slot.ytPlayer.seekTo(state.targetTime, true);
+          }
+        }
+      }
+      // Se já está 'ended' ou 'playing' normal, NÃO faz nenhuma chamada ao player!
+      // Isso garante reprodução fluida a 60 FPS sem engasgos de rede ou reloads do YouTube!
+    });
+  }
+
+  playAll(currentRelativeTime, currentKataId, syncMode = 'climax') {
     this.currentKataId = currentKataId;
     this.slots.forEach(slot => {
       if (!slot.ytPlayer || !slot.isReady) return;
 
       const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
 
-      if (!isPlayingMaster) {
+      if (state.shouldPlay) {
+        slot.playbackState = 'playing';
+        if (typeof slot.ytPlayer.playVideo === 'function') {
+          slot.ytPlayer.playVideo();
+        }
+      } else {
+        slot.playbackState = state.isWaitingStart ? 'waiting' : 'ended';
         if (typeof slot.ytPlayer.pauseVideo === 'function') {
           slot.ytPlayer.pauseVideo();
         }
         if (typeof slot.ytPlayer.seekTo === 'function') {
           slot.ytPlayer.seekTo(state.targetTime, true);
         }
-        return;
-      }
-
-      // Master está reproduzindo (PLAY)
-      if (!state.shouldPlay) {
-        // Pausa no início (aguardando defasagem) ou no fim (kata concluído)
-        if (typeof slot.ytPlayer.pauseVideo === 'function') {
-          slot.ytPlayer.pauseVideo();
-        }
-        if (typeof slot.ytPlayer.seekTo === 'function') {
-          const curTime = typeof slot.ytPlayer.getCurrentTime === 'function' ? slot.ytPlayer.getCurrentTime() : state.targetTime;
-          if (Math.abs(curTime - state.targetTime) > 0.15) {
-            slot.ytPlayer.seekTo(state.targetTime, true);
-          }
-        }
-      } else {
-        // Deve estar reproduzindo normalmente
-        if (typeof slot.ytPlayer.getPlayerState === 'function') {
-          const playerState = slot.ytPlayer.getPlayerState();
-          // Se não estiver tocando (1 = PLAYING, 3 = BUFFERING)
-          if (playerState !== 1 && playerState !== 3) {
-            slot.ytPlayer.playVideo();
-          }
-        } else if (typeof slot.ytPlayer.playVideo === 'function') {
-          slot.ytPlayer.playVideo();
-        }
-
-        // Verificação periódica de drift / atraso por buffering
-        if (typeof slot.ytPlayer.getCurrentTime === 'function' && typeof slot.ytPlayer.seekTo === 'function') {
-          const curTime = slot.ytPlayer.getCurrentTime();
-          if (Math.abs(curTime - state.targetTime) > 0.4) {
-            slot.ytPlayer.seekTo(state.targetTime, true);
-          }
-        }
       }
     });
   }
 
-  playAll(currentRelativeTime, currentKataId, syncMode = 'climax') {
-    if (currentRelativeTime !== undefined && currentKataId !== undefined) {
-      this.updatePlaybackState(currentRelativeTime, currentKataId, true, syncMode);
-    } else {
-      this.slots.forEach(slot => {
-        if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.playVideo === 'function') {
-          slot.ytPlayer.playVideo();
-        }
-      });
-    }
-  }
-
   pauseAll() {
     this.slots.forEach(slot => {
-      if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.pauseVideo === 'function') {
-        slot.ytPlayer.pauseVideo();
+      if (slot.ytPlayer && slot.isReady) {
+        slot.playbackState = 'paused';
+        if (typeof slot.ytPlayer.pauseVideo === 'function') {
+          slot.ytPlayer.pauseVideo();
+        }
       }
     });
   }
