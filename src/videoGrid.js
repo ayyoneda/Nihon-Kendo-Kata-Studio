@@ -224,9 +224,10 @@ export class VideoGridManager {
           if (this.onReadyStateChange) {
             this.onReadyStateChange();
           }
+          this.checkAdStatus(slot);
         },
         onStateChange: (event) => {
-          // Monitoramento de buffering / loop
+          this.checkAdStatus(slot);
         }
       }
     });
@@ -355,29 +356,9 @@ export class VideoGridManager {
       const kata = demo && demo.katas ? demo.katas[currentKataId] : null;
       if (!kata) return;
 
-      // Checagem e detecção heurística de anúncio do YouTube
-      let actualTime = -1;
-      let duration = 0;
-      let playerState = -1;
-      try {
-        if (typeof slot.ytPlayer.getCurrentTime === 'function') actualTime = slot.ytPlayer.getCurrentTime();
-        if (typeof slot.ytPlayer.getDuration === 'function') duration = slot.ytPlayer.getDuration();
-        if (typeof slot.ytPlayer.getPlayerState === 'function') playerState = slot.ytPlayer.getPlayerState();
-      } catch (e) {}
-
-      const isAd = (duration > 0 && duration <= 60 && kata.end > 70) ||
-                   (actualTime >= 0 && actualTime < 60 && kata.start > 70 && (playerState === 1 || playerState === 3));
-
-      if (isAd) {
-        if (!slot.isAdPlaying) {
-          slot.isAdPlaying = true;
-          if (slot.adNoticeEl) slot.adNoticeEl.classList.remove('hidden');
-        }
-        return; // Aguarda o término do anúncio antes de aplicar confinamento de kata
-      } else if (slot.isAdPlaying) {
-        slot.isAdPlaying = false;
-        if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
-      }
+      // Checagem robusta e contínua de status de anúncio
+      const isAd = this.checkAdStatus(slot);
+      if (isAd) return; // Aguarda o término do anúncio antes de aplicar confinamento de kata
 
       const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
 
@@ -410,6 +391,57 @@ export class VideoGridManager {
         }
       }
     });
+  }
+
+  /**
+   * Avalia com precisão se o slot está em reprodução de anúncio comercial do YouTube.
+   * Utiliza verificação tripla: ID do vídeo, duração de anúncio e tempo anômalo.
+   */
+  checkAdStatus(slot) {
+    if (!slot || !slot.ytPlayer || !slot.isReady) return false;
+
+    const demo = this.db.demonstrations.find(d => d.id === slot.demoId);
+    if (!demo) return false;
+    const kata = demo.katas ? demo.katas[this.currentKataId] : null;
+
+    let isAd = false;
+    try {
+      const duration = typeof slot.ytPlayer.getDuration === 'function' ? slot.ytPlayer.getDuration() : 0;
+      const actualTime = typeof slot.ytPlayer.getCurrentTime === 'function' ? slot.ytPlayer.getCurrentTime() : -1;
+      const playerState = typeof slot.ytPlayer.getPlayerState === 'function' ? slot.ytPlayer.getPlayerState() : -1;
+      const videoData = typeof slot.ytPlayer.getVideoData === 'function' ? slot.ytPlayer.getVideoData() : null;
+
+      // 1. Verificação por ID de vídeo: se o YouTube está tocando algo cujo video_id não bate com a demonstração oficial
+      if (videoData && videoData.video_id && videoData.video_id !== demo.youtube_id) {
+        isAd = true;
+      }
+
+      // 2. Verificação por duração de comercial: anúncios do YouTube têm duração de 5s a 75s, enquanto demonstrações de kata duram centenas de segundos
+      if (!isAd && duration > 0 && duration <= 75) {
+        isAd = true;
+      }
+
+      // 3. Verificação por tempo corrente anômalo em relação ao kata selecionado
+      if (!isAd && kata && kata.start > 15 && actualTime >= 0 && actualTime < (kata.start - 6) && (playerState === 1 || playerState === 3)) {
+        isAd = true;
+      }
+    } catch (e) {
+      // Ignora erro de acesso sandbox da IFrame API
+    }
+
+    if (isAd) {
+      if (!slot.isAdPlaying) {
+        slot.isAdPlaying = true;
+        if (slot.adNoticeEl) slot.adNoticeEl.classList.remove('hidden');
+      }
+    } else {
+      if (slot.isAdPlaying) {
+        slot.isAdPlaying = false;
+        if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
+      }
+    }
+
+    return isAd;
   }
 
   /**
