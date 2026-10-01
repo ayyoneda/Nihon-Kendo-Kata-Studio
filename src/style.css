@@ -706,13 +706,14 @@ body {
 
 .climax-tick {
   position: absolute;
-  left: 50%;
   top: -4px;
   bottom: -4px;
   width: 2px;
   background-color: var(--crimson-primary);
   box-shadow: 0 0 8px var(--crimson-glow);
   pointer-events: none;
+  z-index: 5;
+  transition: left 0.2s ease;
 }
 
 .climax-tick::before {

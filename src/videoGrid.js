@@ -48,6 +48,7 @@ export class VideoGridManager {
     this.activeAudioIndex = 0; // Por padrão, slot 0 tem áudio
     this.currentKataId = "kata_01";
     this.currentLayout = "grid-2x2";
+    this.playbackRate = 0.50;
   }
 
   /**
@@ -189,6 +190,9 @@ export class VideoGridManager {
             event.target.unMute();
             event.target.setVolume(100);
           }
+          if (typeof event.target.setPlaybackRate === 'function') {
+            event.target.setPlaybackRate(this.playbackRate);
+          }
           // Pausa no início exato para sincronia
           event.target.seekTo(initialTime, true);
           event.target.pauseVideo();
@@ -313,33 +317,47 @@ export class VideoGridManager {
     this.slots.forEach(slot => {
       if (!slot.ytPlayer || !slot.isReady) return;
 
+      const demo = this.db.demonstrations.find(d => d.id === slot.demoId);
+      const kata = demo && demo.katas ? demo.katas[currentKataId] : null;
+      if (!kata) return;
+
       const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
 
       if (slot.playbackState === 'waiting') {
         // Estava aguardando defasagem no início do clímax. Atingiu o instante exato de iniciar?
         if (state.shouldPlay) {
           slot.playbackState = 'playing';
+          if (typeof slot.ytPlayer.setPlaybackRate === 'function') {
+            slot.ytPlayer.setPlaybackRate(this.playbackRate);
+          }
           if (typeof slot.ytPlayer.seekTo === 'function') {
-            slot.ytPlayer.seekTo(state.targetTime, true);
+            slot.ytPlayer.seekTo(kata.start, true);
           }
           if (typeof slot.ytPlayer.playVideo === 'function') {
             slot.ytPlayer.playVideo();
           }
         }
       } else if (slot.playbackState === 'playing') {
-        // Está em reprodução. Atingiu o fim do trecho calibrado deste kata?
-        if (state.isFinishedEnd) {
+        // Checa se atingiu o fim do kata: verifica tanto a timeline quanto o tempo real do player do YouTube
+        let actualTime = -1;
+        try {
+          if (typeof slot.ytPlayer.getCurrentTime === 'function') {
+            actualTime = slot.ytPlayer.getCurrentTime();
+          }
+        } catch (e) {}
+
+        const isPastEnd = state.isFinishedEnd || (actualTime > 0 && actualTime >= kata.end - 0.15);
+
+        if (isPastEnd) {
           slot.playbackState = 'ended';
           if (typeof slot.ytPlayer.pauseVideo === 'function') {
             slot.ytPlayer.pauseVideo();
           }
           if (typeof slot.ytPlayer.seekTo === 'function') {
-            slot.ytPlayer.seekTo(state.targetTime, true);
+            slot.ytPlayer.seekTo(kata.end, true);
           }
         }
       }
-      // Se já está 'ended' ou 'playing' normal, NÃO faz nenhuma chamada ao player!
-      // Isso garante reprodução fluida a 60 FPS sem engasgos de rede ou reloads do YouTube!
     });
   }
 
@@ -347,6 +365,10 @@ export class VideoGridManager {
     this.currentKataId = currentKataId;
     this.slots.forEach(slot => {
       if (!slot.ytPlayer || !slot.isReady) return;
+
+      if (typeof slot.ytPlayer.setPlaybackRate === 'function') {
+        slot.ytPlayer.setPlaybackRate(this.playbackRate);
+      }
 
       const state = getSlotPlaybackState(currentRelativeTime, slot.demoId, currentKataId, this.db, syncMode);
 
@@ -379,6 +401,7 @@ export class VideoGridManager {
   }
 
   setPlaybackRate(rate) {
+    this.playbackRate = rate;
     this.slots.forEach(slot => {
       if (slot.ytPlayer && slot.isReady && typeof slot.ytPlayer.setPlaybackRate === 'function') {
         slot.ytPlayer.setPlaybackRate(rate);
