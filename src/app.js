@@ -2,10 +2,11 @@
  * Nihon Kendo Kata Studio - Controlador Principal da Aplicação
  */
 
-import { calculateTimeWindow, formatRelativeTime, SECTION_KEYS } from './syncEngine.js';
+import { calculateTimeWindow, formatRelativeTime, formatClock, SECTION_KEYS } from './syncEngine.js';
 import { renderPedagogyPanel } from './pedagogyPanel.js';
 import { VideoGridManager } from './videoGrid.js';
 import { WebCalibrator } from './calibrator.js';
+import { UserGuideModal } from './userGuide.js';
 
 let db = null;
 let currentKataId = "reiho_inicial";
@@ -16,10 +17,12 @@ let isLooping = true;
 let isCalibratorOpen = false;
 let playbackRate = 0.50;
 let currentRelativeTime = 0.0;
+let syncMode = 'climax'; // 'climax' | 'start'
 let timeWindow = { preDuration: 15, postDuration: 15, minRelative: -15, maxRelative: 15, totalDuration: 30 };
 
 let gridManager = null;
 let calibrator = null;
+let userGuide = null;
 let syncTickerId = null;
 let lastTickTime = null;
 
@@ -114,47 +117,73 @@ function switchKata(newKataId) {
   // Atualiza painel didático
   renderPedagogyPanel(currentKataId, db, pedagogyPanelEl);
 
-  // Recalcula janela de tempo
-  const activeDemos = gridManager ? gridManager.getActiveDemoIds() : selectedDemoIds;
-  timeWindow = calculateTimeWindow(currentKataId, activeDemos, db);
+  // Recalcula linha do tempo conforme o modo ativo
+  recalculateTimeline(false);
+}
 
-  // Atualiza controles do Scrubber
+/**
+ * Recalcula a linha do tempo considerando as duplas ativas e o modo de sincronia (Clímax vs. Início).
+ */
+function recalculateTimeline(keepPosition = false) {
+  const activeDemos = gridManager ? gridManager.getActiveDemoIds() : selectedDemoIds;
+  timeWindow = calculateTimeWindow(currentKataId, activeDemos, db, syncMode);
+
   masterScrubber.min = timeWindow.minRelative;
   masterScrubber.max = timeWindow.maxRelative;
-  labelTimeStart.textContent = `${timeWindow.minRelative}s`;
-  labelTimeEnd.textContent = `+${timeWindow.maxRelative}s`;
+  masterScrubber.step = 0.05;
 
-  // Inicia no Começo do Kata (com pré-rolagem calibrada para atingir o clímax juntos)
-  jumpToStart();
+  if (syncMode === 'start') {
+    labelTimeStart.textContent = "0.0s";
+    labelTimeEnd.textContent = `+${timeWindow.maxRelative}s`;
+    btnJumpStart.classList.add('active');
+    btnJumpClimax.classList.remove('active');
+  } else {
+    labelTimeStart.textContent = `${timeWindow.minRelative}s`;
+    labelTimeEnd.textContent = `+${timeWindow.maxRelative}s`;
+    btnJumpClimax.classList.add('active');
+    btnJumpStart.classList.remove('active');
+  }
+
+  if (!keepPosition) {
+    currentRelativeTime = 0.0;
+    masterScrubber.value = currentRelativeTime;
+    updateTimeDisplay();
+    if (gridManager) {
+      gridManager.seekAll(currentRelativeTime, currentKataId, syncMode);
+      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+    }
+  } else {
+    currentRelativeTime = Math.max(timeWindow.minRelative, Math.min(timeWindow.maxRelative, currentRelativeTime));
+    masterScrubber.value = currentRelativeTime;
+    updateTimeDisplay();
+    if (gridManager) {
+      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+    }
+  }
 }
 
 /**
- * Salta para o início do kata (t = minRelative), permitindo reprodução
- * sincronizada desde a aproximação dos mestres até o clímax simultâneo (t = 0).
+ * Salta para o início do kata e ativa o Modo Sincronizado pelo Início.
  */
 function jumpToStart() {
-  currentRelativeTime = timeWindow.minRelative;
-  masterScrubber.value = timeWindow.minRelative;
-  updateTimeDisplay();
-  if (gridManager) {
-    gridManager.seekAll(timeWindow.minRelative, currentKataId);
-  }
+  syncMode = 'start';
+  recalculateTimeline(false);
 }
 
 /**
- * Salta para o instante do contragolpe / clímax (t = 0).
+ * Salta para o instante do contragolpe e ativa o Modo Sincronizado no Clímax (t = 0).
  */
 function jumpToClimax() {
-  currentRelativeTime = 0.0;
-  masterScrubber.value = 0.0;
-  updateTimeDisplay();
-  if (gridManager) {
-    gridManager.seekAll(0.0, currentKataId);
-  }
+  syncMode = 'climax';
+  recalculateTimeline(false);
 }
 
 function updateTimeDisplay() {
-  labelTimeCurrent.textContent = formatRelativeTime(currentRelativeTime) + (Math.abs(currentRelativeTime) < 0.1 ? " (Clímax)" : "");
+  if (syncMode === 'start') {
+    labelTimeCurrent.textContent = formatClock(currentRelativeTime) + (currentRelativeTime <= 0.05 ? " (Início)" : "");
+  } else {
+    labelTimeCurrent.textContent = formatRelativeTime(currentRelativeTime) + (Math.abs(currentRelativeTime) < 0.1 ? " (Clímax)" : "");
+  }
 }
 
 /**
@@ -174,7 +203,7 @@ function startPlayback() {
   playPauseIcon.textContent = "⏸";
   btnPlayPause.style.backgroundColor = "var(--crimson-primary)";
   btnPlayPause.style.color = "#FFF";
-  gridManager.playAll();
+  gridManager.playAll(currentRelativeTime, currentKataId, syncMode);
 
   lastTickTime = performance.now();
   if (!syncTickerId) {
@@ -197,7 +226,7 @@ function pausePlayback() {
 }
 
 /**
- * Loop de animação e controle de sincronismo contínuo.
+ * Loop de animação e controle de sincronismo contínuo com confinamento estrito ao kata.
  */
 function handleSyncLoop(now) {
   if (!isPlaying) return;
@@ -207,16 +236,25 @@ function handleSyncLoop(now) {
 
   currentRelativeTime += delta * playbackRate;
 
+  // Atualiza estado individual de cada player (defasagem no início e pausa estrita no fim do kata)
+  if (gridManager) {
+    gridManager.updatePlaybackState(currentRelativeTime, currentKataId, true, syncMode);
+  }
+
   // Checa se atingiu o fim da janela do kata
   if (currentRelativeTime >= timeWindow.maxRelative) {
     if (isLooping) {
-      currentRelativeTime = timeWindow.minRelative;
+      currentRelativeTime = syncMode === 'start' ? 0.0 : timeWindow.minRelative;
       if (gridManager) {
-        gridManager.seekAll(currentRelativeTime, currentKataId);
+        gridManager.seekAll(currentRelativeTime, currentKataId, syncMode);
+        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, true, syncMode);
       }
     } else {
       pausePlayback();
       currentRelativeTime = timeWindow.maxRelative;
+      if (gridManager) {
+        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, false, syncMode);
+      }
     }
   }
 
@@ -261,6 +299,9 @@ async function initApp() {
   initLayoutControls();
   renderPedagogyPanel(currentKataId, db, pedagogyPanelEl);
 
+  // Inicializa o Guia Visual de Utilização
+  userGuide = new UserGuideModal();
+
   // Inicializa o Gerenciador de Vídeos
   gridManager = new VideoGridManager({
     containerEl: videoGridEl,
@@ -269,13 +310,16 @@ async function initApp() {
       activeAudioNameEl.textContent = demoTitle;
     },
     onReadyStateChange: () => {
-      // Quando todos os players estiverem prontos
+      recalculateTimeline(true);
+    },
+    onDemoChange: () => {
+      recalculateTimeline(true);
     }
   });
 
   // Renderiza a grade padrão
   await gridManager.setupGrid(currentLayout, selectedDemoIds, currentKataId);
-  switchKata(currentKataId);
+  recalculateTimeline(false);
 
   // Eventos da Timeline Mestre
   btnPlayPause.addEventListener('click', togglePlayPause);
@@ -286,14 +330,18 @@ async function initApp() {
     currentRelativeTime = Math.max(timeWindow.minRelative, currentRelativeTime - 1.0);
     masterScrubber.value = currentRelativeTime;
     updateTimeDisplay();
-    gridManager.seekAll(currentRelativeTime, currentKataId);
+    if (gridManager) {
+      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+    }
   });
 
   btnStepFwd.addEventListener('click', () => {
     currentRelativeTime = Math.min(timeWindow.maxRelative, currentRelativeTime + 1.0);
     masterScrubber.value = currentRelativeTime;
     updateTimeDisplay();
-    gridManager.seekAll(currentRelativeTime, currentKataId);
+    if (gridManager) {
+      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+    }
   });
 
   speedSelectEl.addEventListener('change', (e) => {
@@ -309,7 +357,9 @@ async function initApp() {
   masterScrubber.addEventListener('input', (e) => {
     currentRelativeTime = parseFloat(e.target.value);
     updateTimeDisplay();
-    gridManager.seekAll(currentRelativeTime, currentKataId);
+    if (gridManager) {
+      gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+    }
   });
 
   // Alternador de Painel Didático
@@ -395,13 +445,17 @@ async function initApp() {
       currentRelativeTime = Math.max(timeWindow.minRelative, currentRelativeTime - 0.5);
       masterScrubber.value = currentRelativeTime;
       updateTimeDisplay();
-      gridManager.seekAll(currentRelativeTime, currentKataId);
+      if (gridManager) {
+        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      }
     } else if (e.code === 'ArrowRight') {
       e.preventDefault();
       currentRelativeTime = Math.min(timeWindow.maxRelative, currentRelativeTime + 0.5);
       masterScrubber.value = currentRelativeTime;
       updateTimeDisplay();
-      gridManager.seekAll(currentRelativeTime, currentKataId);
+      if (gridManager) {
+        gridManager.updatePlaybackState(currentRelativeTime, currentKataId, isPlaying, syncMode);
+      }
     }
   });
 
