@@ -11,3 +11,15 @@ scratch/
 *.wav
 .vscode/
 
+# Ambientes e credenciais
+.env
+.env.*
+*.key
+*.pem
+*cookie*
+*.log
+
+# Referencias locais e material didatico protegido
+references/*.pdf
+
+

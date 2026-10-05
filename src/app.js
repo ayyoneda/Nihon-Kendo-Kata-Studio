@@ -440,15 +440,17 @@ async function initApp() {
     btnTogglePedagogy.classList.toggle('active');
   });
 
-  // Controle de Acesso Administrativo (Opção A: Calibrador restrito a localhost / 127.0.0.1)
+  // Controle de Acesso Administrativo (Calibrador restrito a localhost / 127.0.0.1)
   const isLocalAdmin = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  if (!isLocalAdmin && btnToggleCalibrator) {
-    btnToggleCalibrator.style.display = 'none';
+  if (isLocalAdmin && btnToggleCalibrator) {
+    btnToggleCalibrator.style.display = '';
+    btnToggleCalibrator.classList.remove('hidden');
   }
 
   // Alternador de Modo Calibrador (Exclusivo para Administrador Local)
-  btnToggleCalibrator.addEventListener('click', () => {
-    if (!isLocalAdmin) return;
+  if (btnToggleCalibrator) {
+    btnToggleCalibrator.addEventListener('click', () => {
+      if (!isLocalAdmin) return;
 
     isCalibratorOpen = !isCalibratorOpen;
     btnToggleCalibrator.classList.toggle('active', isCalibratorOpen);
@@ -477,7 +479,8 @@ async function initApp() {
       videoGridEl.classList.remove('hidden');
       switchKata(currentKataId);
     }
-  });
+    });
+  }
 
   // Modal de Direitos Autorais e Créditos Oficiais
   const btnOpenCopyright = document.getElementById('btn-open-copyright');

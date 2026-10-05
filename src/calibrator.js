@@ -308,6 +308,7 @@ export class WebCalibrator {
         autoplay: 0,
         controls: 1, // controles visíveis no modo calibrador
         playsinline: 1,
+        origin: window.location.origin,
         start: Math.floor(timing.start)
       },
       events: {

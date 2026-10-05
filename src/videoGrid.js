@@ -203,6 +203,7 @@ export class VideoGridManager {
         rel: 0,
         modestbranding: 1,
         playsinline: 1,
+        origin: window.location.origin,
         start: Math.floor(initialTime)
       },
       events: {

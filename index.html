@@ -6,6 +6,9 @@
   <title>Nihon Kendo Kata Studio - Adrian Yoneda (Renshi 7º Dan - Brasil)</title>
   <meta name="description" content="Plataforma de alta precisão para estudo e comparação multivídeo sincronizado de Nihon Kendo Kata ancorado no clímax do golpe. Elaborada por Adrian Yoneda (Renshi 7º Dan - Brasil)." />
   
+  <!-- Content Security Policy (CSP) para protecao contra XSS, clickjacking e injecoes -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com https://*.ytimg.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' ws: wss: https://www.youtube.com https://*.youtube.com https://*.googlevideo.com;" />
+
   <!-- Google Fonts: Inter e Noto Serif JP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +51,7 @@
 
         <!-- View Mode Switcher -->
         <div class="control-group">
-          <button id="btn-toggle-calibrator" class="btn-pill" title="Alternar para mesa de calibração">
+          <button id="btn-toggle-calibrator" class="btn-pill hidden" style="display: none;" title="Alternar para mesa de calibração">
             <span class="btn-icon">⏱️</span> Calibrador
           </button>
           <button id="btn-toggle-pedagogy" class="btn-pill active" title="Alternar painel didático de Fundamentos">
