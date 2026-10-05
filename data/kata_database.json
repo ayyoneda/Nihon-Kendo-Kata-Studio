@@ -7,24 +7,24 @@
       "name_jp": "礼法（前）",
       "name_romaji": "Reiho Inicial (Zarei)",
       "type": "reiho",
-      "kamae_uchidachi": "Sage-to -> Tai-to -> Zarei -> Sonkyo -> Chudan",
-      "kamae_shidachi": "Sage-to -> Tai-to -> Zarei -> Sonkyo -> Chudan",
-      "target_uchidachi": "Shomen (Rei) e Shidachi (Zarei mútuo)",
-      "waza_shidachi": "Ritsurei ao Shomen, marcha solene, Zarei mútuo no tatame, desembainhar em Sonkyo",
-      "sen": "Rei (Conexão e respeito mútuo)",
-      "zanshin": "Assunção sincronizada de Chudan no kamae a 9 passos (Chika-ma)",
-      "climax_desc": "Rei mútuo entre Uchidachi e Shidachi em Zarei",
+      "kamae_uchidachi": "Sage-to (kensen a 45º) -> Parada a 3 passos no Shimoza -> Depósito da Tachi ao lado direito (fio para dentro, tsuba no joelho)",
+      "kamae_shidachi": "Sage-to com ambas as espadas em paralelo na mão direita -> Parada a 3 passos -> Depósito da Tachi (fio para dentro, tsuba no joelho) e da Kodachi (5 passos à direita no shimoza)",
+      "target_uchidachi": "Shomen / Kamiza (Ritsurei a 30º na borda do dojo) e Shidachi (Zarei mútuo a 30º no Shimoza)",
+      "waza_shidachi": "Rei mútuo solene no Shimoza, levantamento coordenado, avanço a 9 passos, saque sincronizado em Sonkyo cruzando no yokote e recuo de 5 passos",
+      "sen": "Reisetsu (礼節 - 'Rei ni hajimari, Rei ni owaru' — O Kendo começa e termina com o respeito)",
+      "zanshin": "Kigurai sereno e inabalável ao assumir Chudan no kamae a 9 passos (Chika-ma)",
+      "climax_desc": "Rei mútuo entre Uchidachi e Shidachi em Zarei no Shimoza",
       "chakuganten": [
-        "Marcha coordenada em ritmo cerimonial até a distância de 9 passos (kyu-ho)",
-        "Sincronismo no zarei (inclinação a aproximadamente 30 graus, mãos em triângulo sem levantar os quadris)",
-        "Transição solene de sonkyo ao desembainhar (nuki-tsuke) sincronizado até a fixação do kensen em Chudan"
+        "Porte cerimonial correto: Shidachi conduz a Kodachi e a Tachi paralelas na mão direita (polegar e indicador na Kodachi; face do indicador e demais dedos na Tachi).",
+        "Ao sentar no Shimoza, a Tachi deve ser pousada ao lado direito com o fio voltado para dentro e a tsuba na linha do joelho; a Kodachi é depositada 5 passos à direita/trás no shimoza.",
+        "Saque sincronizado em Sonkyo cruzando no yokote a partir do quadril esquerdo, subindo a Chudan e recuando 5 passos relaxando a ponta a 3~6 cm abaixo do joelho esquerdo."
       ],
       "common_mistakes": [
-        "Descompasso nos passos de aproximação até o centro da quadra",
-        "Elevar o quadril ou inclinar a cabeça de forma brusca no zarei",
-        "Desalinhamento da altura dos kensen no sonkyo ao desembainhar"
+        "Pousar a espada com o fio voltado para fora ou com a tsuba desalinhada do joelho.",
+        "Abrir excessivamente os joelhos no Sonkyo ou não posicionar o pé direito ligeiramente à frente.",
+        "Descompasso nos passos de aproximação até a distância de 9 passos (kyu-ho)."
       ],
-      "riai_summary": "O início cerimonial do Kendo Kata: respeito mútuo, solenidade e purificação do espaço sagrado antes do primeiro confronto de intenções (Ippon-me)."
+      "riai_summary": "O início litúrgico do Nihon Kendo Kata: purificação de intenções, estabelecimento da conexão espiritual (Enzan no Metsuke) e respeito mútuo reverencial entre mestre (Uchidachi) e discípulo (Shidachi) antes do primeiro combate."
     },
     "kata_01": {
       "id": "kata_01",
@@ -32,23 +32,24 @@
       "name_jp": "一本目",
       "name_romaji": "Ippon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Morote Hidari Jodan",
-      "kamae_shidachi": "Morote Migi Jodan",
-      "target_uchidachi": "Shomen",
+      "kamae_uchidachi": "Morote Hidari-Jodan (pé esquerdo à frente)",
+      "kamae_shidachi": "Morote Migi-Jodan (pé direito à frente)",
+      "target_uchidachi": "Shomen (corte amplo até a altura do queixo)",
       "waza_shidachi": "Men-nuki-men",
       "sen": "Sen-sen-no-sen (先々の先)",
-      "zanshin": "Morote Hidari Jodan com avanço imponente do pé esquerdo",
+      "zanshin": "Morote Hidari-Jodan em dois tempos com avanço imponente do pé esquerdo",
       "chakuganten": [
-        "Uchidachi deve cortar sem puxar a lâmina para trás (sem handō)",
-        "Shidachi deve manter o tronco perfeitamente aprumado (shizentai) na esquiva",
-        "Distância de corte de Uchidachi visando a cabeça com corte amplo (o-waza)"
+        "Ambos avançam com espírito de iniciativa mútua (Sen-no-kigurai) a partir do pé dianteiro até a distância de combate (Issoku-itto-no-maai).",
+        "Uchidachi deve cortar de uma só vez descendo a lâmina e o tsuka até a altura do queixo, sem puxar a espada para trás antes do golpe (sem handō).",
+        "Shidachi esquiva o golpe mantendo o tronco ereto e o olhar conectado (shizentai), contra-atacando o Shomen em sincronia com a passada direita.",
+        "Zanshin em Morote Hidari-Jodan executado em 2 tempos com imposição esmagadora de kigurai, sem oscilação corporal."
       ],
       "common_mistakes": [
-        "Perda do alinhamento vertical da coluna de Shidachi ao recuar",
-        "Hesitação entre a esquiva e o contra-ataque",
-        "Ausência de tensão espiritual (kigurai) contínua durante a transição para o Jodan de zanshin"
+        "Uchidachi puxar a espada para trás como alavanca antes de iniciar o corte descendente.",
+        "Shidachi projetar a cabeça ou o tronco para trás ao recuar, perdendo a verticalidade postural.",
+        "Shidachi subir em Jodan no zanshin sem avançar o pé esquerdo para a frente."
       ],
-      "riai_summary": "Confronto direto da postura ofensiva do fogo (Jodan). Shidachi domina a vontade agressiva de Uchidachi antes que o golpe atinja o alvo (Sen-sen-no-sen)."
+      "riai_summary": "Confronto inaugural na postura do Fogo (Jodan). Uchidachi ensina a determinação absoluta do ataque frontal; Shidachi domina a intenção agressiva esquivando com o corpo no tempo exato e vencendo por Sen-sen-no-sen."
     },
     "kata_02": {
       "id": "kata_02",
@@ -56,23 +57,24 @@
       "name_jp": "二本目",
       "name_romaji": "Nihon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Chudan no kamae",
-      "kamae_shidachi": "Chudan no kamae",
-      "target_uchidachi": "Migi-kote (punho direito)",
+      "kamae_uchidachi": "Chudan-no-kamae",
+      "kamae_shidachi": "Chudan-no-kamae",
+      "target_uchidachi": "Migi-kote (punho direito de Shidachi)",
       "waza_shidachi": "Kote-nuki-kote",
       "sen": "Sen-sen-no-sen (先々の先)",
-      "zanshin": "Chudan dominante apontando a ponta (kensen) para a garganta de Uchidachi",
+      "zanshin": "Chudan-no-kamae com kensen cravado na garganta de Uchidachi",
       "chakuganten": [
-        "Uchidachi deve frear a espada logo abaixo da altura do pulso do oponente, sem atingir a linha dos joelhos",
-        "Shidachi deve executar o semicírculo de esquiva de forma contida e fluida pela esquerda e para baixo, sem abrir os cotovelos",
-        "Corte do punho de Shidachi em sincronia exata com o avanço do pé direito"
+        "Disputa rigorosa pelo eixo central (Seichusen) avançando com Sen-no-kigurai.",
+        "Shidachi desce a ponta até Gedan em arco diagonal natural pela esquerda e para baixo, sem descrever um semicírculo amplo para fora.",
+        "Corte do punho direito de Uchidachi em movimento amplo e único, em sincronia com o avanço do pé direito.",
+        "Uchidachi freia a espada logo abaixo da linha do punho de Shidachi, sem deixar a lâmina cair até o chão."
       ],
       "common_mistakes": [
-        "Excesso de amplitude no arco da ponta de Shidachi, desprotegendo o tronco",
-        "Descompasso entre o corte do kote e o avanço da passada",
-        "Uchidachi baixar excessivamente a lâmina após o golpe errar o alvo"
+        "Shidachi abrir os cotovelos ou desenhar uma circunferência excessiva para fora na esquiva.",
+        "Descompasso entre o corte do punho e o avanço da passada direita.",
+        "Quebra de atenção no Zanshin: como o zanshin não é explícito em Jodan, Shidachi deve manter prontidão interna completa (kigurai) ao retornar a Chudan apontando à garganta."
       ],
-      "riai_summary": "Disputa rigorosa pelo domínio do centro em Chudan. Shidachi faz a investida de Uchidachi cortar o vazio e retoma o centro instantaneamente."
+      "riai_summary": "Domínio técnico e psicológico do centro em Chudan. Shidachi percebe a intenção de Uchidachi de atingir seu punho, faz o golpe cortar o vazio com evasão milimétrica e retoma o centro golpeando o punho armado adversário."
     },
     "kata_03": {
       "id": "kata_03",
@@ -80,23 +82,24 @@
       "name_jp": "三本目",
       "name_romaji": "Sanbon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Gedan no kamae -> Chudan no kamae",
-      "kamae_shidachi": "Gedan no kamae -> Chudan no kamae",
-      "target_uchidachi": "Suigetsu (estocada profunda no plexo solar)",
-      "waza_shidachi": "Nayashi-tsuki seguido de Kurai-zume",
+      "kamae_uchidachi": "Gedan-no-kamae -> Chudan-no-kamae (via Ki-arasoi)",
+      "kamae_shidachi": "Gedan-no-kamae -> Chudan-no-kamae (via Ki-arasoi)",
+      "target_uchidachi": "Suigetsu (estocada com ambas as mãos no plexo solar de Shidachi)",
+      "waza_shidachi": "Ire-tsuki / Nayashi-tsuki seguido de Kurai-zume",
       "sen": "Sen-sen-no-sen (先々の先)",
       "zanshin": "Chudan dominante avançando em passos curtos (ko-ashi) em Kurai-zume, elevando a ponta aos olhos de Uchidachi",
       "chakuganten": [
-        "O nayashi deve ser um deslize aderente de lâmina (omote-shinogi), e não uma pancada de varredura (harai)",
-        "Estocada de retorno de Shidachi deve mirar com autoridade o plexo solar de Uchidachi",
-        "Avanço contínuo em kurai-zume sem quebrar a pressão física e mental"
+        "A elevação de Gedan para Chudan deve demonstrar a disputa mútua da vontade de atacar primeiro (Ki-arasoi).",
+        "O amortecimento (Ire-tsuki) neutraliza a estocada de Uchidachi pelo omote-shinogi recuando o corpo e os braços, sem desferir pancada (harai).",
+        "O punho esquerdo de Shidachi não deve sair da linha central (seichusen) durante o amortecimento e o contra-tsuki no peito.",
+        "Avanço imponente em Kurai-zume: Shidachi encurta a distância em passos rápidos, forçando o recuo subjugado de Uchidachi até a ponta atingir o centro de seus olhos."
       ],
       "common_mistakes": [
-        "Bater de forma seca na espada de Uchidachi",
-        "Perder a mira central nos olhos durante o avanço de kurai-zume",
-        "Recuo mecânico de Uchidachi sem expressar o reconhecimento da derrota moral"
+        "Bater secamente na espada de Uchidachi em vez de amortecer e absorver pelo shinogi.",
+        "Dar duas estocadas fracionadas em vez de uma resposta contínua e dominante.",
+        "Uchidachi recuar mecanicamente sem expressar a rendição psicológica à pressão de Kurai-zume."
       ],
-      "riai_summary": "Katsujinken: a espada que domina e preserva a vida sem necessidade de matar. Vitória pela autoridade postural e espiritual."
+      "riai_summary": "Katsujinken (活人剣): a espada que salva a vida e domina sem derramar sangue. Shidachi neutraliza a estocada mortal no peito e subjuga o adversário puramente pela autoridade postural e espiritual de Kurai-zume."
     },
     "kata_04": {
       "id": "kata_04",
@@ -104,23 +107,23 @@
       "name_jp": "四本目",
       "name_romaji": "Yonhon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Hasso no kamae",
-      "kamae_shidachi": "Waki-gamae",
-      "target_uchidachi": "Migihai (estocada no pulmão direito)",
+      "kamae_uchidachi": "Hasso-no-kamae",
+      "kamae_shidachi": "Waki-gamae (ocultando a espada atrás da perna)",
+      "target_uchidachi": "Migi-hai (estocada profunda no pulmão direito de Shidachi)",
       "waza_shidachi": "Maki-kaeshi-men",
       "sen": "Go-no-sen (後の先)",
-      "zanshin": "Chudan dominante com kensen cravado no hemitórax direito de Uchidachi",
+      "zanshin": "Chudan dominante apontando a ponta ao centro do peito/garganta de Uchidachi",
       "chakuganten": [
-        "Sincronia perfeita na transição de Hasso e Waki para o Jodan central com kiai simultâneo",
-        "Compromisso real de corte mútuo no aiuchi com impacto firme no centro",
-        "Giro helicoidal (maki-kaeshi) pelo shinogi sem perder contato mecânico com a lâmina adversária"
+        "Transição simultânea de Hasso e Waki para o Jodan central com kiai sonoro uníssono.",
+        "Compromisso autêntico de corte mútuo no centro (Aiuchi), com impacto firme das lâminas.",
+        "Giro espiral (maki-kaeshi) contínuo com os punhos flexíveis, mantendo o contato pelo shinogi sem perder aderência mecânica antes de golpear a cabeça."
       ],
       "common_mistakes": [
-        "Subida assimétrica ou descompassada para Jodan",
-        "Transformar o aiuchi em uma simulação frouxa sem intenção de corte",
-        "Direcionamento incorreto da estocada para a garganta em vez do tórax direito (migi-kyobu)"
+        "Subida descompassada para Jodan ou aiuchi frouxo sem intenção real de corte mútuo.",
+        "Inversão de alvos: Shidachi estocar na garganta em vez de executar o Maki-kaeshi-men na cabeça.",
+        "Desacoplar a lâmina durante a rotação espiral do maki-kaeshi."
       ],
-      "riai_summary": "Vitória obtida respondendo à energia do impacto já deflagrado (Go-no-sen). Shidachi absorve o choque do Aiuchi e estoca com rotação contínua."
+      "riai_summary": "Vitória obtida respondendo à energia do choque mútuo já deflagrado (Go-no-sen). Shidachi absorve a colisão frontal no Aiuchi, gira helicoidalmente pelo shinogi e fende a cabeça de Uchidachi no momento em que este tentava estocar seu pulmão direito."
     },
     "kata_05": {
       "id": "kata_05",
@@ -128,23 +131,23 @@
       "name_jp": "五本目",
       "name_romaji": "Gohon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Morote Hidari Jodan",
-      "kamae_shidachi": "Chudan no kamae",
-      "target_uchidachi": "Shomen (corte profundo e resoluto)",
-      "waza_shidachi": "Men-suriage-men (omote-shinogi)",
-      "sen": "Sen-no-sen (先の先)",
-      "zanshin": "Morote Hidari Jodan recuando com a perna direita",
+      "kamae_uchidachi": "Morote Hidari-Jodan",
+      "kamae_shidachi": "Chudan-no-kamae",
+      "target_uchidachi": "Shomen (corte resoluto até a altura do queixo)",
+      "waza_shidachi": "Men-suriage-men (pelo omote-shinogi)",
+      "sen": "Sen-sen-no-sen (先々の先)",
+      "zanshin": "Morote Hidari-Jodan recuando com o pé direito",
       "chakuganten": [
-        "Uchidachi deve cortar resolutamente a cabeça de Shidachi e não visar a espada deste",
-        "Shidachi deve defletir na subida da lâmina (suriage) no topo da cabeça em tempo contínuo (ippyo-shi)",
-        "O contra-ataque de Men deve ocorrer em um só fôlego, sem pausa entre o desvio e o corte"
+        "Uchidachi corta visando resolver o confronto fendendo a cabeça até o queixo, e não batendo na espada de Shidachi.",
+        "Shidachi executa o desvio ascendente (suriage) e o contra-golpe de Men no topo da própria cabeça em um único fôlego (ippyo-shi).",
+        "Ao ser defletida, a lâmina de Uchidachi torna-se uma espada morta (shini-tachi) e cai naturalmente até a postura relaxada."
       ],
       "common_mistakes": [
-        "Fracionar a técnica em dois tempos (bloquear primeiro e cortar depois)",
-        "Usar a lâmina para empurrar lateralmente como num golpe de harai",
-        "Recuar os pés ou desalinhar a base durante o contra-ataque"
+        "Fracionar a técnica em dois tempos: bloquear primeiro para depois golpear a cabeça.",
+        "Bater na lâmina adversária com golpe lateral de varredura (harai) em vez de defletir ascendentemente pelo omote-shinogi.",
+        "Uchidachi reter a espada com força em vez de deixá-la cair como espada morta (shini-tachi)."
       ],
-      "riai_summary": "Interceptação no instante milimétrico em que a trajetória ofensiva se desenvolve (Sen-no-sen). Deflexão ascendente fluida sem choque perpendicular."
+      "riai_summary": "Interceptação milimétrica no instante da deflagração ofensiva (Sen-sen-no-sen). Shidachi acolhe a trajetória descendente de Uchidachi, deflete suavemente pela face externa da lâmina e contra-ataca a cabeça em tempo contínuo."
     },
     "kata_06": {
       "id": "kata_06",
@@ -152,23 +155,23 @@
       "name_jp": "六本目",
       "name_romaji": "Roppon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Chudan no kamae",
-      "kamae_shidachi": "Gedan no kamae",
-      "target_uchidachi": "Migi-kote",
-      "waza_shidachi": "Kote-suriage-kote (ura-shinogi)",
+      "kamae_uchidachi": "Chudan-no-kamae",
+      "kamae_shidachi": "Gedan-no-kamae",
+      "target_uchidachi": "Migi-kote (punho direito de Shidachi)",
+      "waza_shidachi": "Kote-suriage-kote (pelo ura-shinogi)",
       "sen": "Go-no-sen (後の先)",
       "zanshin": "Chudan dominante apontando à garganta e forçando o recuo de Uchidachi",
       "chakuganten": [
-        "Desvio ascendente contido e rápido com a face interna da lâmina (ura-shinogi)",
-        "Sincronia precisa entre o corte do punho e o avanço da passada direita",
-        "Pressão inabalável no kensen apontado para a garganta forçando o recuo de Uchidachi"
+        "Dinâmica tática prévia: Shidachi eleva a ponta para Chudan; Uchidachi recua um passo e sobe para Jodan impelido pela hesitação.",
+        "Deflexão ascendente contida pelo ura-shinogi com torção precisa dos punhos (tenouchi), em sincronia com o avanço da passada direita.",
+        "Zanshin rigoroso apontando à garganta e impondo o recuo de Uchidachi até a posição de retorno."
       ],
       "common_mistakes": [
-        "Golpear a espada de Uchidachi com pancada lateral excessiva",
-        "Atrasar a resposta do contra-ataque de kote",
-        "Afrouxar a postura física e mental ao término da ação"
+        "Uchidachi subir para Jodan sem o motivo marcial da hesitação provocada pela pressão de Shidachi.",
+        "Executar o suriage com pancada excessiva em vez de deflexão ascendente curta e aderente.",
+        "Atrasar o contra-ataque de kote após o desvio da lâmina."
       ],
-      "riai_summary": "Neutralização por Go-no-sen de uma tentativa de sondagem tática. Shidachi deflete por dentro e contra-ataca o punho armado."
+      "riai_summary": "Neutralização de uma armadilha tática por Go-no-sen. Shidachi desmonta a postura de Uchidachi, força sua hesitação para Jodan e contra-ataca o punho armado no momento em que este desce."
     },
     "kata_07": {
       "id": "kata_07",
@@ -176,23 +179,23 @@
       "name_jp": "七本目",
       "name_romaji": "Nanahon-me",
       "type": "tachi",
-      "kamae_uchidachi": "Chudan no kamae",
-      "kamae_shidachi": "Chudan no kamae",
-      "target_uchidachi": "Tsuki no tórax seguido de Shomen",
+      "kamae_uchidachi": "Chudan-no-kamae",
+      "kamae_shidachi": "Chudan-no-kamae",
+      "target_uchidachi": "Tsuki no peito com Kiatari, seguido de Shomen",
       "waza_shidachi": "Ura-nayashi seguido de Men-nuki-do",
       "sen": "Go-no-sen (後の先)",
-      "zanshin": "Waki-gamae imponente virando-se em direção a Uchidachi",
+      "zanshin": "Waki-gamae girando sobre o joelho direito assentado no chão em direção a Uchidachi",
       "chakuganten": [
-        "Desvio suave da estocada inicial com o ura-shinogi mantendo o centro",
-        "Deslocamento corporal (tai-sabaki) a 45 graus em deslizamento (suri-ashi) sem saltos",
-        "Corte do tronco (do) com braços estendidos e fio correto da lâmina (hasuji)"
+        "No Ai-tsuki, o choque com vigor de espírito (Kiatari) eleva as pontas na altura dos ombros pelo monouchi com kigurai equilibrado.",
+        "Shidachi absorve a investida em Ura-nayashi e evade o Shomen em Tai-sabaki a 45º deslizando em suri-ashi sem saltos.",
+        "Postura canônica de solo AJKF: ao cortar o tronco (Do), Shidachi assenta o joelho direito no solo com os dedos erguidos (kizae), virando-se sobre o joelho para assumir Waki-gamae."
       ],
       "common_mistakes": [
-        "Pular ou dar saltos no deslocamento lateral",
-        "Golpear o abdômen de Uchidachi com a lateral chapada da lâmina",
-        "Virar as costas para o adversário durante a transição para Waki-gamae"
+        "Pular ou dar saltos no deslocamento diagonal de Tai-sabaki.",
+        "Golpear o abdômen com a lateral da lâmina (shinogi-uchi) em vez do fio cortante (hasuji).",
+        "Levantar-se sem girar sobre o joelho direito assentado na transição para o Waki-gamae de zanshin."
       ],
-      "riai_summary": "Culminância dos katas de espada longa: evasão tridimensional de golpe descendente e corte horizontal de tronco com zanshin em guarda oculta."
+      "riai_summary": "A culminância das técnicas de espada longa: equilíbrio de forças no peito, amortecimento sutil, evasão corporal tridimensional e corte fulminante de tronco com zanshin em guarda oculta sobre o solo."
     },
     "troca_kodachi": {
       "id": "troca_kodachi",
@@ -200,24 +203,24 @@
       "name_jp": "小太刀への交換",
       "name_romaji": "Troca para Kodachi",
       "type": "reiho",
-      "kamae_uchidachi": "Osame-to -> Recuo a 9 passos -> Aguardo em Sage-to",
-      "kamae_shidachi": "Osame-to -> Recuo à posição de troca -> Empunhadura da Kodachi",
-      "target_uchidachi": "Troca de armamento e postura de espera",
-      "waza_shidachi": "Embainhar tachi, recuo com postura ereta, troca cerimonial pela kodachi, avanço a 9 passos e sonkyo com kodachi",
-      "sen": "Zanshin e compostura cerimonial",
-      "zanshin": "Posicionamento em Sonkyo com a Kodachi desembainhada",
-      "climax_desc": "Sonkyo sincronizado com a Kodachi",
+      "kamae_uchidachi": "Osame-to em Sonkyo -> Recuo a 9 passos -> Espera em Sonkyo com a Tachi sobre a coxa direita (tsuka-gashira para dentro)",
+      "kamae_shidachi": "Osame-to em Sonkyo -> Recuo à posição de troca no Shimoza (5 passos à direita) -> Depósito da Tachi e tomada da Kodachi",
+      "target_uchidachi": "Transição de armamento e procedimento ritual de substituição",
+      "waza_shidachi": "Recuo ao Shimoza sem dar as costas, assentamento do joelho do shimoza ao chão, troca cerimonial da Tachi pela Kodachi, avanço a 9 passos e Sonkyo sincronizado",
+      "sen": "Mokuren (目礼 - Continuidade espiritual e prontidão marcial sem quebra de atenção)",
+      "zanshin": "Assunção sincronizada de Sonkyo a 9 passos com a Kodachi desembainhada",
+      "climax_desc": "Sonkyo simultâneo entre Uchidachi e Shidachi com a Kodachi",
       "chakuganten": [
-        "Embainhar (osame-to) simultâneo e com zanshin inabalável após o Nanahon-me",
-        "Movimentação serena e sóbria de Shidachi até a posição de troca de armas sem dar as costas de forma desleixada",
-        "Sonkyo de desembainhar com a kodachi perfeitamente sincronizado com o sonkyo de Uchidachi"
+        "Embainhar uníssono (Osame-to) em Sonkyo ao término do Nanahon-me, mantendo a firmeza postural.",
+        "Shidachi deve recuar à posição de troca com serenidade e encostar o joelho do lado do Shimoza no solo ao substituir a Tachi pela Kodachi.",
+        "Levantamento e avanço sincronizados para que ambos atinjam a marca de 9 passos e executem o Sonkyo no mesmo instante."
       ],
       "common_mistakes": [
-        "Apressar o embainhar ou perder a tensão espiritual ao término do Nanahon-me",
-        "Manuseio desajeitado da kodachi no momento da substituição",
-        "Descompasso de distância ao retornar à marca de 9 passos para o início dos katas de Kodachi"
+        "Shidachi virar as costas de forma displicente ao caminhar até a posição da Kodachi.",
+        "Manuseio descuidado ou choque sonoro das tsubas ao trocar de armamento.",
+        "Descompasso de distância ao retornar à marca de 9 passos para o início dos katas de Kodachi."
       ],
-      "riai_summary": "Transição formal da espada longa para a espada curta. Demonstração de compostura e etiqueta no manejo e substituição dos instrumentos sagrados."
+      "riai_summary": "Transição litúrgica do combate de espadas longas para a defesa com espada curta. Demonstração de compostura serena, etiqueta irrepreensível e vigilância marcial ininterrupta durante a substituição de armas."
     },
     "kata_08": {
       "id": "kata_08",
@@ -225,24 +228,23 @@
       "name_jp": "小太刀一本目",
       "name_romaji": "Kodachi Ippon-me",
       "type": "kodachi",
-      "kamae_uchidachi": "Morote Hidari Jodan",
-      "kamae_shidachi": "Chudan Hanmi no kamae",
-      "target_uchidachi": "Shomen",
-      "waza_shidachi": "Men-ukenagashi-men (hidari-shinogi)",
+      "kamae_uchidachi": "Morote Hidari-Jodan (pé esquerdo à frente)",
+      "kamae_shidachi": "Chudan Hanmi-no-kamae (pé direito à frente, kensen no centro do rosto de Uchidachi)",
+      "target_uchidachi": "Shomen (corte profundo até a altura do queixo)",
+      "waza_shidachi": "Men-ukenagashi-men (pelo hidari-shinogi)",
       "sen": "Sen-sen-no-sen (先々の先)",
-      "zanshin": "Katate Chudan com braço direito estendido e kensen cravado no centro",
+      "zanshin": "Katate Hidari-Jodan com braço estendido e kensen dominante apontado ao centro",
       "chakuganten": [
-        "Postura correta em Chudan Hanmi com pé direito à frente",
-        "Entrada profunda no raio de ação (irimi) na diagonal dianteira direita",
-        "Deflexão circular contínua (uke-nagashi) pelo lado esquerdo sem bloqueio rígido",
-        "Corte de Men com uma das mãos sustentado pela base inferior do corpo"
+        "Postura firme em Chudan Hanmi com o ombro esquerdo recuado e a ponta no centro do rosto de Uchidachi.",
+        "Entrada profunda no raio de ação (Irimi) na diagonal dianteira direita no exato momento da investida de Uchidachi.",
+        "Deflexão contínua em Uke-nagashi pelo hidari-shinogi sem aparar com força bruta, cortando a cabeça com uma só mão sustentado pelos quadris."
       ],
       "common_mistakes": [
-        "Tentar bloquear o peso da espada longa com a força pura do punho",
-        "Mover-se para o lado sem avançar para dentro da distância de combate",
-        "Encolher o cotovelo no corte final de Men"
+        "Tentar suportar o impacto da espada longa na força muscular do punho em vez de escoar a lâmina pelo shinogi.",
+        "Mover-se lateralmente sem penetrar para frente na distância de combate (Irimi insuficiente).",
+        "Encolher o cotovelo no corte final de Men com uma das mãos."
       ],
-      "riai_summary": "Anulação da desvantagem de alcance da espada curta através do avanço penetrante (irimi) e acolhimento deslizante do sabre longo."
+      "riai_summary": "Superação da desvantagem de alcance da espada curta através do avanço penetrante (Irimi). Shidachi acolhe e escoa o ímpeto da espada longa e contra-ataca a cabeça com golpe unilateral e zanshin dominante."
     },
     "kata_09": {
       "id": "kata_09",
@@ -250,23 +252,23 @@
       "name_jp": "小太刀二本目",
       "name_romaji": "Kodachi Nihon-me",
       "type": "kodachi",
-      "kamae_uchidachi": "Morote Hidari Jodan",
-      "kamae_shidachi": "Chudan Irimi no kamae (ponta na garganta)",
-      "target_uchidachi": "Shomen",
+      "kamae_uchidachi": "Gedan-no-kamae",
+      "kamae_shidachi": "Chudan Hanmi-no-kamae (ponta na altura do peito, ligeiramente baixa)",
+      "target_uchidachi": "Shomen (tentativa de corte da cabeça)",
       "waza_shidachi": "Ukenagashi-kote seguido de Hiji-osae",
       "sen": "Go-no-sen (後の先)",
-      "zanshin": "Hiji-osae firme com a mão esquerda no cotovelo e a kodachi na garganta de Uchidachi",
+      "zanshin": "Hiji-osae firme segurando o cotovelo por cima com o polegar travando a parte interna e a Kodachi na garganta",
       "chakuganten": [
-        "Deflexão obrigatória pelo lado direito da lâmina (migi-shinogi)",
-        "Penetração corporal que neutraliza o espaço de ação do oponente",
-        "Apoio e controle articular imediato do cotovelo (hiji-osae) com firmeza e sobriedade"
+        "Deflexão em Uke-nagashi executada obrigatoriamente pelo lado direito da lâmina (migi-shinogi).",
+        "Corte preciso do punho seguido de penetração corporal imediata neutralizando o espaço de Uchidachi.",
+        "Controle articular do cotovelo (Hiji-osae) com firmeza por cima da articulação, forçando o recuo de 3 passos de Uchidachi."
       ],
       "common_mistakes": [
-        "Defletir a lâmina pelo lado incorreto do shinogi",
-        "Hesitar entre o corte de kote e a pegada do cotovelo",
-        "Projetar a cabeça para frente perdendo o eixo postural"
+        "Defletir pelo lado incorreto do shinogi (usar hidari em vez de migi-shinogi).",
+        "Apoiar a mão por baixo do cotovelo ou segurar frouxamente.",
+        "Projetar a cabeça ou o tronco para frente perdendo o prumo vertical durante o domínio articular."
       ],
-      "riai_summary": "Imobilização articular e domínio absoluto do braço armado de Uchidachi, contendo qualquer possibilidade de reação."
+      "riai_summary": "Imobilização articular e desarmamento pela espada curta. Shidachi desvia o ataque pelo migi-shinogi, corta o punho armado e anula qualquer reação travando o cotovelo com autoridade absoluta."
     },
     "kata_10": {
       "id": "kata_10",
@@ -274,23 +276,23 @@
       "name_jp": "小太刀三本目",
       "name_romaji": "Kodachi Sanbon-me",
       "type": "kodachi",
-      "kamae_uchidachi": "Chudan no kamae",
-      "kamae_shidachi": "Gedan Hanmi no kamae",
-      "target_uchidachi": "Men seguido de Migi-do",
-      "waza_shidachi": "Surinagashi seguido de Makiotoshi e Osae",
+      "kamae_uchidachi": "Chudan-no-kamae",
+      "kamae_shidachi": "Gedan Hanmi-no-kamae (kensen na altura do Gedan de Tachi)",
+      "target_uchidachi": "Tentativa de Shomen seguida de corte no tronco direito (Migi-do)",
+      "waza_shidachi": "Suriage-suriotoshi, Surinagashi (hidari-shinogi), controle em cruz (jūji) e Irimi de 3 passos",
       "sen": "Go-no-sen (後の先)",
-      "zanshin": "Tsuba-dome com controle do braço direito e kodachi cravada na garganta",
+      "zanshin": "Controle das guardas em cruz (jūji) na raiz do habaki com a Kodachi cravada na garganta e 3 passos de avanço",
       "chakuganten": [
-        "Absorção deslizante contínua do corte de tronco pelo hidari-shinogi (surinagashi)",
-        "Giro helicoidal descendente (makiotoshi) rente à guarda (tsubamoto) desmontando a arma adversária",
-        "Sobriedade e imobilização absoluta na garganta sem oscilações"
+        "Sequência contínua: Suriage e Suriotoshi na primeira tentativa de Men; deslizamento horizontal rente ao abdômen em Surinagashi pelo hidari-shinogi na tentativa de corte de Do.",
+        "Encaixe perfeito na raiz da guarda com os habaki em cruz (jūji), travando a liberdade do braço direito de Uchidachi.",
+        "Avanço dominante em Irimi de 3 passos mantendo a ponta da Kodachi cravada na garganta enquanto Uchidachi recua subjugado."
       ],
       "common_mistakes": [
-        "Bloquear o corte de Do com impacto perpendicular rígido",
-        "Afastar a kodachi antes de girar a lâmina de Uchidachi para baixo",
-        "Quebrar a postura vertical na pressão final contra a garganta"
+        "Bloquear o corte de Do com impacto perpendicular rígido em vez de deslizar em Surinagashi.",
+        "Afastar a Kodachi da espada adversária antes de cruzar os habaki.",
+        "Quebrar a postura vertical ou afrouxar a pressão na garganta durante os 3 passos de avanço penetrante."
       ],
-      "riai_summary": "O ápice da espada curta: absorver o golpe de tronco, desmontar a guarda adversária por makiotoshi e imobilizar o oponente na raiz da espada."
+      "riai_summary": "O ápice do combate com a Kodachi: neutralizar o corte superior, absorver o golpe de tronco horizontalmente, desmontar a guarda adversária travando as lâminas em cruz e subjugar o oponente pela penetração irreversível."
     },
     "reiho_final": {
       "id": "reiho_final",
@@ -298,25 +300,25 @@
       "name_jp": "礼法（後）",
       "name_romaji": "Reiho Final (Zarei e Saída)",
       "type": "reiho",
-      "kamae_uchidachi": "Sonkyo -> Osame-to -> Zarei -> Retirada em Sage-to",
-      "kamae_shidachi": "Sonkyo -> Osame-to -> Zarei -> Retirada em Sage-to",
-      "target_uchidachi": "Shidachi (Zarei de encerramento) e Shomen (Ritsurei)",
-      "waza_shidachi": "Embainhar da kodachi e tachi em sonkyo, recuo coordenado a 9 passos, zarei mútuo, sage-to e ritsurei final ao shomen",
-      "sen": "Rei e Zanshin total",
-      "zanshin": "Saída do dojo com postura digna e alinhamento visual no Shomen",
-      "climax_desc": "Zarei mútuo final de agradecimento",
+      "kamae_uchidachi": "Sonkyo -> Osame-to -> Recuo a 3 passos no Shimoza em Sage-to",
+      "kamae_shidachi": "Sonkyo -> Osame-to da Kodachi -> Recolhimento da Tachi no Shimoza -> Posição a 3 passos no Shimoza",
+      "target_uchidachi": "Shidachi (Zarei mútuo de agradecimento a 30º no Shimoza) e Shomen/Kamiza (Ritsurei uníssono a 30º na borda do dojo)",
+      "waza_shidachi": "Embainhar coordenado em Sonkyo, recuo ao Shimoza, recolhimento da Tachi em Seiza (joelho do shimoza ao chão), Zarei mútuo e saída em Sage-to com Ritsurei final ao Shomen",
+      "sen": "Reisetsu (礼節 - Gratidão, humildade e respeito mútuo inabalável)",
+      "zanshin": "Porte digno em Sage-to e vigilância contínua até a travessia dos limites da quadra",
+      "climax_desc": "Zarei mútuo final de agradecimento e reverência entre os executantes no Shimoza",
       "chakuganten": [
-        "Embainhar simultâneo em sonkyo com perfeita sobriedade e retenção das espadas",
-        "Recuo até a distância inicial mantendo o olhar firme no oponente",
-        "Zarei mútuo profundo de agradecimento e harmonia mútua",
-        "Retirada solene até a borda da quadra com ritsurei final uníssono em direção ao Shomen"
+        "Embainhar simultâneo em Sonkyo com retenção segura das espadas e polegar travando o tsuba no koiguchi.",
+        "Shidachi recolhe a Tachi ajoelhando com o joelho do Shimoza no solo, levantando-se com ambas as armas e posicionando-se a 3 passos de Uchidachi.",
+        "Zarei mútuo profundo e sincronizado a 30 graus, com as mãos pousadas em triângulo no solo sem elevar os quadris.",
+        "Retirada solene até a borda do dojo, com Shidachi cedendo passagem a Uchidachi e Ritsurei uníssono final em direção ao Shomen."
       ],
       "common_mistakes": [
-        "Desconexão de atenção logo após o sonkyo final (quebra prematura de zanshin)",
-        "Falta de sincronia no ritmo dos passos de saída em direção à borda",
-        "Ritsurei final desalinhado ou apressado"
+        "Desconexão prematura da atenção marcial (quebra de zanshin) logo após o sonkyo final.",
+        "Apressar o ritmo dos passos de saída ou esquecer a reverência final ao Shomen.",
+        "Desalinhamento da inclinação no Zarei de encerramento."
       ],
-      "riai_summary": "Fechamento solene da demonstração: 'O Kendo começa com o Rei e termina com o Rei' (Rei ni hajimari, Rei ni owaru)."
+      "riai_summary": "Encerramento solene da liturgia marcial: consagração do princípio 'Rei ni hajimari, Rei ni owaru'. A gratidão e o reconhecimento mútuo entre mestre e praticante selam a prática sagrada do Nihon Kendo Kata."
     }
   },
   "demonstrations": [

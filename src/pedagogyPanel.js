@@ -50,6 +50,14 @@ export function renderPedagogyPanel(kataId, db, containerEl) {
     </div>
   ` : '';
 
+  const isReiho = kata.type === "reiho";
+  const kamaeCardTitle = isReiho ? "📜 Porte das Armas & Entrada" : "⚔️ Posturas Iniciais (Kamae)";
+  const targetLabel = isReiho ? "Foco / Direcionamento:" : "Alvo de Uchidachi:";
+  const wazaCardTitle = isReiho ? "⛩️ Conduta Protocolar & Etiqueta" : "🎯 Técnica Decisiva & Iniciativa";
+  const wazaLabel = isReiho ? "Ação Protocolar Conjunta:" : "Waza de Shidachi:";
+  const senLabel = isReiho ? "Espírito da Etiqueta (Reisetsu):" : "Princípio Tático (Mitsu no Sen):";
+  const zanshinLabel = isReiho ? "Compostura & Vigilância Serena:" : "Postura de Zanshin:";
+
   containerEl.innerHTML = `
     <div class="pedagogy-header">
       <span class="kata-number-tag">${numberTag}</span>
@@ -59,7 +67,7 @@ export function renderPedagogyPanel(kataId, db, containerEl) {
 
     <!-- Kamae & Alvos -->
     <div class="pedagogy-card">
-      <div class="pedagogy-card-title">⚔️ Posturas Iniciais (Kamae)</div>
+      <div class="pedagogy-card-title">${kamaeCardTitle}</div>
       <div class="combat-roles">
         <div class="role-box">
           <div class="role-name">Uchidachi (打太刀)</div>
@@ -71,25 +79,25 @@ export function renderPedagogyPanel(kataId, db, containerEl) {
         </div>
       </div>
       <div class="target-row">
-        <span class="role-name">Alvo de Uchidachi:</span> <strong>${kata.target_uchidachi}</strong>
+        <span class="role-name">${targetLabel}</span> <strong>${kata.target_uchidachi}</strong>
       </div>
     </div>
 
     <!-- Técnica e Iniciativa -->
     <div class="pedagogy-card">
-      <div class="pedagogy-card-title">🎯 Técnica Decisiva & Iniciativa</div>
+      <div class="pedagogy-card-title">${wazaCardTitle}</div>
       <div class="waza-highlight">
-        <div class="role-name">Waza de Shidachi:</div>
+        <div class="role-name">${wazaLabel}</div>
         <div class="waza-name" style="font-size: 1.05rem; font-weight: 700; color: var(--gold-light); margin: 0.2rem 0;">
           ${kata.waza_shidachi}
         </div>
       </div>
       <div class="sen-box" style="margin-top: 0.5rem;">
-        <span class="role-name">Princípio Tático (Mitsu no Sen):</span><br/>
+        <span class="role-name">${senLabel}</span><br/>
         <span class="sen-badge">${kata.sen}</span>
       </div>
       <div class="zanshin-box" style="margin-top: 0.6rem; font-size: 0.82rem; color: var(--text-secondary);">
-        <span class="role-name">Postura de Zanshin:</span><br/>
+        <span class="role-name">${zanshinLabel}</span><br/>
         ${kata.zanshin}
       </div>
     </div>
