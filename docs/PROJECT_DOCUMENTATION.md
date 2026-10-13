@@ -100,6 +100,13 @@ Para evitar a reincidência de erros técnicos em futuras implementações, as s
 - **Problema:** O modo de calibração permite alterar timestamps e não deve ser acessível ao usuário final na versão pública.
 - **Regra de Ouro:** O botão e os controles do Calibrador são renderizados condicionalmente apenas se o endereço de acesso for `localhost` ou `127.0.0.1`. No GitHub Pages público, o botão sequer é exibido no cabeçalho.
 
+### 3.6 Blindagem do Relógio Mestre e Janela de Graça Pós-Seek
+- **Problema:** O método `onPlaybackTick` referenciava `actualTime` fora de escopo, gerando `ReferenceError` que abortava silenciosamente o loop `handleSyncLoop` (`requestAnimationFrame`). Isso deixava a timeline inferior congelada e impedia o acionamento do Loop e da barreira de fim de kata. Além disso, leituras residuais assíncronas do YouTube logo após um comando de `seekTo` podiam causar falsos términos prematuros.
+- **Regra de Ouro:**
+  1. Sempre declarar e validar `actualTime = typeof player.getCurrentTime === 'function' ? player.getCurrentTime() : -1`.
+  2. Implementar janela de transição pós-seek (`isSeekingGrace` de 800ms) registrando `slot.lastSeekTime = performance.now()` em qualquer ação de busca. Durante essa janela, leituras de tempo próximo ao fim do kata são ignoradas.
+  3. Envolver `gridManager.onPlaybackTick` em bloco `try...catch` no orquestrador principal para blindar o loop de animação contra exceções externas da API.
+
 ---
 
 ## 4. Próximas Etapas e Roadmap Priorizado
@@ -119,14 +126,15 @@ Para evitar a reincidência de erros técnicos em futuras implementações, as s
 - **Ressincronização Rápida:** Botão `[🔄 Sincronizar]` na barra inferior e no cabeçalho de cada vídeo, permitindo realinhar todos os players milimetricamente com 1 único clique após pular anúncios ou eventos de buffering.
 - **Guia do Usuário:** Instruções detalhadas adicionadas ao Passo 5 do Guia Visual de Utilização.
 
-### Prioridade 3: Revisão Canônica dos Fundamentos via Manuais AJKF e CBK
-- **Objetivo:** Elevar o rigor técnico pedagógico das explicações de cada kata.
-- **Fontes:**
-  - Manual Oficial da All Japan Kendo Federation (`references/nippon_kendo_kata_manual.pdf`).
-  - Tradução Oficial da Confederação Brasileira de Kendo (`references/traducao kendo kata - 200923.pdf`).
-- **Escopo:** Padronizar termos canônicos (Metsuke, Maai, Kiai, Hasuji, Zanshin), diretrizes estritas para Uchidachi e Shidachi, e detalhamento de pontos de corte e de avaliação para exames de graduação.
+### Prioridade 3: Revisão Canônica dos Fundamentos e Calibração dos Katas (✅ Concluída)
+- **Status:** Textos doutrinários revisados e padronizados conforme os manuais oficiais da AJKF e CBK.
+- **Ajustes Canônicos:**
+  - Padronização rigorosa de terminologias litúrgicas nos blocos de Reiho e Transição de Armas (eliminando termos belicosos como "Alvo", "Waza" e "Mitsu no Sen" nesses blocos).
+  - Fixação do 5º Kata (*Gohon-me*) estritamente como *Sen-sen-no-sen (先々の先)* conforme o manual canônico.
+  - Inclusão dos critérios oficiais de exame e julgamento da AJKF (*Chakuganten*) e erros técnicos frequentes.
+  - Calibração de alta precisão dos 13 blocos da demonstração do 20th 8dan Taikai (2022).
 
-### Prioridade 4: Suporte Multilíngue (i18n: PT-BR, EN, JA)
+### Prioridade 4: Suporte Multilíngue (i18n: PT-BR, EN, JA) (A Seguir)
 - **Objetivo:** Permitir a internacionalização completa da ferramenta para a comunidade global de Kendo.
 - **Especificações:**
   - Sistema de internacionalização leve sem dependências pesadas (`src/i18n/`).
