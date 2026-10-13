@@ -255,7 +255,11 @@ function handleSyncLoop(now) {
 
   // Atualiza transições de estado dos players (início de defasagem e fim de kata)
   if (gridManager) {
-    gridManager.onPlaybackTick(currentRelativeTime, currentKataId, syncMode);
+    try {
+      gridManager.onPlaybackTick(currentRelativeTime, currentKataId, syncMode);
+    } catch (err) {
+      console.error("Erro no ciclo de playback do gridManager:", err);
+    }
   }
 
   // Checa se todos os slots terminaram OU se a timeline atingiu o fim

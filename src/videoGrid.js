@@ -322,9 +322,10 @@ export class VideoGridManager {
     this.slots.forEach(slot => {
       if (!slot.ytPlayer || !slot.isReady) return;
 
-      // Limpa qualquer estado transitório de anúncio
+      // Limpa qualquer estado transitório de anúncio e marca timestamp do seek
       slot.isAdPlaying = false;
       if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
+      slot.lastSeekTime = performance.now();
 
       const state = getSlotPlaybackState(relativeTime, slot.demoId, kataId, this.db, syncMode);
       if (typeof slot.ytPlayer.seekTo === 'function') {
@@ -378,8 +379,10 @@ export class VideoGridManager {
           }
         }
       } else if (slot.playbackState === 'playing') {
+        const actualTime = typeof slot.ytPlayer.getCurrentTime === 'function' ? slot.ytPlayer.getCurrentTime() : -1;
+        const isSeekingGrace = slot.lastSeekTime && (performance.now() - slot.lastSeekTime < 800);
         // Checa se atingiu o fim do kata: verifica tanto a timeline quanto o tempo real do player do YouTube
-        const isPastEnd = state.isFinishedEnd || (actualTime > 0 && actualTime >= kata.end - 0.15);
+        const isPastEnd = state.isFinishedEnd || (!isSeekingGrace && actualTime > 0 && actualTime >= kata.end - 0.15 && actualTime > kata.start + 2.0);
 
         if (isPastEnd) {
           slot.playbackState = 'ended';
@@ -422,8 +425,9 @@ export class VideoGridManager {
         isAd = true;
       }
 
-      // 3. Verificação por tempo corrente anômalo em relação ao kata selecionado
-      if (!isAd && kata && kata.start > 15 && actualTime >= 0 && actualTime < (kata.start - 6) && (playerState === 1 || playerState === 3)) {
+      // 3. Verificação por tempo corrente anômalo em relação ao kata selecionado (apenas se video_id não for expressamente o vídeo canônico)
+      const isConfirmedCanonicalVideo = videoData && videoData.video_id === demo.youtube_id && duration > 75;
+      if (!isAd && !isConfirmedCanonicalVideo && kata && kata.start > 15 && actualTime >= 0 && actualTime < (kata.start - 6) && (playerState === 1 || playerState === 3)) {
         isAd = true;
       }
     } catch (e) {
@@ -465,6 +469,7 @@ export class VideoGridManager {
 
     slot.isAdPlaying = false;
     if (slot.adNoticeEl) slot.adNoticeEl.classList.add('hidden');
+    slot.lastSeekTime = performance.now();
 
     if (typeof slot.ytPlayer.seekTo === 'function') {
       slot.ytPlayer.seekTo(state.targetTime, true);
